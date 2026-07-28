@@ -5653,7 +5653,7 @@
       "service",
       "establishment"
     ],
-    "partnerSlug": "hunter-cattle-brooklet-ga"
+    "partnerSlug": "stilson-abattoir-brooklet-ga"
   },
   {
     "name": "Hwy 10 Processing",
@@ -6949,7 +6949,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "partnerSlug": "mad-dog-ranch-id"
+    "partnerSlug": "mad-dog-ranch-bliss-id"
   },
   {
     "name": "Manley Meats",
@@ -12652,10 +12652,10 @@
     "description": "Custom and USDA-inspected meat processing facility in Bradenville, PA, with a retail location in New Alexandria, PA.",
     "lat": 40.3214737,
     "lng": -79.347309,
-    "partnerSlug": "weimer-meats-new-alexandria-pa",
+    "partnerSlug": "weimer-meats-usda-bradenville-pa",
     "partnerFacilities": [
       {
-        "slug": "weimer-meats-new-alexandria-pa",
+        "slug": "weimer-meats-usda-bradenville-pa",
         "label": "USDA facility"
       },
       {
