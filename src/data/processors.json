@@ -26412,48 +26412,6 @@
     "description": "Jenkins Meats is a meat processor in Mt Victory, OH, rated 4.1 stars across 23 Google reviews. Customers highlight their friendly staff, professional service, and clean facility. Common review themes include custom cuts."
   },
   {
-    "name": "Steve Polansky Market Inc",
-    "location": "Amherst, OH",
-    "state": "OH",
-    "species": [
-      "Beef"
-    ],
-    "slug": "steve-polansky-market-inc-amherst-oh",
-    "status": "prospect",
-    "address": "6703 S Dewey Rd",
-    "zip": "44001",
-    "phone": "(440) 988-2617",
-    "website": "http://facebook.com/polanskysmeatmarket",
-    "lat": 41.402111,
-    "lng": -82.2014007,
-    "googleMapsUri": "https://maps.google.com/?cid=5082053898267619688&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 4.9,
-    "userRatingCount": 450,
-    "hours": [
-      "Monday: 9:00 AM – 6:00 PM",
-      "Tuesday: 9:00 AM – 6:00 PM",
-      "Wednesday: 9:00 AM – 6:00 PM",
-      "Thursday: 9:00 AM – 6:00 PM",
-      "Friday: 9:00 AM – 6:00 PM",
-      "Saturday: 9:00 AM – 5:00 PM",
-      "Sunday: Closed"
-    ],
-    "businessStatus": "OPERATIONAL",
-    "placeTypes": [
-      "butcher_shop",
-      "deli",
-      "food_store",
-      "wholesaler",
-      "store",
-      "food",
-      "service",
-      "point_of_interest",
-      "manufacturer",
-      "establishment"
-    ],
-    "description": "Steve Polansky Market Inc is a meat processor in Amherst, OH, rated 4.9 stars across 450 Google reviews. Customers highlight their friendly staff."
-  },
-  {
     "name": "Sharp's Custom Butchering",
     "location": "Amanda, OH",
     "state": "OH",
