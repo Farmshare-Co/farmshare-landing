@@ -26098,37 +26098,6 @@
     "description": "Kempf's Custom Butchering is a meat processor in Middlefield, OH, rated 4.6 stars across 65 Google reviews. Customers highlight their friendly staff. Common review themes include custom sausage."
   },
   {
-    "name": "Chad's Country Meat's",
-    "location": "Mansfield, OH",
-    "state": "OH",
-    "species": [
-      "Beef",
-      "Hog"
-    ],
-    "slug": "chad-s-country-meat-s-mansfield-oh",
-    "status": "prospect",
-    "address": "518 Mansfield Lucas Rd",
-    "zip": "44907",
-    "phone": "(419) 526-0018",
-    "lat": 40.7406395,
-    "lng": -82.49651229999999,
-    "googleMapsUri": "https://maps.google.com/?cid=10952695465752470516&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 4.8,
-    "userRatingCount": 33,
-    "businessStatus": "CLOSED_TEMPORARILY",
-    "placeTypes": [
-      "butcher_shop",
-      "food_store",
-      "manufacturer",
-      "service",
-      "food",
-      "point_of_interest",
-      "store",
-      "establishment"
-    ],
-    "description": "Chad's Country Meat's is a meat processor in Mansfield, OH, rated 4.8 stars across 33 Google reviews. Customers highlight their friendly staff. Common review themes include vacuum packing."
-  },
-  {
     "name": "Hurdwell",
     "location": "Arlington, OH",
     "state": "OH",
