@@ -35888,5 +35888,50 @@
       "establishment"
     ],
     "description": "Lone Crow Ranch is a meat processor in Loon Lake, WA, rated 4.9 stars across 76 Google reviews. Customers highlight their friendly staff and professional service."
+  },
+  {
+    "name": "Whiskey Creek Processing",
+    "location": "Madill, OK",
+    "state": "OK",
+    "species": [
+      "Beef",
+      "Bison",
+      "Hog",
+      "Lamb",
+      "Goat"
+    ],
+    "logo": null,
+    "slug": "whiskey-creek-processing-madill-ok",
+    "status": "prospect",
+    "address": "16991 W Hwy 70",
+    "zip": "73446",
+    "phone": "(580) 677-9981",
+    "website": "https://www.whiskeycreekprocessing.com/",
+    "lat": 34.099897999999996,
+    "lng": -96.82763469999999,
+    "googleMapsUri": "https://maps.google.com/?cid=9677880786196861882&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.1,
+    "userRatingCount": 88,
+    "hours": [
+      "Monday: 10:00 AM – 6:00 PM",
+      "Tuesday: 10:00 AM – 6:00 PM",
+      "Wednesday: 10:00 AM – 6:00 PM",
+      "Thursday: 10:00 AM – 6:00 PM",
+      "Friday: 10:00 AM – 6:00 PM",
+      "Saturday: 10:00 AM – 2:00 PM",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "manufacturer",
+      "food_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "description": "Whiskey Creek Processing is a meat processor in Madill, OK, rated 4.1 stars across 88 Google reviews. Customers highlight their friendly staff, professional service, and clean facility. Common review themes include custom sausage, summer sausage, and snack sticks."
   }
 ]
