@@ -26323,41 +26323,6 @@
     "description": "Beitzel's Farm & Meat Processing is a meat processor in Stone Creek, OH, rated 4.7 stars across 55 Google reviews. Customers highlight their friendly staff and family-owned operation."
   },
   {
-    "name": "PASCO, Inc.",
-    "location": "Hudson, OH",
-    "state": "OH",
-    "species": [
-      "Beef"
-    ],
-    "logo": "https://www.pasco-group.com/wp-content/uploads/2019/03/cropped-favicon-1-180x180.png",
-    "slug": "pasco-inc-hudson-oh",
-    "status": "prospect",
-    "address": "5600 Hudson Industrial Pkwy Suite 200",
-    "zip": "44236",
-    "phone": "(330) 655-7000",
-    "website": "http://www.pasco-group.com/",
-    "lat": 41.213296,
-    "lng": -81.4291958,
-    "googleMapsUri": "https://maps.google.com/?cid=6458220470474373279&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 2,
-    "userRatingCount": 2,
-    "hours": [
-      "Monday: 8:00 AM – 6:00 PM",
-      "Tuesday: 8:00 AM – 6:00 PM",
-      "Wednesday: 8:00 AM – 6:00 PM",
-      "Thursday: 8:00 AM – 6:00 PM",
-      "Friday: 8:00 AM – 6:00 PM",
-      "Saturday: Closed",
-      "Sunday: Closed"
-    ],
-    "businessStatus": "OPERATIONAL",
-    "placeTypes": [
-      "finance",
-      "point_of_interest",
-      "establishment"
-    ]
-  },
-  {
     "name": "Bellevue Meats Ltd",
     "location": "Bellevue, OH",
     "state": "OH",
