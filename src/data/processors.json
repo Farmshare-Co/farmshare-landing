@@ -11793,7 +11793,10 @@
     "state": "CO",
     "species": [
       "Beef",
-      "Hog"
+      "Hog",
+      "Bison",
+      "Lamb",
+      "Goat"
     ],
     "logo": "/logos/sunnyside.svg",
     "slug": "sunnyside-meats-inc-durango-co",
