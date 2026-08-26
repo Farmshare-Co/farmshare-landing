@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, CheckCircle2, ChevronDown, ChevronRight, Lock, MapPin, Plus, Search, Star, Trash2, Upload } from 'lucide-react';
+import { Calendar, CheckCircle2, ChevronDown, ChevronRight, MapPin, Plus, Search, Star, Trash2, Upload } from 'lucide-react';
 import { processors, stateNames, type Processor, type PartnerFacility } from '../data/processors';
-
-const PASSWORD_KEY = 'farmshare_admin_password';
+import { AdminUserBadge } from '../components/AdminGate';
+import { adminAuthHeaders, signOutAdmin } from '../lib/adminAuth';
 const ALL_SPECIES = ['Beef', 'Bison', 'Goat', 'Hog', 'Lamb', 'Veal'] as const;
 type SpeciesT = (typeof ALL_SPECIES)[number];
 
@@ -22,60 +22,15 @@ interface Result {
 }
 
 export default function AdminPromote() {
-  const [password, setPassword] = useState<string>(() => localStorage.getItem(PASSWORD_KEY) || '');
-  const [authChecked, setAuthChecked] = useState(false);
-  const [authError, setAuthError] = useState<string | null>(null);
   const [mode, setMode] = useState<'promote' | 'create' | 'add-prospect' | 'edit' | 'remove'>('promote');
 
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleAuthSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!password) {
-      setAuthError('Enter the admin password.');
-      return;
-    }
-    localStorage.setItem(PASSWORD_KEY, password);
-    setAuthChecked(true);
-    setAuthError(null);
-  };
-
-  const handleSignOut = () => {
-    localStorage.removeItem(PASSWORD_KEY);
-    setPassword('');
-    setAuthChecked(false);
-  };
-
-  const passwordSaved = !!localStorage.getItem(PASSWORD_KEY);
-  if (!authChecked && !passwordSaved) {
-    return (
-      <div className="min-h-screen bg-brand-cream flex items-center justify-center px-4">
-        <form onSubmit={handleAuthSubmit} className="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full">
-          <div className="flex items-center gap-3 mb-6">
-            <Lock className="h-6 w-6 text-brand-green" />
-            <h1 className="text-2xl font-roca text-brand-green">Admin</h1>
-          </div>
-          <p className="text-stone-600 text-sm mb-6">Ask Henry for the admin password.</p>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Admin password"
-            className="w-full px-4 py-3 rounded-lg border border-stone-300 focus:outline-none focus:ring-2 focus:ring-brand-orange mb-4"
-          />
-          {authError && <p className="text-red-600 text-sm mb-3">{authError}</p>}
-          <button
-            type="submit"
-            className="w-full bg-brand-orange text-white py-3 rounded-lg font-bold hover:bg-brand-yellow transition-colors"
-          >
-            Continue
-          </button>
-        </form>
-      </div>
-    );
-  }
+  // AdminGate (App.tsx) already required a signed-in, allowlisted Google account.
+  // If the API still says 401, the token went stale — bounce back to sign-in.
+  const onUnauthorized = () => { void signOutAdmin(); };
 
   return (
     <div className="min-h-screen bg-brand-cream">
@@ -86,7 +41,7 @@ export default function AdminPromote() {
             <h1 className="text-3xl font-roca text-brand-green mt-1">Directory admin</h1>
             <p className="text-stone-600 mt-1">Promote a prospect, add a new customer, or add a new prospect from Google.</p>
           </div>
-          <button onClick={handleSignOut} className="text-sm text-stone-500 hover:text-stone-700 underline">Sign out</button>
+          <AdminUserBadge />
         </div>
 
         {/* Mode tabs */}
@@ -125,52 +80,47 @@ export default function AdminPromote() {
 
         {mode === 'promote' && (
           <PromoteForm
-            password={password}
             submitting={submitting}
             setSubmitting={setSubmitting}
             setResult={setResult}
             setError={setError}
-            onWrongPassword={() => { setAuthChecked(false); localStorage.removeItem(PASSWORD_KEY); }}
+            onUnauthorized={onUnauthorized}
           />
         )}
         {mode === 'create' && (
           <CreateForm
-            password={password}
             submitting={submitting}
             setSubmitting={setSubmitting}
             setResult={setResult}
             setError={setError}
-            onWrongPassword={() => { setAuthChecked(false); localStorage.removeItem(PASSWORD_KEY); }}
+            onUnauthorized={onUnauthorized}
           />
         )}
         {mode === 'add-prospect' && (
           <AddProspectForm
-            password={password}
             submitting={submitting}
             setSubmitting={setSubmitting}
             setResult={setResult}
             setError={setError}
-            onWrongPassword={() => { setAuthChecked(false); localStorage.removeItem(PASSWORD_KEY); }}
+            onUnauthorized={onUnauthorized}
           />
         )}
         {mode === 'edit' && (
           <EditForm
-            password={password}
             submitting={submitting}
             setSubmitting={setSubmitting}
             setResult={setResult}
             setError={setError}
-            onWrongPassword={() => { setAuthChecked(false); localStorage.removeItem(PASSWORD_KEY); }}
+            onUnauthorized={onUnauthorized}
           />
         )}
         {mode === 'remove' && (
           <RemoveForm
-            password={password}
             submitting={submitting}
             setSubmitting={setSubmitting}
             setResult={setResult}
             setError={setError}
-            onWrongPassword={() => { setAuthChecked(false); localStorage.removeItem(PASSWORD_KEY); }}
+            onUnauthorized={onUnauthorized}
           />
         )}
 
@@ -204,19 +154,17 @@ export default function AdminPromote() {
 
 // -------------------- PROMOTE EXISTING --------------------
 function PromoteForm({
-  password,
   submitting,
   setSubmitting,
   setResult,
   setError,
-  onWrongPassword,
+  onUnauthorized,
 }: {
-  password: string;
   submitting: boolean;
   setSubmitting: (b: boolean) => void;
   setResult: (r: Result | null) => void;
   setError: (s: string | null) => void;
-  onWrongPassword: () => void;
+  onUnauthorized: () => void;
 }) {
   const [search, setSearch] = useState('');
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -279,7 +227,6 @@ function PromoteForm({
     try {
       const payload: Record<string, unknown> = {
         mode: 'promote',
-        password,
         slug: selected.slug,
         species,
         website: website.trim() || null,
@@ -302,14 +249,14 @@ function PromoteForm({
 
       const res = await fetch('/api/admin/promote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: await adminAuthHeaders(),
         body: JSON.stringify(payload),
       });
       const data = (await res.json()) as Result & { error?: string };
       if (!res.ok) {
         if (res.status === 401) {
-          setError('Wrong password.');
-          onWrongPassword();
+          setError('Your admin session expired or your account is not authorized. Sign in again.');
+          onUnauthorized();
         } else {
           setError(data.error || `Server error (${res.status})`);
         }
@@ -428,19 +375,17 @@ function PromoteForm({
 
 // -------------------- ADD NEW CUSTOMER --------------------
 function CreateForm({
-  password,
   submitting,
   setSubmitting,
   setResult,
   setError,
-  onWrongPassword,
+  onUnauthorized,
 }: {
-  password: string;
   submitting: boolean;
   setSubmitting: (b: boolean) => void;
   setResult: (r: Result | null) => void;
   setError: (s: string | null) => void;
-  onWrongPassword: () => void;
+  onUnauthorized: () => void;
 }) {
   const [name, setName] = useState('');
   const [street, setStreet] = useState('');
@@ -465,7 +410,6 @@ function CreateForm({
     try {
       const payload: Record<string, unknown> = {
         mode: 'create',
-        password,
         name: name.trim(),
         street: street.trim(),
         city: city.trim(),
@@ -486,14 +430,14 @@ function CreateForm({
 
       const res = await fetch('/api/admin/promote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: await adminAuthHeaders(),
         body: JSON.stringify(payload),
       });
       const data = (await res.json()) as Result & { error?: string };
       if (!res.ok) {
         if (res.status === 401) {
-          setError('Wrong password.');
-          onWrongPassword();
+          setError('Your admin session expired or your account is not authorized. Sign in again.');
+          onUnauthorized();
         } else {
           setError(data.error || `Server error (${res.status})`);
         }
@@ -624,19 +568,17 @@ interface PlacesCandidate {
 }
 
 function AddProspectForm({
-  password,
   submitting,
   setSubmitting,
   setResult,
   setError,
-  onWrongPassword,
+  onUnauthorized,
 }: {
-  password: string;
   submitting: boolean;
   setSubmitting: (b: boolean) => void;
   setResult: (r: Result | null) => void;
   setError: (s: string | null) => void;
-  onWrongPassword: () => void;
+  onUnauthorized: () => void;
 }) {
   const [query, setQuery] = useState('');
   const [searching, setSearching] = useState(false);
@@ -665,14 +607,14 @@ function AddProspectForm({
     try {
       const res = await fetch('/api/admin/promote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 'search', password, query: query.trim() }),
+        headers: await adminAuthHeaders(),
+        body: JSON.stringify({ mode: 'search', query: query.trim() }),
       });
       const data = (await res.json()) as { candidates?: PlacesCandidate[]; error?: string };
       if (!res.ok) {
         if (res.status === 401) {
-          setError('Wrong password.');
-          onWrongPassword();
+          setError('Your admin session expired or your account is not authorized. Sign in again.');
+          onUnauthorized();
         } else {
           setError(data.error || `Server error (${res.status})`);
         }
@@ -697,7 +639,6 @@ function AddProspectForm({
     try {
       const payload: Record<string, unknown> = {
         mode: 'add-prospect',
-        password,
         candidate: selected,
         species,
         description: description.trim() || undefined,
@@ -708,14 +649,14 @@ function AddProspectForm({
 
       const res = await fetch('/api/admin/promote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: await adminAuthHeaders(),
         body: JSON.stringify(payload),
       });
       const data = (await res.json()) as Result & { error?: string };
       if (!res.ok) {
         if (res.status === 401) {
-          setError('Wrong password.');
-          onWrongPassword();
+          setError('Your admin session expired or your account is not authorized. Sign in again.');
+          onUnauthorized();
         } else {
           setError(data.error || `Server error (${res.status})`);
         }
@@ -873,19 +814,17 @@ function AddProspectForm({
 
 // -------------------- REMOVE FROM DIRECTORY --------------------
 function RemoveForm({
-  password,
   submitting,
   setSubmitting,
   setResult,
   setError,
-  onWrongPassword,
+  onUnauthorized,
 }: {
-  password: string;
   submitting: boolean;
   setSubmitting: (b: boolean) => void;
   setResult: (r: Result | null) => void;
   setError: (s: string | null) => void;
-  onWrongPassword: () => void;
+  onUnauthorized: () => void;
 }) {
   const [search, setSearch] = useState('');
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -924,14 +863,14 @@ function RemoveForm({
     try {
       const res = await fetch('/api/admin/promote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mode: 'remove', password, slug: selected.slug }),
+        headers: await adminAuthHeaders(),
+        body: JSON.stringify({ mode: 'remove', slug: selected.slug }),
       });
       const data = (await res.json()) as Result & { error?: string };
       if (!res.ok) {
         if (res.status === 401) {
-          setError('Wrong password.');
-          onWrongPassword();
+          setError('Your admin session expired or your account is not authorized. Sign in again.');
+          onUnauthorized();
         } else {
           setError(data.error || `Server error (${res.status})`);
         }
@@ -1036,19 +975,17 @@ function RemoveForm({
 
 // -------------------- EDIT A LISTING --------------------
 function EditForm({
-  password,
   submitting,
   setSubmitting,
   setResult,
   setError,
-  onWrongPassword,
+  onUnauthorized,
 }: {
-  password: string;
   submitting: boolean;
   setSubmitting: (b: boolean) => void;
   setResult: (r: Result | null) => void;
   setError: (s: string | null) => void;
-  onWrongPassword: () => void;
+  onUnauthorized: () => void;
 }) {
   const [search, setSearch] = useState('');
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -1100,7 +1037,6 @@ function EditForm({
       const hoursArr = hours.split('\n').map((h) => h.trim()).filter(Boolean);
       const payload = {
         mode: 'edit',
-        password,
         slug: selected.slug,
         name: name.trim(),
         species,
@@ -1113,14 +1049,14 @@ function EditForm({
       };
       const res = await fetch('/api/admin/promote', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: await adminAuthHeaders(),
         body: JSON.stringify(payload),
       });
       const data = (await res.json()) as Result & { error?: string };
       if (!res.ok) {
         if (res.status === 401) {
-          setError('Wrong password.');
-          onWrongPassword();
+          setError('Your admin session expired or your account is not authorized. Sign in again.');
+          onUnauthorized();
         } else {
           setError(data.error || `Server error (${res.status})`);
         }

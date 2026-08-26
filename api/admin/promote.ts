@@ -9,13 +9,24 @@
 // Optional logo file upload is committed alongside the JSON change in a single
 // commit via the GitHub Git Data API (refs/commits/trees/blobs).
 //
+// Auth: a Google sign-in via Supabase (see src/lib/adminAuth.ts). The client
+// sends `Authorization: Bearer <supabase access token>`; we verify it here and
+// check the email against the allowlist. ADMIN_PASSWORD still works as a
+// fallback so nothing breaks before the Google provider is switched on.
+//
 // Required env vars (server-side):
-//   ADMIN_PASSWORD              shared with editors
+//   SUPABASE_URL                Supabase project URL (or VITE_SUPABASE_URL)
+//   SUPABASE_ANON_KEY           Supabase anon key (or VITE_SUPABASE_ANON_KEY)
+//   ADMIN_ALLOWED_DOMAIN        defaults to "farmshare.co"
+//   ADMIN_ALLOWED_EMAILS        optional comma-separated strict allowlist
+//   ADMIN_PASSWORD              legacy fallback, optional once SSO is live
 //   GITHUB_TOKEN                fine-grained PAT, Contents R+W on this repo
 //   GITHUB_OWNER                e.g. "harrowood7"
 //   GITHUB_REPO                 e.g. "farmshare-landing"
 //   GITHUB_BRANCH               defaults to "main"
 //   GOOGLE_GEOCODING_API_KEY    Google API key (also used for Places API — enable Places on same key)
+
+import { createClient } from '@supabase/supabase-js';
 
 interface PartnerFacility {
   slug: string;
@@ -26,7 +37,7 @@ type Species = 'Beef' | 'Bison' | 'Goat' | 'Hog' | 'Lamb' | 'Veal';
 
 interface PromoteBody {
   mode: 'promote';
-  password: string;
+  password?: string;
   slug: string;                          // existing prospect slug
   partnerSlug?: string;
   partnerFacilities?: PartnerFacility[];
@@ -41,7 +52,7 @@ interface PromoteBody {
 
 interface CreateBody {
   mode: 'create';
-  password: string;
+  password?: string;
   name: string;
   street: string;
   city: string;
@@ -58,7 +69,7 @@ interface CreateBody {
 
 interface SearchBody {
   mode: 'search';
-  password: string;
+  password?: string;
   query: string;     // raw text — name, "name city state", or a Google Maps URL
 }
 
@@ -91,7 +102,7 @@ interface PlacesCandidate {
 
 interface AddProspectBody {
   mode: 'add-prospect';
-  password: string;
+  password?: string;
   candidate: PlacesCandidate;
   species: Species[];
   description?: string;
@@ -100,13 +111,13 @@ interface AddProspectBody {
 
 interface RemoveBody {
   mode: 'remove';
-  password: string;
+  password?: string;
   slug: string;                          // existing record slug to remove
 }
 
 interface EditBody {
   mode: 'edit';
-  password: string;
+  password?: string;
   slug: string;                          // existing record slug to edit (unchanged)
   // Any field below that is `undefined` is left untouched. For the clearable
   // string fields, passing an empty string removes the field.
@@ -126,6 +137,7 @@ type Body = PromoteBody | CreateBody | SearchBody | AddProspectBody | RemoveBody
 interface VercelRequest {
   method?: string;
   body?: unknown;
+  headers: Record<string, string | string[] | undefined>;
 }
 
 interface VercelResponse {
@@ -497,6 +509,58 @@ const STATE_NAMES: Record<string, string> = {
   VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming',
 };
 
+
+// -------------------- AUTH --------------------
+
+const ALLOWED_DOMAIN = (process.env.ADMIN_ALLOWED_DOMAIN || 'farmshare.co').toLowerCase();
+const ALLOWED_EMAILS = (process.env.ADMIN_ALLOWED_EMAILS || '')
+  .split(',')
+  .map((s) => s.trim().toLowerCase())
+  .filter(Boolean);
+
+function isAllowedEmail(email?: string | null): boolean {
+  if (!email) return false;
+  const e = email.toLowerCase();
+  if (ALLOWED_EMAILS.length > 0) return ALLOWED_EMAILS.includes(e);
+  return e.endsWith('@' + ALLOWED_DOMAIN);
+}
+
+interface AuthResult {
+  ok: boolean;
+  actor?: string;
+  error?: string;
+}
+
+async function authorize(req: VercelRequest, body: Body | null): Promise<AuthResult> {
+  const raw = req.headers.authorization;
+  const header = typeof raw === 'string' ? raw : '';
+  const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
+
+  if (token) {
+    const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+    const anonKey = process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY;
+    if (!url || !anonKey) {
+      return { ok: false, error: 'Server is missing SUPABASE_URL / SUPABASE_ANON_KEY.' };
+    }
+    const supabase = createClient(url, anonKey);
+    const { data, error } = await supabase.auth.getUser(token);
+    if (error || !data.user) return { ok: false, error: 'Sign-in expired. Sign in again.' };
+    const email = data.user.email;
+    if (!isAllowedEmail(email)) {
+      return { ok: false, error: (email || 'That account') + ' is not authorized for the admin tools.' };
+    }
+    return { ok: true, actor: email };
+  }
+
+  // Legacy shared-password path.
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (adminPassword && body && body.password === adminPassword) {
+    return { ok: true, actor: 'shared-password' };
+  }
+
+  return { ok: false, error: 'Not signed in.' };
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader('Cache-Control', 'no-store');
 
@@ -505,14 +569,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const adminPassword = process.env.ADMIN_PASSWORD;
   const githubToken = process.env.GITHUB_TOKEN;
   const owner = process.env.GITHUB_OWNER;
   const repo = process.env.GITHUB_REPO;
   const branch = process.env.GITHUB_BRANCH || 'main';
 
-  if (!adminPassword || !githubToken || !owner || !repo) {
-    res.status(500).json({ error: 'Server is missing required env vars (ADMIN_PASSWORD, GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO).' });
+  if (!githubToken || !owner || !repo) {
+    res.status(500).json({ error: 'Server is missing required env vars (GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO).' });
     return;
   }
 
@@ -524,29 +587,30 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  if (!body || body.password !== adminPassword) {
-    res.status(401).json({ error: 'Wrong password' });
+  const auth = await authorize(req, body);
+  if (!auth.ok) {
+    res.status(401).json({ error: auth.error || 'Not signed in.' });
     return;
   }
 
   try {
     if (body.mode === 'promote') {
-      const result = await handlePromote(body, { token: githubToken, owner, repo, branch });
+      const result = await handlePromote(body, { token: githubToken, owner, repo, branch, actor: auth.actor || 'admin' });
       res.status(200).json({ success: true, ...result });
     } else if (body.mode === 'create') {
-      const result = await handleCreate(body, { token: githubToken, owner, repo, branch });
+      const result = await handleCreate(body, { token: githubToken, owner, repo, branch, actor: auth.actor || 'admin' });
       res.status(200).json({ success: true, ...result });
     } else if (body.mode === 'search') {
       const result = await handleSearch(body);
       res.status(200).json({ success: true, ...result });
     } else if (body.mode === 'add-prospect') {
-      const result = await handleAddProspect(body, { token: githubToken, owner, repo, branch });
+      const result = await handleAddProspect(body, { token: githubToken, owner, repo, branch, actor: auth.actor || 'admin' });
       res.status(200).json({ success: true, ...result });
     } else if (body.mode === 'remove') {
-      const result = await handleRemove(body, { token: githubToken, owner, repo, branch });
+      const result = await handleRemove(body, { token: githubToken, owner, repo, branch, actor: auth.actor || 'admin' });
       res.status(200).json({ success: true, ...result });
     } else if (body.mode === 'edit') {
-      const result = await handleEdit(body, { token: githubToken, owner, repo, branch });
+      const result = await handleEdit(body, { token: githubToken, owner, repo, branch, actor: auth.actor || 'admin' });
       res.status(200).json({ success: true, ...result });
     } else {
       res.status(400).json({ error: 'Invalid mode (must be "promote", "create", "search", "add-prospect", "remove", or "edit")' });
@@ -572,7 +636,7 @@ async function handleSearch(
 
 async function handleAddProspect(
   body: AddProspectBody,
-  gh: { token: string; owner: string; repo: string; branch: string }
+  gh: { token: string; owner: string; repo: string; branch: string; actor: string }
 ) {
   const c = body.candidate;
   if (!c || !c.name) throw new Error('candidate is required');
@@ -640,7 +704,7 @@ async function handleAddProspect(
 
   const commit = await commitMultiFile({
     ...gh,
-    message: `Add new prospect ${slug} (admin)${body.logo ? ' (+ logo)' : ''}`,
+    message: `Add new prospect ${slug} (${gh.actor})${body.logo ? ' (+ logo)' : ''}`,
     files,
   });
 
@@ -649,7 +713,7 @@ async function handleAddProspect(
 
 async function handlePromote(
   body: PromoteBody,
-  gh: { token: string; owner: string; repo: string; branch: string }
+  gh: { token: string; owner: string; repo: string; branch: string; actor: string }
 ) {
   if (!body.slug) throw new Error('slug is required');
 
@@ -708,14 +772,14 @@ async function handlePromote(
 
   return commitMultiFile({
     ...gh,
-    message: `Promote ${body.slug} to customer (admin)${logoSummary}`,
+    message: `Promote ${body.slug} to customer (${gh.actor})${logoSummary}`,
     files,
   });
 }
 
 async function handleRemove(
   body: RemoveBody,
-  gh: { token: string; owner: string; repo: string; branch: string }
+  gh: { token: string; owner: string; repo: string; branch: string; actor: string }
 ) {
   if (!body.slug) throw new Error('slug is required');
 
@@ -757,7 +821,7 @@ async function handleRemove(
 
   const commit = await commitMultiFile({
     ...gh,
-    message: `Remove ${body.slug} from directory (admin)`,
+    message: `Remove ${body.slug} from directory (${gh.actor})`,
     files,
   });
 
@@ -766,7 +830,7 @@ async function handleRemove(
 
 async function handleEdit(
   body: EditBody,
-  gh: { token: string; owner: string; repo: string; branch: string }
+  gh: { token: string; owner: string; repo: string; branch: string; actor: string }
 ) {
   if (!body.slug) throw new Error('slug is required');
 
@@ -829,7 +893,7 @@ async function handleEdit(
 
   const commit = await commitMultiFile({
     ...gh,
-    message: `Edit ${body.slug} (admin)`,
+    message: `Edit ${body.slug} (${gh.actor})`,
     files,
   });
 
@@ -838,7 +902,7 @@ async function handleEdit(
 
 async function handleCreate(
   body: CreateBody,
-  gh: { token: string; owner: string; repo: string; branch: string }
+  gh: { token: string; owner: string; repo: string; branch: string; actor: string }
 ) {
   if (!body.name || !body.street || !body.city || !body.state || !body.zip) {
     throw new Error('name, street, city, state, zip are all required');
@@ -916,7 +980,7 @@ async function handleCreate(
 
   const commit = await commitMultiFile({
     ...gh,
-    message: `Add new customer ${slug} (admin)${body.logo ? ' (+ logo)' : ''}`,
+    message: `Add new customer ${slug} (${gh.actor})${body.logo ? ' (+ logo)' : ''}`,
     files,
   });
 

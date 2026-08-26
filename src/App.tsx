@@ -20,6 +20,7 @@ import {
 import AdminHome from './pages/AdminHome';
 import AdminPromote from './pages/AdminPromote';
 import AdminLeads from './pages/AdminLeads';
+import AdminGate from './components/AdminGate';
 import { stateSlugToAbbr } from './data/processors';
 
 // Resolver: state slugs (e.g. "colorado") render StatePage,
@@ -52,10 +53,10 @@ function App() {
           <Route path="/service-agreement" element={<ServiceAgreement />} />
           <Route path="/release-notes" element={<ReleaseNotes />} />
           <Route path="/release-notes/:slug" element={<ReleaseNoteDetail />} />
-          <Route path="/admin" element={<AdminHome />} />
-          <Route path="/admin/promote" element={<AdminPromote />} />
-          <Route path="/admin/leads" element={<AdminLeads />} />
-          <Route path="/admin/release-notes" element={<Admin />} />
+          <Route path="/admin" element={<AdminGate><AdminHome /></AdminGate>} />
+          <Route path="/admin/promote" element={<AdminGate><AdminPromote /></AdminGate>} />
+          <Route path="/admin/leads" element={<AdminGate><AdminLeads /></AdminGate>} />
+          <Route path="/admin/release-notes" element={<AdminGate><Admin /></AdminGate>} />
           {/* Redirects for removed pages */}
           <Route path="/producers" element={<Navigate to="/" replace />} />
           <Route path="/buyers" element={<Navigate to="/" replace />} />
