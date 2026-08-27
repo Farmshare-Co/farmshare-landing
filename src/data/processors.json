@@ -2211,7 +2211,7 @@
     ],
     "logo": "https://lirp.cdn-website.com/b84d4af9/dms3rep/multi/opt/0B2F36C3-1102-4FBD-ACE4-AE991F981B55-1920w.jpeg",
     "slug": "chug-springs-butchery-chugwater-wy",
-    "status": "prospect",
+    "status": "customer",
     "address": "190 South Chugwater Highway",
     "zip": "82210",
     "phone": "(307) 365-4338",
@@ -2241,7 +2241,8 @@
       "point_of_interest",
       "food",
       "establishment"
-    ]
+    ],
+    "partnerSlug": "chug-springs-butchery-chugwater-wy"
   },
   {
     "name": "Circle P Processing LLC",
