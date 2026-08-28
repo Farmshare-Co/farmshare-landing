@@ -35792,5 +35792,48 @@
       "establishment"
     ],
     "description": "Whiskey Creek Processing is a meat processor in Madill, OK, rated 4.1 stars across 88 Google reviews. Customers highlight their friendly staff, professional service, and clean facility. Common review themes include custom sausage, summer sausage, and snack sticks."
+  },
+  {
+    "name": "Northeast Kingdom Processing",
+    "location": "St Johnsbury, VT",
+    "state": "VT",
+    "species": [
+      "Beef",
+      "Goat",
+      "Lamb",
+      "Hog"
+    ],
+    "logo": null,
+    "slug": "northeast-kingdom-processing-st-johnsbury-vt",
+    "status": "prospect",
+    "address": "796 Industrial Pkwy",
+    "zip": "05819",
+    "phone": "(802) 748-2233",
+    "website": "https://www.nekprocessing.com/",
+    "lat": 44.4979112,
+    "lng": -72.0137402,
+    "googleMapsUri": "https://maps.google.com/?cid=9402692818505525830&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.7,
+    "userRatingCount": 23,
+    "hours": [
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 12:00 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "food_store",
+      "wholesaler",
+      "store",
+      "food",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "description": "Northeast Kingdom Processing is a meat processor in St Johnsbury, VT, rated 4.7 stars across 23 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and professional service. Common review themes include custom sausage."
   }
 ]
