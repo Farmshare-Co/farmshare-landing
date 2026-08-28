@@ -6913,46 +6913,6 @@
     ]
   },
   {
-    "name": "Mad Dog Ranch",
-    "location": "ID",
-    "state": "ID",
-    "species": [
-      "Beef",
-      "Bison",
-      "Hog",
-      "Lamb",
-      "Goat"
-    ],
-    "logo": "http://static1.squarespace.com/static/5cbcd1e99d414937fecfce86/t/60968daf6695011739faaf1f/1620479408035/Logo+3.png?format=1500w",
-    "slug": "mad-dog-ranch-id",
-    "status": "customer",
-    "description": "Mad Dog Ranch is a custom meat processor in ID, offering beef processing services.",
-    "lat": 44.0682019,
-    "lng": -114.7420408,
-    "phone": "(970) 948-6742",
-    "website": "http://www.maddogranchandstudios.com/",
-    "address": "955 Snowmass Creek Rd",
-    "googleMapsUri": "https://maps.google.com/?cid=2434620215446775045&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 5,
-    "userRatingCount": 10,
-    "hours": [
-      "Monday: 9:00 AM – 11:00 PM",
-      "Tuesday: 9:00 AM – 11:00 PM",
-      "Wednesday: 9:00 AM – 11:00 PM",
-      "Thursday: 9:00 AM – 11:00 PM",
-      "Friday: 9:00 AM – 11:00 PM",
-      "Saturday: 9:00 AM – 11:00 PM",
-      "Sunday: 9:00 AM – 11:00 PM"
-    ],
-    "businessStatus": "OPERATIONAL",
-    "placeTypes": [
-      "store",
-      "point_of_interest",
-      "establishment"
-    ],
-    "partnerSlug": "mad-dog-ranch-bliss-id"
-  },
-  {
     "name": "Manley Meats",
     "location": "Decatur, IN",
     "state": "IN",
