@@ -35879,5 +35879,44 @@
       "establishment"
     ],
     "description": "Q Bar S Custom Meats is a meat processor in Laketown, UT, rated 4.9 stars across 18 Google reviews. Customers highlight their family-owned operation."
+  },
+  {
+    "name": "Hatch's Custom Meat Cutting, LLC",
+    "location": "Crystal, ME",
+    "state": "ME",
+    "species": [
+      "Beef",
+      "Hog"
+    ],
+    "logo": null,
+    "slug": "hatch-s-custom-meat-cutting-llc-crystal-me",
+    "status": "prospect",
+    "address": "23 Prescott Rd",
+    "zip": "04747",
+    "phone": "(207) 463-2645",
+    "website": "http://www.hatchscustommeatcutting.com/",
+    "lat": 46.007079499999996,
+    "lng": -68.3224776,
+    "googleMapsUri": "https://maps.google.com/?cid=9581982882294512673&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 5,
+    "userRatingCount": 2,
+    "hours": [
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "food_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "description": "Hatch's Custom Meat Cutting, LLC is a meat processor in Crystal, ME, rated 5 stars across 2 Google reviews. Customers highlight their clean facility."
   }
 ]
