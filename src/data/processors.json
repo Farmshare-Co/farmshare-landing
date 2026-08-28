@@ -35848,7 +35848,7 @@
     ],
     "logo": null,
     "slug": "q-bar-s-custom-meats-laketown-ut",
-    "status": "prospect",
+    "status": "customer",
     "address": "1243 Falula Rd",
     "zip": "84038",
     "phone": "(435) 999-3595",
@@ -35878,7 +35878,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "description": "Q Bar S Custom Meats is a meat processor in Laketown, UT, rated 4.9 stars across 18 Google reviews. Customers highlight their family-owned operation."
+    "description": "Q Bar S Custom Meats is a meat processor in Laketown, UT, rated 4.9 stars across 18 Google reviews. Customers highlight their family-owned operation.",
+    "partnerSlug": "q-bar-s-custom-meats-laketown-ut"
   },
   {
     "name": "Hatch's Custom Meat Cutting, LLC",
