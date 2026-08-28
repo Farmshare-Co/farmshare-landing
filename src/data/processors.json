@@ -35835,5 +35835,49 @@
       "establishment"
     ],
     "description": "Northeast Kingdom Processing is a meat processor in St Johnsbury, VT, rated 4.7 stars across 23 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and professional service. Common review themes include custom sausage."
+  },
+  {
+    "name": "Q Bar S Custom Meats",
+    "location": "Laketown, UT",
+    "state": "UT",
+    "species": [
+      "Beef",
+      "Goat",
+      "Hog",
+      "Lamb"
+    ],
+    "logo": null,
+    "slug": "q-bar-s-custom-meats-laketown-ut",
+    "status": "prospect",
+    "address": "1243 Falula Rd",
+    "zip": "84038",
+    "phone": "(435) 999-3595",
+    "website": "http://qbarcustommeat.com/",
+    "lat": 41.848000899999995,
+    "lng": -111.2932051,
+    "googleMapsUri": "https://maps.google.com/?cid=16961743797544857840&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.9,
+    "userRatingCount": 18,
+    "hours": [
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "food_store",
+      "store",
+      "food",
+      "manufacturer",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "description": "Q Bar S Custom Meats is a meat processor in Laketown, UT, rated 4.9 stars across 18 Google reviews. Customers highlight their family-owned operation."
   }
 ]
