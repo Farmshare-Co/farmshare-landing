@@ -7,11 +7,17 @@ export const LOGIN_URL = "https://partners.farmshare.co/";
  * so they must never be typed inline anywhere else on the site. The one
  * unavoidable duplicate is the static meta description in index.html, which
  * has to be a literal for crawlers; change it in the same commit.
- * Last verified: 2026-09-01.
+ * Last verified: 2026-09-02 against the dashboard billing DB (arr_events:
+ * 44 customers Active on latest event), with states resolved per customer via
+ * processors.json, HubSpot and the wiki. States is 28, not 27: New York
+ * (Shale Spring Meats) was missing from the earlier count.
+ * NOTE: processors.json is NOT a reliable customer list. It is missing QbarS
+ * (UT), Stilson Abattoir (GA) and Northeast Kingdom (VT), and its `status`
+ * field mislabels at least one active customer as `prospect`.
  */
 export const NETWORK_STATS = {
   facilities: 44,
-  states: 27,
+  states: 28,
   producers: 9500,
 } as const;
 
