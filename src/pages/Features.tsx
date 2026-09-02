@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Calendar, CalendarClock, FileText, MessageSquare, Bell, Users, ClipboardList, Receipt, UserCircle, BarChart3, Smartphone, Boxes, ChefHat, ScanBarcode, Printer, Beef, Repeat, FileSpreadsheet } from 'lucide-react';
+import { Calendar, CalendarClock, FileText, MessageSquare, Bell, Users, ClipboardList, Receipt, UserCircle, BarChart3, Smartphone, Boxes, ChefHat, ScanBarcode, Printer, Beef, Repeat, Plug } from 'lucide-react';
 
 export default function Features() {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -183,9 +183,14 @@ export default function Features() {
       body: 'Start from the output you need, say 100 pounds of brats, and wind back to what is already in inventory and what still has to be sourced.'
     },
     {
-      icon: FileSpreadsheet,
-      title: 'QuickBooks Push',
-      body: 'Map SKUs to your QuickBooks accounts once, then push inventory and sales activity across without re-keying it.'
+      // Integrations, not one integration. Farmshare is the layer between the
+      // systems a plant already runs. QuickBooks push is the furthest along and
+      // is the concrete example; the online store connection and the plant
+      // system translation layer are in flight, so they are named as in
+      // development and no third-party system is claimed as shipped.
+      icon: Plug,
+      title: 'Works With the Systems You Already Run',
+      body: 'A plant does not get to throw out its accounting, its online store, or the system on the kill floor. Farmshare is built to sit between them so the same numbers are not keyed twice. QuickBooks is furthest along: map SKUs to your accounts once, then push inventory and sales activity across without re-keying it. In development now are a store connection that turns wholesale orders into pick lists, and a translation layer for the plant systems already in place.'
     }
   ];
 

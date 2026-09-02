@@ -31,13 +31,13 @@ export default function Header() {
               <img
                 src="https://vkxvwmvlkitrcfgzwvtl.supabase.co/storage/v1/object/public/content//farmshare%20(1).svg"
                 alt="Farmshare Logo"
-                className="h-16 w-auto brightness-0 invert translate-y-1.5"
+                className="h-16 lg:h-12 xl:h-14 w-auto brightness-0 invert translate-y-1.5"
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             <Link to="/features" className={getLinkClass('/features')}>
               For Processors
             </Link>
@@ -68,7 +68,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-brand-cream hover:text-white transition-colors"
+            className="lg:hidden text-brand-cream hover:text-white transition-colors"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -81,7 +81,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <nav className="mt-4 space-y-4 pb-4">
             <Link 
               to="/features"
