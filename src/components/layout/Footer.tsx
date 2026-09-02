@@ -1,6 +1,7 @@
 import React from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Newspaper } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { PRESS_EMAIL } from '../../constants';
 
 export default function Footer() {
   return (
@@ -17,6 +18,10 @@ export default function Footer() {
               <a href="tel:301-448-0543" className="flex items-center hover:text-white transition-colors">
                 <Phone className="h-5 w-5 mr-2" />
                 301-448-0543
+              </a>
+              <a href={`mailto:${PRESS_EMAIL}`} className="flex items-center hover:text-white transition-colors">
+                <Newspaper className="h-5 w-5 mr-2" />
+                Press: {PRESS_EMAIL}
               </a>
             </div>
           </div>

@@ -1,5 +1,6 @@
 export { default as Home } from './Home';
 export { default as Mission } from './Mission';
+export { default as Newsroom } from './Newsroom';
 export { default as Features } from './Features';
 export { default as FindProcessor } from './FindProcessor';
 export { default as Privacy } from './Privacy';

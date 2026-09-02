@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Factory, Calendar, Clock, Smartphone, TrendingUp, Quote, ArrowRight, Phone, FileX, AlertTriangle, CalendarX2, Layers } from 'lucide-react';
+import {
+  Factory, Calendar, Clock, Quote, ArrowRight, Phone, FileX, AlertTriangle,
+  CalendarX2, Layers, Network, Sparkles, Link2, Mail, ArrowDown
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LogoBanner from '../components/LogoBanner';
 import PartnerLogoBanner from '../components/PartnerLogoBanner';
 import ROICalculator from '../components/ROICalculator';
+import AnimatedNumber from '../components/AnimatedNumber';
+import { NETWORK_STATS, PRESS_EMAIL } from '../constants';
 
 const testimonials = [
   {
@@ -50,15 +55,43 @@ const testimonials = [
   },
 ];
 
+const beliefs = [
+  {
+    icon: Network,
+    iconBg: 'bg-brand-green/10',
+    iconColor: 'text-brand-green',
+    title: 'The Network Wins',
+    body: "One processor can't supply a restaurant chain. Fifty on shared infrastructure can. Independent meat wins by coordinating as one, not by out-competing the Big Four on their own terms.",
+  },
+  {
+    icon: Sparkles,
+    iconBg: 'bg-brand-orange/10',
+    iconColor: 'text-brand-orange',
+    title: 'Intelligence Is the Other Half',
+    body: "The Big Four know what to buy, how to cut it, where to sell every piece, and at what price. That is intelligence. Independent processors don't have it yet. Farmshare is building it for them.",
+  },
+  {
+    icon: Link2,
+    iconBg: 'bg-brand-yellow/10',
+    iconColor: 'text-brand-yellow',
+    title: 'Neither Works Alone',
+    body: 'Scale without intelligence is a big dumb machine. Intelligence without scale stays on a whiteboard. Farmshare is the coordination layer that gives independents both.',
+  },
+];
+
+const HOME_TITLE = 'Farmshare | The Operating System for Independent Meat';
+const HOME_DESCRIPTION =
+  'Farmshare is the coordination layer for independent meat processing. 44 facilities, 27 states, 9,500 producers. Scheduling, cut sheets, and market intelligence.';
+
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [showStickyButton, setShowStickyButton] = useState(false);
 
   useEffect(() => {
-    document.title = 'Farmshare - Modern Software for Independent Meat Processors';
+    document.title = HOME_TITLE;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Farmshare is the operating system for independent meat processors — scheduling, cut sheets, customer messaging, and invoicing in a single platform built for how your plant actually runs.');
+      metaDescription.setAttribute('content', HOME_DESCRIPTION);
     }
 
     const observerOptions = {
@@ -84,7 +117,7 @@ export default function Home() {
         const scrolled = window.scrollY;
         parallaxRef.current.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
       }
-      
+
       setShowStickyButton(window.scrollY > window.innerHeight);
     };
 
@@ -99,12 +132,12 @@ export default function Home() {
   return (
     <>
       {/* Sticky Demo Button */}
-      <div 
+      <div
         className={`fixed bottom-6 right-6 z-50 transform transition-all duration-300 ${
           showStickyButton ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
         }`}
       >
-        <a 
+        <a
           href="https://meetings.hubspot.com/henry-arrowood/quad-p-demo"
           target="_blank"
           rel="noopener noreferrer"
@@ -116,42 +149,41 @@ export default function Home() {
       </div>
 
       {/* ============================================
-          SECTION 1: HERO — Lead with the outcome
+          SECTION 1: HERO — Lead with the thesis
           ============================================ */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div 
+      <section className="relative py-20 md:py-28 lg:py-32 overflow-hidden">
+        <div
           ref={parallaxRef}
           className="parallax-bg"
-          style={{ 
-            backgroundImage: 'url(/hero-processor.png)'
+          style={{
+            backgroundImage: 'url(/hero-mission.png)'
           }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 to-brand-cream/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/75 to-brand-cream/80"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center fade-up">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl mb-8 leading-tight text-brand-green font-roca tracking-tight stagger-child">
-              Slash Admin Time.<br />
-              Fill Your Calendar.<br />
-              Move More Meat.
+            <h1 className="text-4xl md:text-5xl lg:text-7xl mb-6 lg:mb-8 leading-tight text-brand-green font-roca tracking-tight stagger-child">
+              Independent Meat Is Better.<br className="hidden md:block" /> It Should Win.
             </h1>
-            <p className="text-xl md:text-2xl text-stone-600 mb-8 font-medium stagger-child">
-              Farmshare is the all-in-one platform for independent meat processors—automating scheduling, cut sheets, and customer messaging so you can spend less time on paperwork and more time processing.
+            <p className="text-lg md:text-xl lg:text-2xl text-stone-700 mb-8 font-medium stagger-child">
+              Four companies control 85% of beef processing in America. Their advantage is not quality.
+              It is scale and intelligence. Farmshare is the coordination layer that gives independent
+              processors both.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center stagger-child">
-              <a 
-                href="https://meetings.hubspot.com/henry-arrowood/quad-p-demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center justify-center font-bold"
+              <Link
+                to="/mission"
+                className="bg-brand-green text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-green/90 transition-colors inline-flex items-center justify-center font-bold"
               >
-                <Calendar className="mr-2 h-5 w-5" />
-                Schedule a Demo
-              </a>
+                Read Our Mission
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
               <a
-                href="#roi-calculator"
+                href="#platform"
                 className="bg-white text-brand-green text-lg px-8 py-4 rounded-lg hover:bg-brand-cream transition-colors inline-flex items-center justify-center font-bold border-2 border-brand-green"
               >
-                Calculate Your ROI
+                <ArrowDown className="mr-2 h-5 w-5" />
+                I Run a Plant
               </a>
             </div>
           </div>
@@ -159,14 +191,164 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 2: PAIN — The daily grind
+          SECTION 2: THE NETWORK TODAY — proof of scale
+          ============================================ */}
+      <section className="py-12 md:py-16 bg-brand-green">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-8 md:mb-10 fade-up">
+            <h2 className="text-2xl md:text-3xl font-roca text-white mb-3">The Network Today</h2>
+            <p className="text-brand-cream/80 max-w-2xl mx-auto">
+              Not a plan. Independent plants running on shared infrastructure right now, in every
+              region of the country.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+            <div className="fade-up">
+              <p className="text-5xl md:text-6xl font-roca text-brand-yellow mb-2">
+                <AnimatedNumber target={NETWORK_STATS.facilities} />
+              </p>
+              <p className="text-brand-cream/90 font-medium">processing facilities</p>
+            </div>
+            <div className="fade-up">
+              <p className="text-5xl md:text-6xl font-roca text-brand-yellow mb-2">
+                <AnimatedNumber target={NETWORK_STATS.states} />
+              </p>
+              <p className="text-brand-cream/90 font-medium">states</p>
+            </div>
+            <div className="fade-up">
+              <p className="text-5xl md:text-6xl font-roca text-brand-yellow mb-2">
+                <AnimatedNumber target={NETWORK_STATS.producers} />
+              </p>
+              <p className="text-brand-cream/90 font-medium">producers served</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 3: THE PROBLEM
+          ============================================ */}
+      <section className="py-12 md:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-roca text-brand-orange text-center mb-10 md:mb-14 fade-up">
+            The Problem
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-10 md:mb-14">
+            <div className="text-center fade-up">
+              <p className="text-5xl md:text-6xl font-roca text-brand-green mb-2">
+                <AnimatedNumber target={85} suffix="%" />
+              </p>
+              <p className="text-stone-600 text-sm md:text-base">of U.S. beef processing controlled by four companies</p>
+            </div>
+            <div className="text-center fade-up">
+              <p className="text-5xl md:text-6xl font-roca text-brand-green mb-2">
+                <AnimatedNumber target={5000} suffix="+" />
+              </p>
+              <p className="text-stone-600 text-sm md:text-base">independent processors serving growing local demand</p>
+            </div>
+            <div className="text-center fade-up">
+              <p className="text-5xl md:text-6xl font-roca text-brand-green mb-2">
+                <AnimatedNumber target={14} suffix="¢" />
+              </p>
+              <p className="text-stone-600 text-sm md:text-base">of every meat dollar makes it back to the producer</p>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center fade-up">
+            <p className="text-base md:text-lg text-stone-700 leading-relaxed">
+              The largest packers do not dominate because they produce better meat. They dominate because
+              they coordinate at scale, with intelligence. Independent processors produce the quality and
+              traceability consumers want, but they are fragmented, disconnected, and running blind.
+              Meanwhile, demand for local meat is surging and new USDA-funded capacity is coming online.
+              The opportunity has never been bigger. The infrastructure, and the intelligence, to seize it
+              has not existed.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 4: WHAT WE BELIEVE
+          ============================================ */}
+      <section className="py-12 md:py-16 lg:py-20 bg-brand-cream">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-roca text-brand-orange text-center mb-10 md:mb-14 fade-up">
+            What We Believe
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {beliefs.map((belief) => {
+              const Icon = belief.icon;
+              return (
+                <div key={belief.title} className="bg-white rounded-xl p-6 md:p-8 text-center fade-up shadow-sm">
+                  <div className={`h-14 w-14 ${belief.iconBg} rounded-full flex items-center justify-center mx-auto mb-5`}>
+                    <Icon className={`h-7 w-7 ${belief.iconColor}`} />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold text-brand-green mb-3">{belief.title}</h3>
+                  <p className="text-sm md:text-base text-stone-600 leading-relaxed">{belief.body}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="text-center mt-10 md:mt-12 fade-up">
+            <Link
+              to="/mission"
+              className="text-brand-green font-bold inline-flex items-center hover:text-brand-orange transition-colors"
+            >
+              Where this goes next: read the full mission
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 5: PULL QUOTE
+          ============================================ */}
+      <section className="py-12 md:py-16 bg-brand-green">
+        <div className="container mx-auto px-4">
+          <p className="max-w-3xl mx-auto text-center text-xl md:text-2xl lg:text-3xl font-roca text-white leading-snug">
+            Thousands of independent processors, collectively operating with the intelligence of a Cargill.
+            Without any one of them needing to become Cargill.
+          </p>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 6: CUSTOMER LOGOS — the network is real
+          ============================================ */}
+      <LogoBanner />
+
+      {/* ============================================
+          SECTION 7: THE PLATFORM — everything below here
+          is the existing product funnel, unchanged.
+          ============================================ */}
+      <section id="platform" className="py-12 md:py-16 bg-brand-cream scroll-mt-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center fade-up">
+            <p className="text-sm font-bold uppercase tracking-widest text-brand-orange mb-3">The Platform</p>
+            <h2 className="text-3xl md:text-4xl font-roca text-brand-green mb-4">
+              It Starts With Running a Better Plant
+            </h2>
+            <p className="text-lg text-stone-600">
+              A coordination layer has to be worth using on day one. Farmshare starts where every
+              independent processor feels the pain, and grows from there.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          PRODUCT: PAIN — The daily grind
           ============================================ */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-roca text-brand-green text-center mb-4 fade-up">Sound Familiar?</h2>
             <p className="text-xl text-stone-500 text-center mb-12 fade-up">Most processors we talk to are dealing with the same problems every single week.</p>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-brand-cream rounded-xl p-6 fade-up text-center">
                 <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -180,7 +362,7 @@ export default function Home() {
                 <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <FileX className="h-6 w-6 text-red-500" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-green mb-2">Paper Cut Sheets & Errors</h3>
+                <h3 className="text-lg font-bold text-brand-green mb-2">Paper Cut Sheets &amp; Errors</h3>
                 <p className="text-stone-600">Illegible faxes, missing instructions, and mistakes that cost time and product. Customers get frustrated, your team gets blamed.</p>
               </div>
 
@@ -188,7 +370,7 @@ export default function Home() {
                 <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <AlertTriangle className="h-6 w-6 text-red-500" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-green mb-2">No-Shows & Lost Revenue</h3>
+                <h3 className="text-lg font-bold text-brand-green mb-2">No-Shows &amp; Lost Revenue</h3>
                 <p className="text-stone-600">Empty slots from cancellations and no-shows. No waitlist to fill them. Revenue walks out the door every week.</p>
               </div>
             </div>
@@ -197,7 +379,7 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 3: COST — What it adds up to
+          PRODUCT: COST — What it adds up to
           ============================================ */}
       <section className="py-12 bg-brand-green">
         <div className="container mx-auto px-4">
@@ -232,7 +414,7 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 4: SOLUTION — How Farmshare fixes it
+          PRODUCT: SOLUTION — How Farmshare fixes it
           ============================================ */}
       <section className="py-20 bg-brand-cream">
         <div className="max-w-4xl mx-auto px-4">
@@ -240,7 +422,7 @@ export default function Home() {
             <h2 className="text-4xl font-roca text-brand-green mb-4">One Platform. Everything You Need.</h2>
             <p className="text-xl text-stone-600">Replace your calendar, spreadsheets, cut cards, and text threads with a single dashboard built for how your plant actually runs.</p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 items-center gap-8 mb-20">
             <div className="fade-up">
               <div className="flex items-center space-x-4 mb-6 stagger-child">
@@ -252,7 +434,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-lg shadow-[0_20px_50px_rgba(0,111,53,0.2)] overflow-hidden fade-up">
-              <video 
+              <video
                 className="w-full h-full object-cover"
                 autoPlay muted loop playsInline
                 disablePictureInPicture disableRemotePlayback
@@ -265,7 +447,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 items-center gap-8 mb-20">
             <div className="order-2 md:order-1 rounded-lg shadow-[0_20px_50px_rgba(0,111,53,0.2)] overflow-hidden fade-up">
-              <video 
+              <video
                 className="w-full h-full object-cover"
                 autoPlay muted loop playsInline
                 disablePictureInPicture disableRemotePlayback
@@ -296,7 +478,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-lg shadow-[0_20px_50px_rgba(0,111,53,0.2)] overflow-hidden fade-up">
-              <video 
+              <video
                 className="w-full h-full object-cover"
                 autoPlay muted loop playsInline
                 disablePictureInPicture disableRemotePlayback
@@ -308,7 +490,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-12 fade-up">
-            <Link 
+            <Link
               to="/features"
               className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
             >
@@ -320,25 +502,23 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 5: PROOF — Social proof & testimonials
+          SECTION 8: TESTIMONIALS
           ============================================ */}
-      <LogoBanner />
-
-      <section className="py-20 bg-brand-cream">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 mb-12">
           <h2 className="text-3xl md:text-4xl font-roca text-brand-green text-center fade-up">What Processors Are Saying</h2>
         </div>
         <div className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
           <div className="flex w-max gap-8 animate-marquee group-hover:[animation-play-state:paused]">
             {[...testimonials, ...testimonials].map((t, index) => (
-              <div key={index} className="bg-white p-8 rounded-lg shadow-lg flex flex-col w-[360px] md:w-[420px] flex-shrink-0">
+              <div key={index} className="bg-brand-cream p-8 rounded-lg shadow-lg flex flex-col w-[360px] md:w-[420px] flex-shrink-0">
                 <Quote className="h-8 w-8 text-brand-orange mb-4 flex-shrink-0" />
                 <p className="text-lg italic text-stone-700 mb-6 leading-relaxed flex-grow">
                   {t.quote}
                 </p>
                 <div className="flex items-center flex-shrink-0">
                   {t.logo ? (
-                    <div className="w-12 h-12 rounded-lg bg-brand-cream flex items-center justify-center overflow-hidden p-1 mr-4">
+                    <div className="w-12 h-12 rounded-lg bg-white flex items-center justify-center overflow-hidden p-1 mr-4">
                       <img
                         src={t.logo}
                         alt={t.company}
@@ -363,7 +543,7 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 6: ROI CALCULATOR
+          SECTION 9: ROI CALCULATOR
           ============================================ */}
       <ROICalculator />
 
@@ -371,7 +551,7 @@ export default function Home() {
       <PartnerLogoBanner />
 
       {/* ============================================
-          SECTION 7: BUYER CTA — Secondary audience
+          SECTION 10: BUYER CTA — Secondary audience
           ============================================ */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -392,7 +572,7 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 8: FINAL CTA
+          SECTION 11: FINAL CTA
           ============================================ */}
       <section className="py-20 bg-brand-green">
         <div className="container mx-auto px-4">
@@ -401,7 +581,7 @@ export default function Home() {
             <p className="text-xl text-brand-cream/80 mb-8 stagger-child">
               See how Farmshare can save your team hours every day. Most processors are up and running in under two weeks.
             </p>
-            <a 
+            <a
               href="https://meetings.hubspot.com/henry-arrowood/quad-p-demo"
               target="_blank"
               rel="noopener noreferrer"
@@ -409,6 +589,27 @@ export default function Home() {
             >
               <Calendar className="mr-2 h-5 w-5" />
               Schedule a Demo
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          SECTION 12: PRESS & MEDIA
+          ============================================ */}
+      <section className="py-12 bg-brand-cream border-t border-stone-200">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center fade-up">
+            <h2 className="text-xl md:text-2xl font-roca text-brand-green mb-3">Press and Media</h2>
+            <p className="text-stone-600 mb-5">
+              Reporters, researchers, and policy staff: reach Henry Arrowood, founder and CEO, directly.
+            </p>
+            <a
+              href={`mailto:${PRESS_EMAIL}`}
+              className="inline-flex items-center font-bold text-brand-green hover:text-brand-orange transition-colors"
+            >
+              <Mail className="mr-2 h-5 w-5" />
+              {PRESS_EMAIL}
             </a>
           </div>
         </div>
