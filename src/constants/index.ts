@@ -4,7 +4,9 @@ export const LOGIN_URL = "https://partners.farmshare.co/";
 /**
  * Single source of truth for the Farmshare network figures.
  * These numbers also appear in documents circulated outside the company,
- * so they must never be typed inline anywhere else on the site.
+ * so they must never be typed inline anywhere else on the site. The one
+ * unavoidable duplicate is the static meta description in index.html, which
+ * has to be a literal for crawlers; change it in the same commit.
  * Last verified: 2026-09-01.
  */
 export const NETWORK_STATS = {

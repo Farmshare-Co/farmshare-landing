@@ -1,6 +1,6 @@
 # Farmshare
 
-> Farmshare is the coordination layer for independent meat processing in the United States. The platform provides online scheduling, digital cut sheets, customer communication, and invoicing for independent USDA-inspected and state-inspected plants, and connects those plants into a network that can reach markets none of them could reach alone.
+> Farmshare is the coordination layer for independent meat processing in the United States. The platform provides online scheduling, digital cut sheets, customer communication, and invoicing for independent federally inspected and state-inspected plants, and connects those plants into a network that can reach markets none of them could reach alone.
 
 ## Company Facts
 

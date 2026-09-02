@@ -6,6 +6,10 @@ export default {
       colors: {
         brand: {
           green: '#006f35',
+          /* Deep green + sage from the Farmshare deck/white-paper design
+             language, so the site and the documents read as one company. */
+          forest: '#1d3128',
+          sage: '#9ec57e',
           orange: '#ff7b00',
           cream: '#f6f2ee',
           yellow: {

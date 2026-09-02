@@ -122,7 +122,7 @@ export default function Mission() {
 
           <div className="max-w-3xl mx-auto text-center fade-up">
             <p className="text-base md:text-lg text-stone-700 leading-relaxed">
-              The largest packers don't dominate because they produce better meat — they dominate because they coordinate at scale, with intelligence. Independent processors produce the quality and traceability consumers want, but they're fragmented, disconnected, and running blind. Meanwhile, demand for local meat is surging and new USDA-funded capacity is coming online. The opportunity has never been bigger. The infrastructure — and the intelligence — to seize it hasn't existed.
+              The largest packers don't dominate because they produce better meat — they dominate because they coordinate at scale, with intelligence. Independent processors produce the quality and traceability consumers want, but they're fragmented, disconnected, and running blind. Meanwhile, demand for local meat is surging and new processing capacity is coming online. The opportunity has never been bigger. The infrastructure — and the intelligence — to seize it hasn't existed.
             </p>
           </div>
         </div>
