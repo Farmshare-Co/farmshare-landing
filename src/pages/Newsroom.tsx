@@ -81,7 +81,7 @@ export default function Newsroom() {
                 <p className="text-4xl font-roca text-brand-green mb-1">
                   {NETWORK_STATS.producers.toLocaleString()}
                 </p>
-                <p className="text-stone-600 text-sm">producers served</p>
+                <p className="text-stone-600 text-sm">producers in the network</p>
               </div>
             </div>
 

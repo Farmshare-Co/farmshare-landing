@@ -39,7 +39,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link to="/features" className={getLinkClass('/features')}>
-              Features
+              For Processors
             </Link>
             <Link to="/find-a-processor" className={getLinkClass('/find-a-processor')}>
               Find a Processor
@@ -88,7 +88,7 @@ export default function Header() {
               className={`block ${getLinkClass('/features')}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              Features
+              For Processors
             </Link>
             <Link
               to="/find-a-processor"

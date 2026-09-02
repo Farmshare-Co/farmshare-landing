@@ -69,7 +69,7 @@ const HOME_TITLE = 'Farmshare | The Coordination Layer for Independent Meat';
 // numbers on the page. The matching literal in index.html is what crawlers and
 // link previews read; update both together.
 const HOME_DESCRIPTION =
-  `Many small plants, one network. Farmshare is the coordination layer for independent meat processing: ` +
+  `Many plants, one network. Farmshare is the coordination layer for independent meat processing: ` +
   `${NETWORK_STATS.facilities} facilities, ${NETWORK_STATS.states} states, ` +
   `${NETWORK_STATS.producers.toLocaleString()} producers.`;
 
@@ -150,7 +150,7 @@ export default function Home() {
               Coordination without consolidation
             </p>
             <h1 className="font-roca tracking-tight leading-[0.95] text-5xl md:text-6xl lg:text-7xl mb-6 md:mb-8 fade-up">
-              Many small plants, <br />one network.
+              Many plants, <br />one network.
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-brand-cream/80 font-medium max-w-3xl mb-8 md:mb-10 fade-up">
               Four companies run most of American beef by coordinating dozens of plants on a single
@@ -203,7 +203,7 @@ export default function Home() {
                 <p className="text-3xl md:text-5xl font-roca text-brand-sage leading-none mb-2">
                   <AnimatedNumber target={NETWORK_STATS.producers} />
                 </p>
-                <p className="text-xs md:text-sm text-brand-cream/70 font-medium">producers served</p>
+                <p className="text-xs md:text-sm text-brand-cream/70 font-medium">producers in the network</p>
               </div>
             </div>
           </div>
@@ -244,7 +244,12 @@ export default function Home() {
 
             <div className="bg-brand-green rounded-2xl p-7 md:p-9 text-white fade-up shadow-xl">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Shared infrastructure</p>
-              <h3 className="text-xl md:text-2xl font-roca text-white mb-5">Farmshare</h3>
+              {/* Brand rule: the wordmark is the logo file, never type. */}
+              <img
+                src="https://vkxvwmvlkitrcfgzwvtl.supabase.co/storage/v1/object/public/content//farmshare%20(1).svg"
+                alt="Farmshare"
+                className="h-9 md:h-10 w-auto mb-5 brightness-0 invert"
+              />
               <div className="text-brand-sage mb-5">
                 <NetworkDiagram className="w-full max-w-[220px] mx-auto h-auto" />
               </div>
@@ -267,34 +272,34 @@ export default function Home() {
             <div className="text-center mb-10 md:mb-14 fade-up">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-orange mb-4">Where the money is</p>
               <h2 className="text-3xl md:text-4xl font-roca text-brand-green mb-5 leading-tight">
-                The industry optimizes the small number.
+                Processing is not where this is won.
               </h2>
             </div>
 
-            {/* 10:1 */}
+            {/* The 10:1 idea, carried by type scale instead of figures. */}
             <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-6 sm:gap-8 mb-8 fade-up">
-              <div className="bg-white rounded-2xl p-7 text-center shadow-sm">
-                <p className="text-4xl md:text-5xl font-roca text-stone-400 mb-2">$250</p>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-stone-500">cost to process the animal</p>
+              <div className="bg-white rounded-2xl px-7 py-8 text-center shadow-sm">
+                <p className="text-xl md:text-2xl font-roca text-stone-400 mb-2">The processing fee</p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-stone-500">where the industry competes</p>
               </div>
               <p className="text-center font-roca text-stone-400 text-lg">vs.</p>
-              <div className="bg-white rounded-2xl p-7 text-center shadow-lg ring-2 ring-brand-green/20">
-                <p className="text-4xl md:text-5xl font-roca text-brand-green mb-2">$2,500</p>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-green">what the animal is worth</p>
+              <div className="bg-white rounded-2xl px-7 py-8 text-center shadow-lg ring-2 ring-brand-green/20">
+                <p className="text-3xl md:text-5xl font-roca text-brand-green mb-2">The animal itself</p>
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-green">where the leverage has always been</p>
               </div>
             </div>
 
             <p className="text-base md:text-lg text-stone-700 leading-relaxed text-center max-w-2xl mx-auto mb-12 md:mb-16 fade-up">
-              Most of the industry spends its energy shaving pennies off the $250. The leverage has
-              always been on the other side of that ratio, and getting at it takes information a small
-              plant has never had.
+              An animal is worth many times what it costs to process. The industry spends its energy on
+              the fraction, competing on the fee. Almost nobody works the other side of that ratio,
+              because getting at it takes information an independent plant has never had.
             </p>
 
             <div className="text-center mb-8 md:mb-10 fade-up">
               <h3 className="text-2xl md:text-3xl font-roca text-brand-green mb-3">The intelligence layer</h3>
               <p className="text-base md:text-lg text-stone-600 max-w-2xl mx-auto">
                 Four decisions decide whether an animal earns what it is worth. Farmshare is building
-                each one for a fifty-head-per-week operation.
+                each one, for operations of any size.
               </p>
             </div>
 
@@ -316,7 +321,9 @@ export default function Home() {
 
       {/* ============================================
           SECTION 4: THE FARM SHARE
-          Why the company is called what it is called.
+          Why the company is called what it is called. This is an ethos,
+          not a description of a mechanism. Nothing here claims a capability
+          that has not shipped.
           ============================================ */}
       <section className="py-14 md:py-20 bg-brand-forest text-brand-cream">
         <div className="container mx-auto px-4">
@@ -324,46 +331,43 @@ export default function Home() {
             <div className="text-center mb-10 md:mb-14 fade-up">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sage mb-4">The farm share</p>
               <h2 className="text-3xl md:text-4xl font-roca text-white mb-5 leading-tight">
-                Fourteen cents of every meat dollar reaches the producer.
+                14 cents of every meat dollar reaches the producer.
               </h2>
               <p className="text-base md:text-lg text-brand-cream/80 leading-relaxed max-w-2xl mx-auto">
-                The other eighty-six accrue to the coordination layer. Moving that number is not a
-                marketing problem. It is a question of who holds the animal and who can prove what it
-                did.
+                The other 86 cents go to everything standing between the farm and the plate. Not because the
+                farmer's work is worth less. Because the farmer is nowhere near the market.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-5 md:gap-6">
               <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <p className="font-roca text-brand-sage text-2xl mb-3">01</p>
-                <h3 className="text-lg font-bold text-white mb-3">The producer keeps title</h3>
+                <h3 className="text-lg font-bold text-white mb-3">Too many steps</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  The animal does not get sold into a commodity channel at the plant door. It stays the
-                  producer's property through harvest, through fabrication, and into the sale.
+                  Between the pasture and the plate sit buyers, feeders, packers, distributors, brokers,
+                  and retailers. Every one of them takes a margin. None of them are the farmer.
                 </p>
               </div>
 
               <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <p className="font-roca text-brand-sage text-2xl mb-3">02</p>
-                <h3 className="text-lg font-bold text-white mb-3">Paid on their own animal</h3>
+                <h3 className="text-lg font-bold text-white mb-3">Too far from the market</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  Not a pooled average across everything that ran that week. What this steer graded,
-                  what these cuts actually sold for, in the channels they actually reached.
+                  The people who raise the food have almost no contact with the people who eat it. That
+                  distance is what makes 14 cents possible, and it has been widening for decades.
                 </p>
               </div>
 
               <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <p className="font-roca text-brand-sage text-2xl mb-3">03</p>
-                <h3 className="text-lg font-bold text-white mb-3">Traceable end to end</h3>
+                <h3 className="text-lg font-bold text-white mb-3">A shorter path</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  Per-animal records from the farm through the cut floor to the point of sale are what
-                  make the first two possible. Farmshare already logs the animal. The rest is the build.
+                  Farmshare exists to close that distance. Fewer hands between the farm and the plate,
+                  and routes to market that do not run through the consolidated channel.
                 </p>
               </div>
             </div>
 
             <p className="text-center text-brand-cream/60 text-sm mt-8 md:mt-10 fade-up">
-              A farm share is the producer's share of what their animal earned. That is the whole idea.
+              A farm share is the farmer's share of the food they grow. Everything we build is pointed
+              at making it bigger.
             </p>
           </div>
         </div>

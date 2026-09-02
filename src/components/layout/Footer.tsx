@@ -29,7 +29,7 @@ export default function Footer() {
             <h3 className="text-xl font-roca mb-4">Menu</h3>
             <div className="space-y-2 font-medium">
               <Link to="/features" className="block hover:text-white transition-colors">
-                Features
+                For Processors
               </Link>
               <Link to="/find-a-processor" className="block hover:text-white transition-colors">
                 Find a Processor
