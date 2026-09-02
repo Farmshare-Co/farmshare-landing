@@ -7,7 +7,7 @@
 - Legal entity: Farmshare, Co., a Delaware corporation
 - Headquarters: Denver, Colorado
 - Founder and CEO: Henry Arrowood
-- Network scale: 44 processing facilities across 28 states, serving 9,500 producers
+- Network scale: 44 processing facilities across 28 states, serving 10,228 producers
 - Website: https://farmshare.co
 
 ## Mission

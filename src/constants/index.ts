@@ -18,7 +18,7 @@ export const LOGIN_URL = "https://partners.farmshare.co/";
 export const NETWORK_STATS = {
   facilities: 44,
   states: 28,
-  producers: 9500,
+  producers: 10228,
 } as const;
 
 // Press alias, not a personal mailbox. This must exist in Google Workspace

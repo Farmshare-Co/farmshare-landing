@@ -141,7 +141,6 @@ export default function Home() {
           ============================================ */}
       <section className="relative bg-brand-forest text-brand-cream overflow-hidden">
         {/* sage accent bar, lifted from the deck title slide */}
-        <div className="absolute top-0 left-0 h-full w-1.5 md:w-2 bg-brand-sage"></div>
 
         <div className="container mx-auto px-6 md:px-10 lg:px-16 py-16 md:py-24 lg:py-28 relative">
           <div className="grid lg:grid-cols-12 gap-10 items-center">
@@ -191,7 +190,7 @@ export default function Home() {
                 <p className="text-3xl md:text-5xl font-roca text-brand-sage leading-none mb-2">
                   <AnimatedNumber target={NETWORK_STATS.facilities} />
                 </p>
-                <p className="text-xs md:text-sm text-brand-cream/70 font-medium">processing facilities</p>
+                <p className="text-xs md:text-sm text-brand-cream/70 font-medium">plants</p>
               </div>
               <div className="fade-up">
                 <p className="text-3xl md:text-5xl font-roca text-brand-sage leading-none mb-2">
@@ -203,7 +202,7 @@ export default function Home() {
                 <p className="text-3xl md:text-5xl font-roca text-brand-sage leading-none mb-2">
                   <AnimatedNumber target={NETWORK_STATS.producers} />
                 </p>
-                <p className="text-xs md:text-sm text-brand-cream/70 font-medium">producers in the network</p>
+                <p className="text-xs md:text-sm text-brand-cream/70 font-medium">producers</p>
               </div>
             </div>
           </div>
