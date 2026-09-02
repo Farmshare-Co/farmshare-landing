@@ -71,7 +71,7 @@ export default function Newsroom() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
               <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                 <p className="text-4xl font-roca text-brand-green mb-1">{NETWORK_STATS.facilities}</p>
-                <p className="text-stone-600 text-sm">processing facilities</p>
+                <p className="text-stone-600 text-sm">plants</p>
               </div>
               <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                 <p className="text-4xl font-roca text-brand-green mb-1">{NETWORK_STATS.states}</p>
@@ -81,7 +81,7 @@ export default function Newsroom() {
                 <p className="text-4xl font-roca text-brand-green mb-1">
                   {NETWORK_STATS.producers.toLocaleString()}
                 </p>
-                <p className="text-stone-600 text-sm">producers in the network</p>
+                <p className="text-stone-600 text-sm">producers</p>
               </div>
             </div>
 
