@@ -31,7 +31,7 @@ const stages = [
     badgeBg: 'bg-brand-orange/10',
     badgeText: 'text-brand-orange',
     iconBg: 'bg-brand-orange',
-    description: 'The intelligence that grows plants\' profit. The system fills calendar gaps before the office sees them. It wins back customers who drifted away. It gives plants pricing visibility they\'ve never had, so they stop leaving money on the table.',
+    description: 'The intelligence that grows plants\' profit. This act is inventory and further processing: what you make from the carcass, what it cost you to make it, and which channel it goes to. Per-product cost to manufacture, so margin is visible instead of assumed. Recipes and batches. Yield counted rather than estimated. And the integrations that keep a plant\'s systems all carrying the same numbers.',
   },
   {
     icon: TrendingUp,
@@ -40,7 +40,7 @@ const stages = [
     badgeBg: 'bg-stone-200',
     badgeText: 'text-stone-600',
     iconBg: 'bg-stone-400',
-    description: 'The network that shifts the power. Independents stop being price-takers. Processors coordinate forward-selling, aggregated purchasing, and carcass-balancing across plants. Producers access the markets the Big Four used to control. Value stops getting extracted and starts returning to the people who do the work.',
+    description: 'The network that shifts the power. Independents stop being price-takers. Processors coordinate forward-selling, aggregated purchasing, and carcass-balancing across plants. Producers reach the markets the Big Four used to control, carrying proof of what they raised and a real price to hold it against. Market-making is not the end of the story. The farm share is. Every act is aimed at the same result: more of each meat dollar landing with the people who do the work.',
   },
 ];
 
@@ -227,7 +227,7 @@ export default function Mission() {
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-roca text-brand-orange text-center mb-4 fade-up">Where We're Going</h2>
           <p className="text-base md:text-lg text-stone-600 text-center mb-12 md:mb-16 max-w-2xl mx-auto fade-up">
-            Three acts: revenue, then profit, then market power. Each builds on the last, from today's platform to tomorrow's market-making network.
+            Three acts: revenue, then profit, then market power. Each builds on the last, from today's platform to tomorrow's market-making network. All three are pointed at the same end: a bigger share of every meat dollar reaching the producer.
           </p>
 
           <div className="max-w-3xl mx-auto relative">
@@ -370,10 +370,10 @@ export default function Mission() {
             </div>
 
             <div className="bg-brand-green rounded-xl p-6 md:p-8 text-white fade-up shadow-xl">
-              <p className="text-xs font-bold uppercase tracking-wider text-brand-orange mb-3">The Third Option</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-orange mb-3">The Third Option (Being Built)</p>
               <h3 className="text-lg md:text-xl font-bold text-white mb-3">Local Processor + Network Intelligence</h3>
               <p className="text-sm md:text-base text-brand-cream/90 leading-relaxed">
-                Take your animal to a local processor who, powered by Farmshare's network intelligence, can actually merchandise into higher-value channels. The processor becomes a real buyer, not a service provider. You access the same kind of market-making the Big Four offer, but locally, transparently, with your upside.
+                Keep title to your animal past the plant door. A local processor does the work, and the network does the merchandising: the higher-value channel, the buyer, and the record of what you raised. You get paid on how the beef actually performs when it sells, not on a number quoted the day you drop off. Nobody in the middle has to buy your animal to get it to market. This is the option Farmshare is building, and it is not yet how most plants run.
               </p>
             </div>
           </div>
@@ -407,7 +407,7 @@ export default function Mission() {
               </a>
 
               <a
-                href="mailto:henry@farmshare.co"
+                href="mailto:sales@farmshare.co"
                 className="bg-brand-orange text-white p-6 rounded-lg hover:bg-brand-yellow transition-colors text-center group transform hover:-translate-y-1 duration-300"
               >
                 <div className="mb-3">
