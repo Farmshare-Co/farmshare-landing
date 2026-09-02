@@ -1,11 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 import { Calendar, Mail, Users, Factory, Link2, Network, TrendingUp, Sparkles } from 'lucide-react';
 import AnimatedNumber from '../components/AnimatedNumber';
+import { NETWORK_STATS } from '../constants';
+
+const MISSION_TITLE = 'Our Mission - The Operating System for Independent Meat | Farmshare';
+// The hero paragraph and the runtime meta description are the same sentence, so
+// they render from one constant and a copy edit can never leave one behind.
+// A THIRD copy is the literal in scripts/seo-build.mjs, which is what the
+// prerendered /mission page serves to crawlers and link previews. This string
+// is kept character-for-character identical to it; change both together.
+// House style: no em dashes in outward-facing copy.
+const MISSION_DESCRIPTION =
+  'Four companies control 85% of beef processing in America. Their advantage is not quality. ' +
+  'It is scale and intelligence. Farmshare is building both for independent processors.';
 
 const stages = [
   {
     icon: Factory,
-    title: 'Act 1 — The Operational Platform',
+    title: 'Act 1: The Operational Platform',
     badge: 'Built',
     badgeBg: 'bg-brand-green/10',
     badgeText: 'text-brand-green',
@@ -14,16 +26,16 @@ const stages = [
   },
   {
     icon: Sparkles,
-    title: 'Act 2 — Plant Intelligence',
+    title: 'Act 2: Plant Intelligence',
     badge: 'Building',
     badgeBg: 'bg-brand-orange/10',
     badgeText: 'text-brand-orange',
     iconBg: 'bg-brand-orange',
-    description: 'The intelligence that grows plants\' profit. The system fills calendar gaps before the office sees them. It wins back customers who drifted away. It gives plants pricing visibility they\'ve never had — so they stop leaving money on the table.',
+    description: 'The intelligence that grows plants\' profit. The system fills calendar gaps before the office sees them. It wins back customers who drifted away. It gives plants pricing visibility they\'ve never had, so they stop leaving money on the table.',
   },
   {
     icon: TrendingUp,
-    title: 'Act 3 — Market-Making',
+    title: 'Act 3: Market-Making',
     badge: 'The Vision',
     badgeBg: 'bg-stone-200',
     badgeText: 'text-stone-600',
@@ -36,10 +48,10 @@ export default function Mission() {
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = 'Our Mission - The Operating System for Independent Meat | Farmshare';
+    document.title = MISSION_TITLE;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Four companies control 85% of beef processing in America. Their advantage isn\'t quality — it\'s scale and intelligence. Farmshare is building both for independents.');
+      metaDescription.setAttribute('content', MISSION_DESCRIPTION);
     }
 
     const observer = new IntersectionObserver(
@@ -86,14 +98,14 @@ export default function Mission() {
               Independent Meat Is Better. It Should Win.
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-stone-600 mb-6 lg:mb-8 font-medium stagger-child">
-              Four companies control 85% of beef processing in America. Their advantage isn't quality — it's scale and intelligence. Farmshare is building both for independents.
+              {MISSION_DESCRIPTION}
             </p>
           </div>
         </div>
       </section>
 
       {/* ============================================
-          THE PROBLEM — Stats row + short context
+          THE PROBLEM: Stats row + short context
           ============================================ */}
       <section className="py-12 md:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -122,14 +134,14 @@ export default function Mission() {
 
           <div className="max-w-3xl mx-auto text-center fade-up">
             <p className="text-base md:text-lg text-stone-700 leading-relaxed">
-              The largest packers don't dominate because they produce better meat — they dominate because they coordinate at scale, with intelligence. Independent processors produce the quality and traceability consumers want, but they're fragmented, disconnected, and running blind. Meanwhile, demand for local meat is surging and new processing capacity is coming online. The opportunity has never been bigger. The infrastructure — and the intelligence — to seize it hasn't existed.
+              The largest packers don't dominate because they produce better meat. They dominate because they coordinate at scale, with intelligence. Independent processors produce the quality and traceability consumers want, but they're fragmented, disconnected, and running blind. Meanwhile, demand for local meat is surging and new processing capacity is coming online. The opportunity has never been bigger. What hasn't existed is the infrastructure to seize it, or the intelligence to aim it.
             </p>
           </div>
         </div>
       </section>
 
       {/* ============================================
-          VIDEO — Henry's Story
+          VIDEO: Henry's Story
           ============================================ */}
       <section className="py-8 md:py-12 lg:py-16 bg-brand-cream">
         <div className="container mx-auto px-4">
@@ -145,7 +157,7 @@ export default function Mission() {
                 width="100%"
                 height="100%"
                 src="https://www.youtube.com/embed/XtJwE05TqHE"
-                title="Our Founder's Story — Farmshare"
+                title="Our Founder's Story | Farmshare"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -157,7 +169,7 @@ export default function Mission() {
       </section>
 
       {/* ============================================
-          WHAT WE BELIEVE — The Trinity
+          WHAT WE BELIEVE: The Trinity
           ============================================ */}
       <section className="py-12 md:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -170,7 +182,7 @@ export default function Mission() {
               </div>
               <h3 className="text-lg md:text-xl font-bold text-brand-green mb-3">The Network Wins</h3>
               <p className="text-sm md:text-base text-stone-600 leading-relaxed">
-                One processor can't supply a restaurant chain. Fifty on shared infrastructure can. Independent meat wins by coordinating as one — not by out-competing the Big Four on their own terms.
+                One processor can't supply a restaurant chain. Fifty on shared infrastructure can. Independent meat wins by coordinating as one, not by out-competing the Big Four on their own terms.
               </p>
             </div>
 
@@ -180,7 +192,7 @@ export default function Mission() {
               </div>
               <h3 className="text-lg md:text-xl font-bold text-brand-green mb-3">Intelligence Is the Other Half</h3>
               <p className="text-sm md:text-base text-stone-600 leading-relaxed">
-                The Big Four know what to buy, how to cut it, where to sell every piece, and at what price. That's intelligence. Independent processors don't have it — yet. Farmshare is building it for them.
+                Four decisions determine whether an animal earns what it is worth: what to bring in, how to cut it, who to sell it to, at what price. The Big Four answer all four with better information than anyone else has. That's intelligence. Independent processors don't have it yet. Farmshare is building each one for them.
               </p>
             </div>
 
@@ -209,13 +221,13 @@ export default function Mission() {
       </section>
 
       {/* ============================================
-          WHERE WE'RE GOING — Acts timeline
+          WHERE WE'RE GOING: Acts timeline
           ============================================ */}
       <section className="py-12 md:py-16 lg:py-20 bg-brand-cream">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-roca text-brand-orange text-center mb-4 fade-up">Where We're Going</h2>
           <p className="text-base md:text-lg text-stone-600 text-center mb-12 md:mb-16 max-w-2xl mx-auto fade-up">
-            Three acts — revenue, then profit, then market power. Each builds on the last, from today's platform to tomorrow's market-making network.
+            Three acts: revenue, then profit, then market power. Each builds on the last, from today's platform to tomorrow's market-making network.
           </p>
 
           <div className="max-w-3xl mx-auto relative">
@@ -249,6 +261,86 @@ export default function Mission() {
       </section>
 
       {/* ============================================
+          THE FARM SHARE
+          Sits immediately before "A Third Option for Producers" on purpose:
+          this section is the stake (what a farm share is, how small it is, and
+          the three things that move it), and the Third Option section is what
+          a producer actually does about it. Same reader, setup then answer.
+          It also gives the 14 cents stat in the Problem row a meaning, which
+          it did not have before.
+
+          Copy rules, learned the hard way:
+          - The distance between farm and market is STRUCTURAL. Do not name
+            trades as margin-takers. Feeders and distributors are Farmshare
+            partners and customers. An earlier draft listed them and was cut.
+          - Per-animal records ship today. Everything past that is directional
+            and has to read that way.
+          - Plant count comes from NETWORK_STATS, never typed inline.
+          ============================================ */}
+      <section className="py-12 md:py-16 lg:py-20 bg-brand-forest text-brand-cream">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10 md:mb-14 fade-up">
+              <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sage mb-4">The farm share</p>
+              <h2 className="text-3xl md:text-4xl font-roca text-white mb-5 leading-tight">
+                About 14 cents of every meat dollar reaches the producer.
+              </h2>
+              <p className="text-base md:text-lg text-brand-cream/80 leading-relaxed">
+                A farm share is the farmer's share of the food they grow. Today it is roughly 14 cents on
+                the dollar. The other 86 cents pay for the real work of getting an animal from a pasture
+                to a plate, done by real businesses. The problem isn't that anyone is taking too much.
+                The problem is structural. The farmer is nowhere near the market, and can't see it,
+                reach it, or price against it. Farmshare exists to close that distance. Three things move
+                a farm share, and the network is being built around all three.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Traceability</p>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Prove what it is</h3>
+                <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
+                  A producer can't be paid for a claim they can't prove. Grass finished, no antibiotics,
+                  one ranch, one animal: those are worth money only when the record survives the cut
+                  floor. Farmshare keeps a record for every animal that moves through a plant today.
+                  Carrying that record intact all the way to the buyer is what the network is being
+                  built to do.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Market access</p>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">Reach the buyers that pay</h3>
+                <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
+                  One plant running fifty head a week can't fill a grocery program, a restaurant group,
+                  or an institutional contract. Those buyers need volume, consistency, and one point of
+                  contact. {NETWORK_STATS.facilities} plants coordinating on shared infrastructure can
+                  supply what none of them could supply alone, and not one of them has to merge, sell,
+                  or give up its name to do it.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Price discovery</p>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">See what it's worth</h3>
+                <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
+                  Independents negotiate blind. There's no published price for a grass finished carcass
+                  sold into a regional restaurant group, so every plant and every producer guesses alone.
+                  A network recording real sales across many plants builds the benchmark independents
+                  have never had. Knowing the number is most of the work of getting it.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-center text-brand-cream/60 text-sm md:text-base mt-8 md:mt-10 fade-up">
+              Proof, reach, and price are the whole argument. Everything Farmshare builds is pointed at
+              making the farm share bigger.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
           THIRD OPTION FOR PRODUCERS
           ============================================ */}
       <section className="py-12 md:py-16 lg:py-20 bg-white">
@@ -273,7 +365,7 @@ export default function Mission() {
               <p className="text-xs font-bold uppercase tracking-wider text-stone-500 mb-3">Option 2</p>
               <h3 className="text-lg md:text-xl font-bold text-stone-700 mb-3">Fee-for-Service + DIY</h3>
               <p className="text-sm md:text-base text-stone-600 leading-relaxed">
-                Keep ownership. Now you're marketing quarters, halves, and wholes yourself — a different job than raising cattle, and one most producers didn't sign up for.
+                Keep ownership. Now you're marketing quarters, halves, and wholes yourself. That's a different job than raising cattle, and one most producers didn't sign up for.
               </p>
             </div>
 
@@ -281,7 +373,7 @@ export default function Mission() {
               <p className="text-xs font-bold uppercase tracking-wider text-brand-orange mb-3">The Third Option</p>
               <h3 className="text-lg md:text-xl font-bold text-white mb-3">Local Processor + Network Intelligence</h3>
               <p className="text-sm md:text-base text-brand-cream/90 leading-relaxed">
-                Take your animal to a local processor who — powered by Farmshare's network intelligence — can actually merchandise into higher-value channels. The processor becomes a real buyer, not a service provider. You access the same kind of market-making the Big Four offer, but locally, transparently, with your upside.
+                Take your animal to a local processor who, powered by Farmshare's network intelligence, can actually merchandise into higher-value channels. The processor becomes a real buyer, not a service provider. You access the same kind of market-making the Big Four offer, but locally, transparently, with your upside.
               </p>
             </div>
           </div>
