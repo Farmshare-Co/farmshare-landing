@@ -278,12 +278,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-roca text-brand-green mb-5 leading-tight">
                 The intelligence layer
               </h2>
-              <p className="text-base md:text-lg text-stone-700 leading-relaxed max-w-2xl mx-auto mb-5">
-                An animal is worth many times what it costs to process, and the industry competes on the
-                fee. Working the other side of that ratio takes information an independent plant has
-                never had.
-              </p>
-              <p className="text-base md:text-lg text-stone-600 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-stone-700 leading-relaxed max-w-2xl mx-auto">
                 Four decisions decide whether an animal earns what it is worth. Farmshare is building
                 each one, for operations of any size.
               </p>
