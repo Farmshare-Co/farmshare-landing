@@ -169,7 +169,7 @@ export default function Home() {
                 to="/mission"
                 className="border-2 border-brand-cream/40 text-brand-cream text-lg px-8 py-4 rounded-lg hover:bg-brand-cream hover:text-brand-forest transition-colors inline-flex items-center justify-center font-bold"
               >
-                Read the Full Argument
+                Why Farmshare Exists
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </div>
@@ -392,7 +392,7 @@ export default function Home() {
                 to="/mission"
                 className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center justify-center font-bold"
               >
-                The full argument
+                Why Farmshare exists
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </div>
