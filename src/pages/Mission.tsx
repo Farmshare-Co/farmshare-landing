@@ -370,10 +370,10 @@ export default function Mission() {
             </div>
 
             <div className="bg-brand-green rounded-xl p-6 md:p-8 text-white fade-up shadow-xl">
-              <p className="text-xs font-bold uppercase tracking-wider text-brand-orange mb-3">The Third Option (Being Built)</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-orange mb-3">The Third Option</p>
               <h3 className="text-lg md:text-xl font-bold text-white mb-3">Local Processor + Network Intelligence</h3>
               <p className="text-sm md:text-base text-brand-cream/90 leading-relaxed">
-                Keep title to your animal past the plant door. A local processor does the work, and the network does the merchandising: the higher-value channel, the buyer, and the record of what you raised. You get paid on how the beef actually performs when it sells, not on a number quoted the day you drop off. Nobody in the middle has to buy your animal to get it to market. This is the option Farmshare is building, and it is not yet how most plants run.
+                Keep title past the plant door. The processor does the work, the network finds the buyer, and you get paid on how the beef actually sells. This is the option Farmshare is building.
               </p>
             </div>
           </div>
