@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Factory, Calendar, Clock, Quote, ArrowRight, Phone, FileX, AlertTriangle,
   CalendarX2, Layers, Mail, ArrowDown, ScanLine, Tags, Scissors, Store,
-  Boxes, ChefHat, ScanBarcode, Printer, Beef, Repeat
+  PackageSearch, Scale
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LogoBanner from '../components/LogoBanner';
@@ -63,44 +63,6 @@ const intelligence = [
   { icon: Scissors, label: 'How to cut it', body: 'Where the yield actually went, and where it was supposed to go.' },
   { icon: Store, label: 'Who to sell it to', body: 'Which channel wants this carcass, at this weight, this week.' },
   { icon: Tags, label: 'At what price', body: 'What the cut is worth in that channel, instead of the fee set a decade ago.' },
-];
-
-// Inventory and further processing. This is the one product surface that is
-// about what the animal is worth rather than what the admin costs, which is
-// why the homepage carries it instead of only pointing at /features.
-// Inventory Management v2 is in shaping and being demoed. Every line below has
-// to describe a module that is rolling out, never a switch to flip today.
-const inventoryHighlights = [
-  {
-    icon: Boxes,
-    label: 'Products, costed',
-    body: 'SKUs seed from your cut sheet catalog, with cost to manufacture alongside price, so margin is visible product by product.'
-  },
-  {
-    icon: ChefHat,
-    label: 'Recipes and batches',
-    body: 'Inputs decrement as a batch runs, and the system checks whether the batch can be made before anyone starts it.'
-  },
-  {
-    icon: ScanBarcode,
-    label: 'Batch and lot tracking',
-    body: 'Lots tracked back to the supplier they came from, so a recall question is a lookup instead of a search through paperwork.'
-  },
-  {
-    icon: Printer,
-    label: 'Packing station',
-    body: 'Yield, invoicing, and labeling in one view, with labels printed as the work happens instead of reconciled afterward.'
-  },
-  {
-    icon: Beef,
-    label: 'Per-primal box beef',
-    body: 'Each piece scanned in and out, so yield on boxed beef is counted rather than estimated off the box.'
-  },
-  {
-    icon: Repeat,
-    label: 'Further processing orders',
-    body: 'Start from the output you need, then wind back to what is already in inventory and what still has to be sourced.'
-  },
 ];
 
 const HOME_TITLE = 'Farmshare | The Coordination Layer for Independent Meat';
@@ -472,11 +434,16 @@ export default function Home() {
           ============================================ */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-roca text-brand-green text-center mb-4 fade-up">Sound Familiar?</h2>
-            <p className="text-xl text-stone-500 text-center mb-12 fade-up">Most processors we talk to are dealing with the same problems every single week.</p>
+            <p className="text-xl text-stone-500 text-center mb-12 fade-up max-w-3xl mx-auto">Most processors we talk to are dealing with the same problems every single week.</p>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            {/* Four cards, not three. The fourth is the revenue problem, and it
+                belongs in this list rather than in a section of its own further
+                down the page. One column, then 2x2 from sm, then four across at
+                lg where the cards still measure wide enough for the text-lg
+                headlines. */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-brand-cream rounded-xl p-6 fade-up text-center">
                 <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <Phone className="h-6 w-6 text-red-500" />
@@ -500,6 +467,14 @@ export default function Home() {
                 <h3 className="text-lg font-bold text-brand-green mb-2">No-Shows &amp; Lost Revenue</h3>
                 <p className="text-stone-600">Empty slots from cancellations and no-shows. No waitlist to fill them. Revenue walks out the door every week.</p>
               </div>
+
+              <div className="bg-brand-cream rounded-xl p-6 fade-up text-center">
+                <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <PackageSearch className="h-6 w-6 text-red-500" />
+                </div>
+                <h3 className="text-lg font-bold text-brand-green mb-2">Guessing at Yield &amp; Cost</h3>
+                <p className="text-stone-600">You know what you charge, but not what each product costs to make or what is really left in the freezer. Yield gets estimated, not counted.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -514,7 +489,11 @@ export default function Home() {
             <h2 className="text-3xl font-roca text-white mb-2">What It's Costing You</h2>
             <p className="text-brand-cream/70">Every week, the same problems quietly drain hours, bookings, and revenue.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
+          {/* Same move as the section above: the fourth item is the revenue
+              problem. Four across only at xl, because these labels are
+              text-2xl roca and "Six Tools, No Source of Truth" needs the
+              width. 2x2 from sm through lg. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 max-w-6xl mx-auto text-center">
             <div className="fade-up flex flex-col items-center">
               <div className="h-16 w-16 bg-brand-orange/20 rounded-full flex items-center justify-center mb-4 ring-2 ring-brand-orange/30">
                 <Clock className="h-8 w-8 text-brand-yellow" />
@@ -535,6 +514,13 @@ export default function Home() {
               </div>
               <p className="text-2xl font-bold text-white font-roca">Six Tools, No Source of Truth</p>
               <p className="text-brand-cream/80 font-medium mt-1">Calendar here, spreadsheet there, sticky notes everywhere</p>
+            </div>
+            <div className="fade-up flex flex-col items-center">
+              <div className="h-16 w-16 bg-brand-orange/20 rounded-full flex items-center justify-center mb-4 ring-2 ring-brand-orange/30">
+                <Scale className="h-8 w-8 text-brand-yellow" />
+              </div>
+              <p className="text-2xl font-bold text-white font-roca">Margin You Can't See</p>
+              <p className="text-brand-cream/80 font-medium mt-1">Yield estimated off the box, cost unknown per product</p>
             </div>
           </div>
         </div>
@@ -630,89 +616,40 @@ export default function Home() {
 
       {/* ============================================
           SECTION 7B: INVENTORY AND FURTHER PROCESSING
-          The bridge. Everything above this in the funnel sells saved hours,
-          which sits badly against a page that opens by arguing the leverage is
-          in what the animal is worth, not what processing costs. This is the
-          one part of the product that is about getting more out of the same
-          animal, so it closes that gap on the homepage rather than only on
-          /features.
+          The bridge, kept small on purpose. The revenue argument now lives in
+          the two problem sections above, where it belongs; this is only the
+          handoff to /features#inventory, which carries the detail.
           Forest, deliberately: the sections about the value of the animal
           (the farm share, the thesis) carry this color, the admin-relief
           sections do not.
-          Two constraints that are not stylistic. It must never become the
-          homepage lead or headline, and it must be visibly scoped to plants
-          doing retail, wholesale, or further processing. Overselling inventory
-          to a plant that wanted custom-work labeling has already cost an
-          account. It is also in shaping and being demoed, not generally
-          available, and the copy has to keep reading that way.
+          Two constraints that are not stylistic. It must never grow back into
+          a full feature block or become the homepage headline, and it must stay
+          visibly scoped to plants doing retail, wholesale, or further
+          processing. Overselling inventory to a plant that wanted custom-work
+          labeling has already cost an account. Nothing here may read as a
+          switch every account can flip today.
           ============================================ */}
-      <section className="py-16 md:py-24 bg-brand-forest text-brand-cream">
+      <section className="py-14 md:py-16 bg-brand-forest text-brand-cream">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="max-w-3xl mb-10 md:mb-12 fade-up">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sage mb-4">
-                For plants doing retail, wholesale, or further processing
-              </p>
-              <h2 className="text-3xl md:text-4xl font-roca text-white mb-5 leading-tight">
-                Everything above saves hours. This part is about what the animal is worth.
-              </h2>
-              <p className="text-base md:text-lg text-brand-cream/80 leading-relaxed mb-4">
-                Scheduling, cut sheets, and notifications take work off your team. They do not change
-                what the carcass earns. Most of that is decided after it is broken down: what you
-                make from it, what it cost you to make, and which channel it goes to.
-              </p>
-              <p className="text-base md:text-lg text-brand-cream/80 leading-relaxed">
-                Inventory and further processing put numbers on that side of the ledger. It is the
-                same argument as the top of this page, in the part of the product that acts on it.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-              {inventoryHighlights.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.label}
-                    className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 fade-up"
-                  >
-                    <Icon className="h-6 w-6 text-brand-sage mb-4" />
-                    <h3 className="font-bold text-white mb-2">{item.label}</h3>
-                    <p className="text-sm text-brand-cream/75 leading-relaxed">{item.body}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Status, stated plainly and close to the capabilities so no one
-                reads the grid as a shipped checklist. */}
-            <div className="mt-8 md:mt-10 border-l-2 border-brand-sage/60 pl-5 md:pl-6 fade-up">
-              <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                <span className="font-bold text-white">Where this stands.</span>{' '}
-                Inventory Management v2 is in shaping now and being demoed with processors. It is
-                rolling out plant by plant as pieces are ready, not switched on across every account.
-                If it fits your operation, ask to see it and we will show you what is live and what
-                is still being built.
-              </p>
-            </div>
-
-            <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 fade-up">
-              <Link
-                to="/features#inventory"
-                className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center justify-center font-bold"
-              >
-                See how inventory works
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <a
-                href="https://meetings.hubspot.com/henry-arrowood/quad-p-demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-2 border-brand-cream/40 text-brand-cream text-lg px-8 py-4 rounded-lg hover:bg-brand-cream hover:text-brand-forest transition-colors inline-flex items-center justify-center font-bold"
-              >
-                <Calendar className="mr-2 h-5 w-5" />
-                Ask about it on your demo
-              </a>
-            </div>
+          <div className="max-w-3xl mx-auto fade-up">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-sage mb-4">
+              For plants doing retail, wholesale, or further processing
+            </p>
+            <h2 className="text-2xl md:text-3xl font-roca text-white mb-4 leading-tight">
+              Everything above saves hours. This part is about what the animal is worth.
+            </h2>
+            <p className="text-base md:text-lg text-brand-cream/80 leading-relaxed mb-6">
+              Most of what a carcass earns is decided after it is broken down: what you make from it,
+              what it cost to make, and which channel it goes to. Inventory and further processing put
+              numbers on that side of the ledger.
+            </p>
+            <Link
+              to="/features#inventory"
+              className="inline-flex items-center font-bold text-brand-sage hover:text-white transition-colors"
+            >
+              See how inventory works
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
           </div>
         </div>
       </section>

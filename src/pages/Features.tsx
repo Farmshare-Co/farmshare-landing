@@ -148,19 +148,20 @@ export default function Features() {
     }
   };
 
-  // Inventory Management v2. In shaping and being demoed, not generally
-  // available, so every line here describes the module as it is being built
-  // rather than promising a switch a customer can flip today.
+  // Inventory and further processing. This is not switched on across every
+  // account, so every line here describes what the module does and none of them
+  // promise a switch a customer can flip today. Keep it that way: no "available
+  // now", no "turn it on", no internal roadmap vocabulary either.
   const inventoryCapabilities = [
     {
       icon: Boxes,
       title: 'Products, Priced and Costed',
-      body: 'SKUs seed themselves from your cut sheet catalog, with sub-SKUs where you need them. Set retail and wholesale price, and cost to manufacture, so margin is visible product by product. On-hand quantity and low-stock alerts come with it.'
+      body: 'SKUs seed from your cut sheet catalog, with sub-SKUs where an operation needs them. Retail price, wholesale price, and cost to manufacture sit on the same record, so margin is visible product by product. On-hand quantity and low-stock alerts come with it.'
     },
     {
       icon: ChefHat,
       title: 'Recipes for Finished Products',
-      body: 'Define the inputs to a finished product by amount, weight, or percentage. Ingredients decrement as the batch runs, and the system checks whether you can actually make the batch before anyone starts it.'
+      body: 'A finished product carries its inputs by amount, weight, or percentage. Ingredients decrement as the batch runs, and the system checks whether the batch can be made before anyone starts it.'
     },
     {
       icon: ScanBarcode,
@@ -175,12 +176,12 @@ export default function Features() {
     {
       icon: Beef,
       title: 'Per-Primal Box Beef',
-      body: 'Scan each piece in and out rather than eyeballing what came out of a hundred pound box. Yield on boxed beef stops being an estimate.'
+      body: 'Each piece is scanned in and out rather than eyeballed out of a hundred pound box. Yield on boxed beef stops being an estimate.'
     },
     {
       icon: Repeat,
       title: 'Further Processing Orders',
-      body: 'Start from the output you need, say 100 pounds of brats, and wind back to what is already in inventory and what still has to be sourced.'
+      body: 'An order starts from the output that is needed, say 100 pounds of brats, and winds back to what is already in inventory and what still has to be sourced.'
     },
     {
       // Integrations, not one integration. Farmshare is the layer between the
@@ -190,7 +191,7 @@ export default function Features() {
       // development and no third-party system is claimed as shipped.
       icon: Plug,
       title: 'Works With the Systems You Already Run',
-      body: 'A plant does not get to throw out its accounting, its online store, or the system on the kill floor. Farmshare is built to sit between them so the same numbers are not keyed twice. QuickBooks is furthest along: map SKUs to your accounts once, then push inventory and sales activity across without re-keying it. In development now are a store connection that turns wholesale orders into pick lists, and a translation layer for the plant systems already in place.'
+      body: 'A plant does not get to throw out its accounting, its online store, or the system on the kill floor. Farmshare is built to sit between them so the same numbers are not keyed twice. QuickBooks is the connection we have taken furthest: map SKUs to your accounts once, and inventory and sales activity move across without re-keying. Two more are being built now, a store connection that turns wholesale orders into pick lists, and a translation layer for the plant systems already on the floor.'
     }
   ];
 
@@ -332,9 +333,10 @@ export default function Features() {
           admin costs, so it is framed on yield and revenue.
           Deliberately NOT the page lead. Inventory is not a universal pitch,
           and overselling it to a plant that wanted custom-work labeling has
-          already cost us an account. It sits here, mid page, clearly marked
-          as an additional surface for plants doing retail, wholesale, or
-          further processing, and clearly marked as still rolling out.
+          already cost us an account. It sits here, mid page, clearly scoped to
+          plants doing retail, wholesale, or further processing. The copy
+          describes what the module does and never claims every account has it;
+          the demo CTA at the bottom is what carries the fit conversation.
           ============================================ */}
       <section id="inventory" className="py-20 bg-white scroll-mt-24">
         <div className="container mx-auto px-4">
@@ -351,18 +353,6 @@ export default function Features() {
                 worth many times what it costs to process it, and most of that value is decided after
                 the carcass is broken down. Inventory and further processing put numbers on that side
                 of the ledger: what you made, what it cost to make, and what it is actually worth.
-              </p>
-            </div>
-
-            {/* Status is stated plainly. This module is in shaping and being
-                demoed; it is not something a plant can switch on today. */}
-            <div className="bg-brand-cream border border-stone-200 rounded-lg px-6 py-5 mb-10 fade-up">
-              <p className="text-sm md:text-base text-stone-700 leading-relaxed">
-                <span className="font-bold text-brand-green">Where this stands.</span>{' '}
-                Inventory Management v2 is in shaping now and being demoed with processors. It is
-                rolling out plant by plant as pieces are ready, not switched on across every account.
-                If it is a fit for your operation, ask to see it on your demo and we will show you
-                what is live and what is still being built.
               </p>
             </div>
 
@@ -396,6 +386,10 @@ export default function Features() {
                 <Calendar className="mr-2 h-5 w-5" />
                 Ask About Inventory on Your Demo
               </a>
+              <p className="text-stone-600 mt-4 max-w-xl mx-auto">
+                Every plant is set up differently. Ask to see this and we will walk through how it
+                would work in yours.
+              </p>
             </div>
           </div>
         </div>
