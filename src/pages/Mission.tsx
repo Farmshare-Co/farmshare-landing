@@ -190,9 +190,9 @@ export default function Mission() {
               <div className="h-14 w-14 bg-brand-orange/10 rounded-full flex items-center justify-center mx-auto mb-5">
                 <Sparkles className="h-7 w-7 text-brand-orange" />
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-brand-green mb-3">Intelligence Is the Other Half</h3>
+              <h3 className="text-lg md:text-xl font-bold text-brand-green mb-3">Intelligence Decides</h3>
               <p className="text-sm md:text-base text-stone-600 leading-relaxed">
-                Four decisions determine whether an animal earns what it is worth: what to bring in, how to cut it, who to sell it to, at what price. The Big Four answer all four with better information than anyone else has. That's intelligence. Independent processors don't have it yet. Farmshare is building each one for them.
+                Four decisions determine what an animal earns: what to bring in, how to cut it, who to sell it to, at what price. The Big Four answer all four with better information. Farmshare is building that for independents.
               </p>
             </div>
 

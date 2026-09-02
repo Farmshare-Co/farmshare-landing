@@ -31,7 +31,7 @@ export default function Header() {
               <img
                 src="https://vkxvwmvlkitrcfgzwvtl.supabase.co/storage/v1/object/public/content//farmshare%20(1).svg"
                 alt="Farmshare Logo"
-                className="h-16 lg:h-10 xl:h-14 w-auto brightness-0 invert translate-y-1.5"
+                className="h-16 lg:h-10 xl:h-14 w-auto brightness-0 invert translate-y-[6.33%]"
               />
             </Link>
           </div>

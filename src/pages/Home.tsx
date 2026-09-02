@@ -76,6 +76,24 @@ const HOME_DESCRIPTION =
 
 export default function Home() {
   const [showStickyButton, setShowStickyButton] = useState(false);
+  // The hero footage is decoration. It only mounts from md up, and never for a
+  // reader who has asked for reduced motion. Starting false means the element
+  // is absent from the DOM rather than hidden, so small screens and reduced
+  // motion never fetch the file at all, and first paint is the poster.
+  const [showHeroVideo, setShowHeroVideo] = useState(false);
+
+  useEffect(() => {
+    const wideEnough = window.matchMedia('(min-width: 768px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setShowHeroVideo(wideEnough.matches && !reducedMotion.matches);
+    sync();
+    wideEnough.addEventListener('change', sync);
+    reducedMotion.addEventListener('change', sync);
+    return () => {
+      wideEnough.removeEventListener('change', sync);
+      reducedMotion.removeEventListener('change', sync);
+    };
+  }, []);
 
   useEffect(() => {
     document.title = HOME_TITLE;
@@ -135,13 +153,48 @@ export default function Home() {
 
       {/* ============================================
           SECTION 1: HERO
-          Deliberately NOT the Mission hero. No photograph, no parallax,
-          no centered essay opening. Dark, left-aligned and typographic,
-          in the deck's design language, with the network figures above
+          Deliberately NOT the Mission hero. No parallax, no centered essay
+          opening. Dark, left-aligned and typographic, in the deck's design
+          language, over footage of the herd, with the network figures above
           the fold. /mission makes the argument; this states the company.
           ============================================ */}
       <section className="relative bg-brand-forest text-brand-cream overflow-hidden">
-        {/* sage accent bar, lifted from the deck title slide */}
+        {/* The pasture, filmed. The poster frame is the always-on layer: it
+            carries first paint, small screens, reduced motion, and the case
+            where the video never arrives. The video sits on top of it and only
+            mounts when it is worth the bytes. Every layer here is absolutely
+            positioned, so none of it contributes to layout and none of it can
+            shift the copy, and brand-forest stays the section background
+            underneath all of it. Decorative throughout, so hidden from
+            assistive tech. */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[url('/hero-cattle-poster.jpg')] bg-cover bg-center bg-no-repeat"
+        />
+        {showHeroVideo && (
+          <video
+            aria-hidden="true"
+            tabIndex={-1}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/hero-cattle-poster.jpg"
+            src="/hero-cattle.mp4"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+        )}
+        {/* Scrim, between the footage and the copy. Flat below lg, where the
+            hero is one column and text crosses the whole frame. A left-to-right
+            wash from lg up, where the copy sits in the left seven columns and
+            the right of the frame can stay open. Tuned by sampling the frames,
+            not by eye. */}
+        <div aria-hidden="true" className="absolute inset-0 bg-brand-forest/[0.89] lg:hidden" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 hidden lg:block bg-gradient-to-r from-brand-forest/95 from-10% via-brand-forest/90 via-70% to-brand-forest/50"
+        />
 
         <div className="container mx-auto px-6 md:px-10 lg:px-16 py-16 md:py-24 lg:py-28 relative">
           <div className="grid lg:grid-cols-12 gap-10 items-center">
@@ -184,7 +237,7 @@ export default function Home() {
         </div>
 
         {/* Network figures, in the hero so they are above the fold */}
-        <div className="border-t border-brand-cream/15">
+        <div className="relative border-t border-brand-cream/15">
           <div className="container mx-auto px-6 md:px-10 lg:px-16 py-8 md:py-10">
             <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">
               <div className="fade-up">
