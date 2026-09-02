@@ -24,20 +24,20 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-brand-green backdrop-blur-sm z-50">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-6 md:px-10 lg:px-16 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">
               <img
                 src="https://vkxvwmvlkitrcfgzwvtl.supabase.co/storage/v1/object/public/content//farmshare%20(1).svg"
                 alt="Farmshare Logo"
-                className="h-16 lg:h-12 xl:h-14 w-auto brightness-0 invert translate-y-1.5"
+                className="h-16 lg:h-10 xl:h-14 w-auto brightness-0 invert translate-y-1.5"
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-6">
             <Link to="/features" className={getLinkClass('/features')}>
               For Processors
             </Link>
