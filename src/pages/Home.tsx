@@ -264,39 +264,25 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 3: THE 10:1 RULE + THE INTELLIGENCE LAYER
+          SECTION 3: THE INTELLIGENCE LAYER
+          The 10:1 idea is carried in two sentences of transition. The card
+          graphic that used to sit here lost its figures and stopped earning
+          its space; the farm share section below makes the point with a
+          real number.
           ============================================ */}
       <section className="py-14 md:py-20 bg-brand-cream">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10 md:mb-14 fade-up">
+            <div className="text-center mb-10 md:mb-12 fade-up">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-orange mb-4">Where the money is</p>
               <h2 className="text-3xl md:text-4xl font-roca text-brand-green mb-5 leading-tight">
-                Processing is not where this is won.
+                The intelligence layer
               </h2>
-            </div>
-
-            {/* The 10:1 idea, carried by type scale instead of figures. */}
-            <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-6 sm:gap-8 mb-8 fade-up">
-              <div className="bg-white rounded-2xl px-7 py-8 text-center shadow-sm">
-                <p className="text-xl md:text-2xl font-roca text-stone-400 mb-2">The processing fee</p>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-stone-500">where the industry competes</p>
-              </div>
-              <p className="text-center font-roca text-stone-400 text-lg">vs.</p>
-              <div className="bg-white rounded-2xl px-7 py-8 text-center shadow-lg ring-2 ring-brand-green/20">
-                <p className="text-3xl md:text-5xl font-roca text-brand-green mb-2">The animal itself</p>
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-green">where the leverage has always been</p>
-              </div>
-            </div>
-
-            <p className="text-base md:text-lg text-stone-700 leading-relaxed text-center max-w-2xl mx-auto mb-12 md:mb-16 fade-up">
-              An animal is worth many times what it costs to process. The industry spends its energy on
-              the fraction, competing on the fee. Almost nobody works the other side of that ratio,
-              because getting at it takes information an independent plant has never had.
-            </p>
-
-            <div className="text-center mb-8 md:mb-10 fade-up">
-              <h3 className="text-2xl md:text-3xl font-roca text-brand-green mb-3">The intelligence layer</h3>
+              <p className="text-base md:text-lg text-stone-700 leading-relaxed max-w-2xl mx-auto mb-5">
+                An animal is worth many times what it costs to process, and the industry competes on the
+                fee. Working the other side of that ratio takes information an independent plant has
+                never had.
+              </p>
               <p className="text-base md:text-lg text-stone-600 max-w-2xl mx-auto">
                 Four decisions decide whether an animal earns what it is worth. Farmshare is building
                 each one, for operations of any size.
@@ -321,9 +307,12 @@ export default function Home() {
 
       {/* ============================================
           SECTION 4: THE FARM SHARE
-          Why the company is called what it is called. This is an ethos,
-          not a description of a mechanism. Nothing here claims a capability
-          that has not shipped.
+          Why the company is called what it is called, and the three levers
+          that actually move a farm share: proof, reach, information. The
+          distance between farm and market is structural. Do not name trades
+          as margin-takers here; feeders and distributors are partners and
+          customers. Per-animal records ship today. Everything past that is
+          directional and has to read that way.
           ============================================ */}
       <section className="py-14 md:py-20 bg-brand-forest text-brand-cream">
         <div className="container mx-auto px-4">
@@ -341,26 +330,33 @@ export default function Home() {
 
             <div className="grid md:grid-cols-3 gap-5 md:gap-6">
               <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <h3 className="text-lg font-bold text-white mb-3">Too many steps</h3>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Proof</p>
+                <h3 className="text-lg font-bold text-white mb-3">Prove what the animal is.</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  Between the pasture and the plate sit buyers, feeders, packers, distributors, brokers,
-                  and retailers. Every one of them takes a margin. None of them are the farmer.
+                  A producer cannot be paid for an attribute they cannot prove. Breed, feed, how it was
+                  raised, how it graded. Today that information dies at the plant door. Farmshare captures
+                  per-animal records across the network, which is what lets a claim survive all the way to
+                  the point of sale.
                 </p>
               </div>
 
               <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <h3 className="text-lg font-bold text-white mb-3">Too far from the market</h3>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Reach</p>
+                <h3 className="text-lg font-bold text-white mb-3">Reach buyers a single plant cannot.</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  The people who raise the food have almost no contact with the people who eat it. That
-                  distance is what makes 14 cents possible, and it has been widening for decades.
+                  One plant running fifty head a week cannot fill a grocery program or a school district
+                  contract. A network of plants can, without any of them merging. Scale without
+                  consolidation, opening channels no independent reaches alone.
                 </p>
               </div>
 
               <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <h3 className="text-lg font-bold text-white mb-3">A shorter path</h3>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Information</p>
+                <h3 className="text-lg font-bold text-white mb-3">See what the market actually pays.</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  Farmshare exists to close that distance. Fewer hands between the farm and the plate,
-                  and routes to market that do not run through the consolidated channel.
+                  Independent producers negotiate blind. Price information is thinnest exactly where the
+                  producer is most exposed. A network that records what cattle actually sold for, across
+                  many plants, is the beginning of a benchmark that has never existed for them.
                 </p>
               </div>
             </div>

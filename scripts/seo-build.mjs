@@ -97,8 +97,9 @@ function buildRoutes() {
 
   routes.push({
     path: '/buy-beef',
-    title: 'Buy Local Beef — Quarters, Halves, Wholes | Farmshare',
-    description: 'Looking to buy a quarter, half, or whole beef? Tell Farmshare what you need and we’ll connect you with a local independent processor and producer to fill your freezer.',
+    title: 'Buy Local Beef: Quarters, Halves, Wholes | Farmshare',
+    description:
+      'Buy local beef by the quarter, half, or whole, direct from the farm. Farmshare connects you with an independent processor near you. Pork, lamb, and goat too.',
     priority: 0.7,
   });
 

@@ -43,10 +43,10 @@ export default function BuyBeef() {
   const turnstileWidgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
-    document.title = 'Buy Local Beef, Pork & Lamb | Farmshare';
+    document.title = 'Buy Local Beef: Quarters, Halves, Wholes | Farmshare';
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
-      meta.setAttribute('content', 'Find a local meat processor near you and buy a quarter, half, or whole animal direct from the farm. Farmshare connects you with independent processors across the country.');
+      meta.setAttribute('content', 'Buy local beef by the quarter, half, or whole, direct from the farm. Farmshare connects you with an independent processor near you. Pork, lamb, and goat too.');
     }
   }, []);
 
@@ -204,10 +204,11 @@ export default function BuyBeef() {
       <section className="bg-brand-green text-white py-16">
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight text-white font-roca tracking-tight">
-            Buy Local Beef, Pork & Lamb
+            Buy Local Beef
           </h1>
           <p className="text-xl text-brand-cream/80 max-w-xl mx-auto font-medium">
-            Tell us what you're looking for and we'll connect you with an independent processor in your area.
+            A quarter, a half, or a whole beef, direct from the farm. Tell us what you need and
+            we'll connect you with an independent processor in your area. Pork, lamb, and goat too.
           </p>
         </div>
       </section>
