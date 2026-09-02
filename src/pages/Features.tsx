@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Calendar, CalendarClock, FileText, MessageSquare, Bell, Users, ClipboardList, Receipt, UserCircle, BarChart3, Smartphone } from 'lucide-react';
+import { Calendar, CalendarClock, FileText, MessageSquare, Bell, Users, ClipboardList, Receipt, UserCircle, BarChart3, Smartphone, Boxes, ChefHat, ScanBarcode, Printer, Beef, Repeat, FileSpreadsheet } from 'lucide-react';
 
 export default function Features() {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -148,6 +148,47 @@ export default function Features() {
     }
   };
 
+  // Inventory Management v2. In shaping and being demoed, not generally
+  // available, so every line here describes the module as it is being built
+  // rather than promising a switch a customer can flip today.
+  const inventoryCapabilities = [
+    {
+      icon: Boxes,
+      title: 'Products, Priced and Costed',
+      body: 'SKUs seed themselves from your cut sheet catalog, with sub-SKUs where you need them. Set retail and wholesale price, and cost to manufacture, so margin is visible product by product. On-hand quantity and low-stock alerts come with it.'
+    },
+    {
+      icon: ChefHat,
+      title: 'Recipes for Finished Products',
+      body: 'Define the inputs to a finished product by amount, weight, or percentage. Ingredients decrement as the batch runs, and the system checks whether you can actually make the batch before anyone starts it.'
+    },
+    {
+      icon: ScanBarcode,
+      title: 'Batch and Lot Tracking',
+      body: 'Batches and lots tracked back to the supplier they came from. When a recall question comes, the answer is a lookup instead of a search through paperwork.'
+    },
+    {
+      icon: Printer,
+      title: 'Packing Station',
+      body: 'One view that puts yield, invoicing, and labeling together, printing labels as the work happens instead of reconciling all three afterward.'
+    },
+    {
+      icon: Beef,
+      title: 'Per-Primal Box Beef',
+      body: 'Scan each piece in and out rather than eyeballing what came out of a hundred pound box. Yield on boxed beef stops being an estimate.'
+    },
+    {
+      icon: Repeat,
+      title: 'Further Processing Orders',
+      body: 'Start from the output you need, say 100 pounds of brats, and wind back to what is already in inventory and what still has to be sourced.'
+    },
+    {
+      icon: FileSpreadsheet,
+      title: 'QuickBooks Push',
+      body: 'Map SKUs to your QuickBooks accounts once, then push inventory and sales activity across without re-keying it.'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-brand-cream">
       {/* Sticky Demo Button */}
@@ -275,6 +316,82 @@ export default function Features() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================
+          INVENTORY AND FURTHER PROCESSING
+          Everything above this point sells saved hours. This is the first
+          surface that is about what the animal is worth instead of what the
+          admin costs, so it is framed on yield and revenue.
+          Deliberately NOT the page lead. Inventory is not a universal pitch,
+          and overselling it to a plant that wanted custom-work labeling has
+          already cost us an account. It sits here, mid page, clearly marked
+          as an additional surface for plants doing retail, wholesale, or
+          further processing, and clearly marked as still rolling out.
+          ============================================ */}
+      <section id="inventory" className="py-20 bg-white scroll-mt-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-10 fade-up">
+              <p className="text-sm font-bold uppercase tracking-widest text-brand-orange mb-3">
+                For plants doing retail, wholesale, or further processing
+              </p>
+              <h2 className="text-3xl md:text-4xl font-roca text-brand-green mb-4">
+                Get More Out of the Same Animal
+              </h2>
+              <p className="text-lg md:text-xl text-stone-600 leading-relaxed">
+                Everything above this saves your team hours. This part is about revenue. An animal is
+                worth many times what it costs to process it, and most of that value is decided after
+                the carcass is broken down. Inventory and further processing put numbers on that side
+                of the ledger: what you made, what it cost to make, and what it is actually worth.
+              </p>
+            </div>
+
+            {/* Status is stated plainly. This module is in shaping and being
+                demoed; it is not something a plant can switch on today. */}
+            <div className="bg-brand-cream border border-stone-200 rounded-lg px-6 py-5 mb-10 fade-up">
+              <p className="text-sm md:text-base text-stone-700 leading-relaxed">
+                <span className="font-bold text-brand-green">Where this stands.</span>{' '}
+                Inventory Management v2 is in shaping now and being demoed with processors. It is
+                rolling out plant by plant as pieces are ready, not switched on across every account.
+                If it is a fit for your operation, ask to see it on your demo and we will show you
+                what is live and what is still being built.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {inventoryCapabilities.map((item, index) => {
+                const Icon = item.icon;
+                // An odd number of cards would leave a half-empty final row.
+                const isLoneLastCard =
+                  index === inventoryCapabilities.length - 1 &&
+                  inventoryCapabilities.length % 2 === 1;
+                return (
+                  <div
+                    key={item.title}
+                    className={`bg-brand-cream rounded-lg p-6 fade-up ${isLoneLastCard ? 'md:col-span-2' : ''}`}
+                  >
+                    <Icon className="h-7 w-7 text-brand-orange mb-4" />
+                    <h3 className="text-lg font-bold text-brand-green mb-2">{item.title}</h3>
+                    <p className="text-stone-700 leading-relaxed">{item.body}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="text-center mt-10 fade-up">
+              <a
+                href="https://meetings.hubspot.com/henry-arrowood/quad-p-demo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-brand-green text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-green/90 transition-colors inline-flex items-center font-bold"
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                Ask About Inventory on Your Demo
+              </a>
+            </div>
           </div>
         </div>
       </section>

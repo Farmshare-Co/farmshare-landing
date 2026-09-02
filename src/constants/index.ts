@@ -15,7 +15,9 @@ export const NETWORK_STATS = {
   producers: 9500,
 } as const;
 
-export const PRESS_EMAIL = "henry@farmshare.co";
+// Press alias, not a personal mailbox. This must exist in Google Workspace
+// before the site ships or press mail bounces.
+export const PRESS_EMAIL = "press@farmshare.co";
 
 export const CUSTOMER_LOGOS = [
   {

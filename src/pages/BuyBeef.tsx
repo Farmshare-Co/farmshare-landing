@@ -163,8 +163,8 @@ export default function BuyBeef() {
       const detail = err instanceof Error ? err.message : '';
       setErrorMsg(
         detail
-          ? `Something went wrong (${detail}). Please try again or call us at (301) 448-0543.`
-          : 'Something went wrong. Please try again or call us at (301) 448-0543.',
+          ? `Something went wrong (${detail}). Please try again or email sales@farmshare.co.`
+          : 'Something went wrong. Please try again or email sales@farmshare.co.',
       );
       setStatus('error');
       // Reset the captcha so the user can retry (tokens are single-use).

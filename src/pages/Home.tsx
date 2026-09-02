@@ -328,35 +328,36 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-5 md:gap-6">
-              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Proof</p>
-                <h3 className="text-lg font-bold text-white mb-3">Prove what the animal is.</h3>
+            {/* These headlines have to hold one line in a three-up grid. The
+                tightest column is at md, where the container is pinned to 768px
+                and "Reach bigger buyers" measures 182px against 184px of card
+                at text-lg. Hence the 17px step and the narrower md gap, which
+                buy back about 15px. Shrink the type before letting it wrap. */}
+            <div className="grid md:grid-cols-3 gap-5 md:gap-4 lg:gap-6">
+              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 lg:p-7 fade-up">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Traceability</p>
+                <h3 className="text-lg md:text-[17px] lg:text-xl font-bold tracking-tight text-white mb-3">Prove what it is</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  A producer cannot be paid for an attribute they cannot prove. Breed, feed, how it was
-                  raised, how it graded. Today that information dies at the plant door. Farmshare captures
-                  per-animal records across the network, which is what lets a claim survive all the way to
-                  the point of sale.
+                  No one gets paid for a claim they can't prove. Farmshare records every animal, so what
+                  it was survives to the box.
                 </p>
               </div>
 
-              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Reach</p>
-                <h3 className="text-lg font-bold text-white mb-3">Reach buyers a single plant cannot.</h3>
+              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 lg:p-7 fade-up">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Market access</p>
+                <h3 className="text-lg md:text-[17px] lg:text-xl font-bold tracking-tight text-white mb-3">Reach bigger buyers</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  One plant running fifty head a week cannot fill a grocery program or a school district
-                  contract. A network of plants can, without any of them merging. Scale without
-                  consolidation, opening channels no independent reaches alone.
+                  Fifty head a week can't fill a grocery program. {NETWORK_STATS.facilities} plants can,
+                  without any of them merging.
                 </p>
               </div>
 
-              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 md:p-7 fade-up">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Information</p>
-                <h3 className="text-lg font-bold text-white mb-3">See what the market actually pays.</h3>
+              <div className="bg-white/5 border border-brand-cream/15 rounded-xl p-6 lg:p-7 fade-up">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Price discovery</p>
+                <h3 className="text-lg md:text-[17px] lg:text-xl font-bold tracking-tight text-white mb-3">See what it's worth</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  Independent producers negotiate blind. Price information is thinnest exactly where the
-                  producer is most exposed. A network that records what cattle actually sold for, across
-                  many plants, is the beginning of a benchmark that has never existed for them.
+                  Independents negotiate blind. A network that records real sales builds the benchmark
+                  they've never had.
                 </p>
               </div>
             </div>
@@ -370,22 +371,36 @@ export default function Home() {
       </section>
 
       {/* ============================================
-          SECTION 5: TO THE FULL ARGUMENT
+          SECTION 5: THE THESIS
+          The largest moment on the page after the hero. It used to sit small
+          between sections and read as an aside.
+          Two sentences on purpose: the first is a fact about the industry, the
+          second is the claim about the network. Collapsing them into one made
+          it sound like Farmshare already has thousands of plants, which is a
+          scroll away from the exact figure in the hero.
           ============================================ */}
-      <section className="py-10 md:py-12 bg-white border-b border-stone-200">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center fade-up">
-            <p className="text-lg md:text-xl font-roca text-brand-green leading-snug mb-5">
-              Thousands of independent processors, collectively operating with the intelligence of a
-              Cargill. Without any one of them needing to become Cargill.
+      <section className="py-20 md:py-28 lg:py-32 bg-white border-y border-stone-200">
+        <div className="container mx-auto px-6 md:px-10">
+          <div className="max-w-4xl mx-auto text-center fade-up">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-brand-orange mb-8 md:mb-10">
+              The thesis
             </p>
-            <Link
-              to="/mission"
-              className="text-brand-orange font-bold inline-flex items-center hover:text-brand-green transition-colors"
-            >
-              The full argument
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+            <p className="font-roca tracking-tight leading-[1.1] text-3xl md:text-4xl lg:text-5xl">
+              <span className="text-stone-500">There are thousands of independent processors in America.</span>{' '}
+              <span className="text-brand-green">
+                Together they could operate with the intelligence of a Cargill, without any one of them
+                becoming Cargill.
+              </span>
+            </p>
+            <div className="mt-10 md:mt-14">
+              <Link
+                to="/mission"
+                className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center justify-center font-bold"
+              >
+                The full argument
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -563,6 +578,31 @@ export default function Home() {
             </div>
           </div>
 
+          {/* The three product blocks above are all time and cost. This points
+              at the one surface that is about revenue, without making it the
+              pitch. Inventory is not a universal fit and must not read as one. */}
+          <div className="mt-16 bg-white rounded-2xl p-7 md:p-9 fade-up">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange mb-3">
+              For plants doing retail, wholesale, or further processing
+            </p>
+            <h3 className="text-2xl md:text-3xl font-roca text-brand-green mb-4">
+              And the side of the ledger that is not admin
+            </h3>
+            <p className="text-base md:text-lg text-stone-700 leading-relaxed mb-5">
+              Everything above saves hours. Inventory and further processing are about what the animal
+              is worth: SKUs costed so margin is visible per product, recipes and batches for finished
+              goods, lot tracking back to the supplier, and yield counted per primal instead of
+              estimated. It is in rollout now, plant by plant, not switched on across every account.
+            </p>
+            <Link
+              to="/features#inventory"
+              className="text-brand-orange font-bold inline-flex items-center hover:text-brand-green transition-colors"
+            >
+              See how inventory works
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </div>
+
           <div className="text-center mt-12 fade-up">
             <Link
               to="/features"
@@ -676,7 +716,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center fade-up">
             <h2 className="text-xl md:text-2xl font-roca text-brand-green mb-3">Press and Media</h2>
             <p className="text-stone-600 mb-5">
-              Reporters, researchers, and policy staff: reach Henry Arrowood, founder and CEO, directly.
+              Reporters, researchers, and policy staff: press inquiries reach Henry Arrowood, founder and CEO.
             </p>
             <a
               href={`mailto:${PRESS_EMAIL}`}

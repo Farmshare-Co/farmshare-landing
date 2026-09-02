@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, Linkedin } from 'lucide-react';
+import { Mail, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -13,10 +13,6 @@ export default function Footer() {
               <a href="mailto:sales@farmshare.co" className="flex items-center hover:text-white transition-colors">
                 <Mail className="h-5 w-5 mr-2" />
                 sales@farmshare.co
-              </a>
-              <a href="tel:301-448-0543" className="flex items-center hover:text-white transition-colors">
-                <Phone className="h-5 w-5 mr-2" />
-                301-448-0543
               </a>
             </div>
           </div>
