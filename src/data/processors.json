@@ -6913,46 +6913,6 @@
     ]
   },
   {
-    "name": "Mad Dog Ranch",
-    "location": "ID",
-    "state": "ID",
-    "species": [
-      "Beef",
-      "Bison",
-      "Hog",
-      "Lamb",
-      "Goat"
-    ],
-    "logo": "http://static1.squarespace.com/static/5cbcd1e99d414937fecfce86/t/60968daf6695011739faaf1f/1620479408035/Logo+3.png?format=1500w",
-    "slug": "mad-dog-ranch-id",
-    "status": "customer",
-    "description": "Mad Dog Ranch is a custom meat processor in ID, offering beef processing services.",
-    "lat": 44.0682019,
-    "lng": -114.7420408,
-    "phone": "(970) 948-6742",
-    "website": "http://www.maddogranchandstudios.com/",
-    "address": "955 Snowmass Creek Rd",
-    "googleMapsUri": "https://maps.google.com/?cid=2434620215446775045&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 5,
-    "userRatingCount": 10,
-    "hours": [
-      "Monday: 9:00 AM – 11:00 PM",
-      "Tuesday: 9:00 AM – 11:00 PM",
-      "Wednesday: 9:00 AM – 11:00 PM",
-      "Thursday: 9:00 AM – 11:00 PM",
-      "Friday: 9:00 AM – 11:00 PM",
-      "Saturday: 9:00 AM – 11:00 PM",
-      "Sunday: 9:00 AM – 11:00 PM"
-    ],
-    "businessStatus": "OPERATIONAL",
-    "placeTypes": [
-      "store",
-      "point_of_interest",
-      "establishment"
-    ],
-    "partnerSlug": "mad-dog-ranch-bliss-id"
-  },
-  {
     "name": "Manley Meats",
     "location": "Decatur, IN",
     "state": "IN",
@@ -35832,5 +35792,132 @@
       "establishment"
     ],
     "description": "Whiskey Creek Processing is a meat processor in Madill, OK, rated 4.1 stars across 88 Google reviews. Customers highlight their friendly staff, professional service, and clean facility. Common review themes include custom sausage, summer sausage, and snack sticks."
+  },
+  {
+    "name": "Northeast Kingdom Processing",
+    "location": "St Johnsbury, VT",
+    "state": "VT",
+    "species": [
+      "Beef",
+      "Goat",
+      "Lamb",
+      "Hog"
+    ],
+    "logo": null,
+    "slug": "northeast-kingdom-processing-st-johnsbury-vt",
+    "status": "prospect",
+    "address": "796 Industrial Pkwy",
+    "zip": "05819",
+    "phone": "(802) 748-2233",
+    "website": "https://www.nekprocessing.com/",
+    "lat": 44.4979112,
+    "lng": -72.0137402,
+    "googleMapsUri": "https://maps.google.com/?cid=9402692818505525830&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.7,
+    "userRatingCount": 23,
+    "hours": [
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 12:00 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "food_store",
+      "wholesaler",
+      "store",
+      "food",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "description": "Northeast Kingdom Processing is a meat processor in St Johnsbury, VT, rated 4.7 stars across 23 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and professional service. Common review themes include custom sausage."
+  },
+  {
+    "name": "Q Bar S Custom Meats",
+    "location": "Laketown, UT",
+    "state": "UT",
+    "species": [
+      "Beef",
+      "Goat",
+      "Hog",
+      "Lamb"
+    ],
+    "logo": null,
+    "slug": "q-bar-s-custom-meats-laketown-ut",
+    "status": "customer",
+    "address": "1243 Falula Rd",
+    "zip": "84038",
+    "phone": "(435) 999-3595",
+    "website": "http://qbarcustommeat.com/",
+    "lat": 41.848000899999995,
+    "lng": -111.2932051,
+    "googleMapsUri": "https://maps.google.com/?cid=16961743797544857840&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.9,
+    "userRatingCount": 18,
+    "hours": [
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "food_store",
+      "store",
+      "food",
+      "manufacturer",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "description": "Q Bar S Custom Meats is a meat processor in Laketown, UT, rated 4.9 stars across 18 Google reviews. Customers highlight their family-owned operation.",
+    "partnerSlug": "q-bar-s-custom-meats-laketown-ut"
+  },
+  {
+    "name": "Hatch's Custom Meat Cutting, LLC",
+    "location": "Crystal, ME",
+    "state": "ME",
+    "species": [
+      "Beef",
+      "Hog"
+    ],
+    "logo": null,
+    "slug": "hatch-s-custom-meat-cutting-llc-crystal-me",
+    "status": "prospect",
+    "address": "23 Prescott Rd",
+    "zip": "04747",
+    "phone": "(207) 463-2645",
+    "website": "http://www.hatchscustommeatcutting.com/",
+    "lat": 46.007079499999996,
+    "lng": -68.3224776,
+    "googleMapsUri": "https://maps.google.com/?cid=9581982882294512673&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 5,
+    "userRatingCount": 2,
+    "hours": [
+      "Monday: 7:30 AM – 4:30 PM",
+      "Tuesday: 7:30 AM – 4:30 PM",
+      "Wednesday: 7:30 AM – 4:30 PM",
+      "Thursday: 7:30 AM – 4:30 PM",
+      "Friday: 7:30 AM – 4:30 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "food_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "description": "Hatch's Custom Meat Cutting, LLC is a meat processor in Crystal, ME, rated 5 stars across 2 Google reviews. Customers highlight their clean facility."
   }
 ]
