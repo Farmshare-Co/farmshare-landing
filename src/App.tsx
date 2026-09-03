@@ -5,6 +5,7 @@ import ScrollToTop from './components/ScrollToTop';
 import {
   Home,
   Mission,
+  Newsroom,
   Features,
   FindProcessor,
   ProcessorDetail,
@@ -42,6 +43,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/mission" element={<Mission />} />
+          {/* Deliberately unlinked and noindex. Live so it never has to be built under time pressure. */}
+          <Route path="/newsroom" element={<Newsroom />} />
           <Route path="/features" element={<Features />} />
           <Route path="/processors" element={<Navigate to="/features" replace />} />
           <Route path="/buy-beef" element={<BuyBeef />} />

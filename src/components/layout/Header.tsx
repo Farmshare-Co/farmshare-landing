@@ -24,22 +24,22 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-brand-green backdrop-blur-sm z-50">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-6 md:px-10 lg:px-16 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">
               <img
                 src="https://vkxvwmvlkitrcfgzwvtl.supabase.co/storage/v1/object/public/content//farmshare%20(1).svg"
                 alt="Farmshare Logo"
-                className="h-16 w-auto brightness-0 invert translate-y-1.5"
+                className="h-16 lg:h-10 xl:h-14 w-auto brightness-0 invert translate-y-[6.33%]"
               />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-6">
             <Link to="/features" className={getLinkClass('/features')}>
-              Features
+              For Processors
             </Link>
             <Link to="/find-a-processor" className={getLinkClass('/find-a-processor')}>
               Find a Processor
@@ -68,7 +68,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-brand-cream hover:text-white transition-colors"
+            className="lg:hidden text-brand-cream hover:text-white transition-colors"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -81,14 +81,14 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <nav className="mt-4 space-y-4 pb-4">
             <Link 
               to="/features"
               className={`block ${getLinkClass('/features')}`}
               onClick={() => setIsMenuOpen(false)}
             >
-              Features
+              For Processors
             </Link>
             <Link
               to="/find-a-processor"

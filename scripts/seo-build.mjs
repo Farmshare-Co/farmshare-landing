@@ -61,8 +61,17 @@ function buildRoutes() {
   routes.push({
     path: '/mission',
     title: 'Our Mission | Farmshare',
-    description: 'Farmshare exists to help independent custom meat processors run a tighter plant — and to give producers and buyers a way to source local meat without faxing a butcher.',
+    description: 'Four companies control 85% of beef processing in America. Their advantage is not quality. It is scale and intelligence. Farmshare is building both for independent processors.',
     priority: 0.8,
+  });
+
+  // Quiet press page. Prerendered so a shared link previews correctly, but
+  // marked noindex and deliberately kept out of the sitemap and site nav.
+  routes.push({
+    path: '/newsroom',
+    title: 'Newsroom | Farmshare',
+    description: 'Company information and press contact for Farmshare, the coordination layer for independent meat processing.',
+    noindex: true,
   });
 
   routes.push({
@@ -75,7 +84,7 @@ function buildRoutes() {
   routes.push({
     path: '/find-a-processor',
     title: 'Find a Custom Meat Processor Near You | Farmshare',
-    description: 'Browse 894 independent custom meat processors across the US. Book online with the Farmshare network or send a scheduling request to any plant in our directory.',
+    description: `Browse ${processors.length} independent custom meat processors across the US. Book online with the Farmshare network or send a scheduling request to any plant in our directory.`,
     priority: 0.9,
     structured: {
       '@context': 'https://schema.org',
@@ -88,8 +97,9 @@ function buildRoutes() {
 
   routes.push({
     path: '/buy-beef',
-    title: 'Buy Local Beef — Quarters, Halves, Wholes | Farmshare',
-    description: 'Looking to buy a quarter, half, or whole beef? Tell Farmshare what you need and we’ll connect you with a local independent processor and producer to fill your freezer.',
+    title: 'Buy Local Beef: Quarters, Halves, Wholes | Farmshare',
+    description:
+      'Buy local beef by the quarter, half, or whole, direct from the farm. Farmshare connects you with an independent processor near you. Pork, lamb, and goat too.',
     priority: 0.7,
   });
 
@@ -234,6 +244,11 @@ function customizeHtml(template, route) {
     html = html.replace(re, val);
   }
 
+  // Routes flagged noindex stay out of search results.
+  if (route.noindex) {
+    html = html.replace(/<meta name="robots" content="[^"]*"\s*\/?>/i, '<meta name="robots" content="noindex, follow" />');
+  }
+
   // Optional: override og/twitter image if processor has a remote logo
   if (route.image) {
     html = html.replace(/<meta property="og:image" content="[^"]*"\s*\/?>/i, `<meta property="og:image" content="${escapeHtml(route.image)}" />`);
@@ -260,7 +275,7 @@ function writePrerenderedRoute(template, route) {
 function writeSitemap(routes) {
   const urls = [
     { loc: SITE + '/', lastmod: today, changefreq: 'weekly', priority: 1.0 },
-    ...routes.map((r) => ({
+    ...routes.filter((r) => !r.noindex).map((r) => ({
       loc: SITE + r.path,
       lastmod: today,
       changefreq: r.changefreq || 'monthly',
