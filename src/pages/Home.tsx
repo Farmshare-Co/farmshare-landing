@@ -395,8 +395,8 @@ export default function Home() {
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-sage mb-3">Market access</p>
                 <h3 className="text-lg md:text-[17px] lg:text-xl font-bold tracking-tight text-white mb-3">Reach bigger buyers</h3>
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
-                  Fifty head a week can't fill a grocery program. {NETWORK_STATS.facilities} plants can,
-                  without any of them merging.
+                  Fifty head a week can't fill a grocery program. Many plants can, without any of
+                  them merging.
                 </p>
               </div>
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Calendar, Mail, Users, Factory, Link2, Network, TrendingUp, Sparkles } from 'lucide-react';
 import AnimatedNumber from '../components/AnimatedNumber';
-import { NETWORK_STATS } from '../constants';
 
 const MISSION_TITLE = 'Our Mission - The Operating System for Independent Meat | Farmshare';
 // The hero paragraph and the runtime meta description are the same sentence, so
@@ -275,7 +274,8 @@ export default function Mission() {
             partners and customers. An earlier draft listed them and was cut.
           - Per-animal records ship today. Everything past that is directional
             and has to read that way.
-          - Plant count comes from NETWORK_STATS, never typed inline.
+          - Do not reintroduce a plant count here. "Many plants" is deliberate: it
+            echoes the site headline and cannot go stale as the network grows.
           ============================================ */}
       <section className="py-12 md:py-16 lg:py-20 bg-brand-forest text-brand-cream">
         <div className="container mx-auto px-4">
@@ -314,7 +314,7 @@ export default function Mission() {
                 <p className="text-sm md:text-base text-brand-cream/75 leading-relaxed">
                   One plant running fifty head a week can't fill a grocery program, a restaurant group,
                   or an institutional contract. Those buyers need volume, consistency, and one point of
-                  contact. {NETWORK_STATS.facilities} plants coordinating on shared infrastructure can
+                  contact. Many plants coordinating on shared infrastructure can
                   supply what none of them could supply alone, and not one of them has to merge, sell,
                   or give up its name to do it.
                 </p>
