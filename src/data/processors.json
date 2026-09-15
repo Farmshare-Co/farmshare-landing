@@ -35888,7 +35888,7 @@
     ],
     "logo": "/logos/feddes-family-meats-manhattan-mt.jpeg",
     "slug": "feddes-family-meats-manhattan-mt",
-    "status": "prospect",
+    "status": "customer",
     "address": "6680 Amsterdam Rd",
     "zip": "59741",
     "phone": "(406) 282-7800",
@@ -35918,6 +35918,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "description": "Feddes Family Meats is a meat processor in Manhattan, MT, rated 4.5 stars across 58 Google reviews. Customers highlight their friendly staff, clean facility, and fair pricing."
+    "description": "Feddes Family Meats is a meat processor in Manhattan, MT, rated 4.5 stars across 58 Google reviews. Customers highlight their friendly staff, clean facility, and fair pricing.",
+    "partnerSlug": "feddes-family-meats-manhattan-mt"
   }
 ]
