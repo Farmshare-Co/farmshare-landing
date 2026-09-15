@@ -21204,51 +21204,6 @@
     "description": "Chops & Co. Market is a meat processor in Jones, MI, rated 4.8 stars across 25 Google reviews. Customers highlight their friendly staff. Common review themes include custom sausage, smoked meats, and bacon."
   },
   {
-    "name": "APEX CUSTOM BUTCHERING",
-    "location": "Owosso, MI",
-    "state": "MI",
-    "species": [
-      "Beef",
-      "Hog",
-      "Bison",
-      "Goat",
-      "Lamb",
-      "Veal"
-    ],
-    "slug": "apex-custom-butchering-owosso-mi",
-    "status": "customer",
-    "address": "155 W Henderson Rd",
-    "zip": "48867",
-    "phone": "(989) 323-1187",
-    "lat": 43.0839585,
-    "lng": -84.1704022,
-    "googleMapsUri": "https://maps.google.com/?cid=13249756092779607898&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 5,
-    "userRatingCount": 7,
-    "hours": [
-      "Monday: 8:00 AM – 5:30 PM",
-      "Tuesday: 8:00 AM – 5:30 PM",
-      "Wednesday: 8:00 AM – 5:30 PM",
-      "Thursday: 8:00 AM – 5:30 PM",
-      "Friday: 8:00 AM – 5:30 PM",
-      "Saturday: 8:00 AM – 12:00 PM",
-      "Sunday: Closed"
-    ],
-    "businessStatus": "OPERATIONAL",
-    "placeTypes": [
-      "butcher_shop",
-      "food_store",
-      "food",
-      "point_of_interest",
-      "store",
-      "service",
-      "manufacturer",
-      "establishment"
-    ],
-    "description": "APEX CUSTOM BUTCHERING is a meat processor in Owosso, MI, rated 5 stars across 7 Google reviews. Customers highlight their friendly staff.",
-    "partnerSlug": "apex-custom-butchering-owosso-mi"
-  },
-  {
     "name": "Ben's Butcher Shop",
     "location": "Six Lakes, MI",
     "state": "MI",
