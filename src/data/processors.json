@@ -35875,5 +35875,49 @@
       "establishment"
     ],
     "description": "Hatch's Custom Meat Cutting, LLC is a meat processor in Crystal, ME, rated 5 stars across 2 Google reviews. Customers highlight their clean facility."
+  },
+  {
+    "name": "Feddes Family Meats",
+    "location": "Manhattan, MT",
+    "state": "MT",
+    "species": [
+      "Beef",
+      "Goat",
+      "Hog",
+      "Lamb"
+    ],
+    "logo": "/logos/feddes-family-meats-manhattan-mt.jpeg",
+    "slug": "feddes-family-meats-manhattan-mt",
+    "status": "prospect",
+    "address": "6680 Amsterdam Rd",
+    "zip": "59741",
+    "phone": "(406) 282-7800",
+    "website": "https://www.amsterdammeatshop.com/",
+    "lat": 45.757771999999996,
+    "lng": -111.3199137,
+    "googleMapsUri": "https://maps.google.com/?cid=17209554234594389873&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.5,
+    "userRatingCount": 58,
+    "hours": [
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: 10:00 AM – 4:00 PM",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "food_store",
+      "store",
+      "food",
+      "manufacturer",
+      "service",
+      "point_of_interest",
+      "establishment"
+    ],
+    "description": "Feddes Family Meats is a meat processor in Manhattan, MT, rated 4.5 stars across 58 Google reviews. Customers highlight their friendly staff, clean facility, and fair pricing."
   }
 ]
