@@ -4910,11 +4910,12 @@
     "location": "Crystal, ME",
     "state": "ME",
     "species": [
-      "Beef"
+      "Beef",
+      "Hog"
     ],
     "logo": "https://hatchscustommeatcutting.com/wp-content/uploads/2023/06/333977360_1240326926907870_6627809847024638272_n@0.5x-300x300.png",
     "slug": "hatchs-custom-meat-cutting-llc-crystal-me",
-    "status": "prospect",
+    "status": "customer",
     "address": "23 Prescott Road",
     "zip": "04747",
     "phone": "2074632645",
@@ -4941,7 +4942,8 @@
       "food",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "partnerSlug": "hatchs-custom-meat-cutting-llc-crystal-me"
   },
   {
     "name": "Haun's Meat and Sausage LLC",
