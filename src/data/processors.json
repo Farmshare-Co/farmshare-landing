@@ -3508,9 +3508,9 @@
       "Hog",
       "Lamb"
     ],
-    "logo": null,
+    "logo": "/logos/double-l-processing-ny.png",
     "slug": "double-l-processing-ny",
-    "status": "prospect",
+    "status": "customer",
     "description": "Double L Processing is a custom meat processor in NY, offering beef, pork, lamb, bison (new), goat, elk (occasional) processing services.",
     "lat": 42.749427399999995,
     "lng": -74.013154,
@@ -3536,7 +3536,8 @@
       "point_of_interest",
       "service",
       "establishment"
-    ]
+    ],
+    "partnerSlug": "double-l-processing-ny"
   },
   {
     "name": "Dutch Valley Meats, Inc.",
