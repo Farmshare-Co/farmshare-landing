@@ -12150,7 +12150,7 @@
     ],
     "logo": "https://cdn.prod.website-files.com/660da8925feb5252a6fa7b53/661fa34a0e6824ceb6341dc6_Icon%20256.png",
     "slug": "the-stockyards-packing-company-oxford-oh",
-    "status": "prospect",
+    "status": "customer",
     "address": "6365 College Corner Pike",
     "zip": "45056",
     "phone": "(513) 646-2644",
@@ -12177,7 +12177,8 @@
       "store",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "partnerSlug": "the-stockyards-packing-company-oxford-oh"
   },
   {
     "name": "Thomas Cattle Company",
