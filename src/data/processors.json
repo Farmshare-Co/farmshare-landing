@@ -27327,9 +27327,9 @@
       "Lamb",
       "Goat"
     ],
-    "logo": "https://onesixtyprocessing.com/wp-content/uploads/2023/05/slack-imgs_logo.jpg",
+    "logo": "/logos/one-sixty-processing-160-processing-shawnee-ok.png",
     "slug": "one-sixty-processing-160-processing-shawnee-ok",
-    "status": "prospect",
+    "status": "customer",
     "address": "7185 Bryan Rd",
     "zip": "74804",
     "phone": "(405) 695-0499",
@@ -27356,7 +27356,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "description": "One Sixty Processing | 160 Processing is a meat processor in Shawnee, OK, rated 4.8 stars across 69 Google reviews. Customers highlight their friendly staff."
+    "description": "One Sixty Processing | 160 Processing is a meat processor in Shawnee, OK, rated 4.8 stars across 69 Google reviews. Customers highlight their friendly staff.",
+    "partnerSlug": "one-sixty-processing-160-processing-shawnee-ok"
   },
   {
     "name": "Fifth Avenue Processing & Retail",
