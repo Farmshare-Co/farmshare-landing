@@ -35887,5 +35887,47 @@
     ],
     "description": "Feddes Family Meats is a meat processor in Manhattan, MT, rated 4.5 stars across 58 Google reviews. Customers highlight their friendly staff, clean facility, and fair pricing.",
     "partnerSlug": "feddes-family-meats-manhattan-mt"
+  },
+  {
+    "name": "Lazy J Meats",
+    "location": "Payson, UT",
+    "state": "UT",
+    "species": [
+      "Beef",
+      "Hog"
+    ],
+    "logo": "/logos/lazy-j-meats-payson-ut.jpeg",
+    "slug": "lazy-j-meats-payson-ut",
+    "status": "prospect",
+    "address": "95 S Main St",
+    "zip": "84651",
+    "phone": "(801) 465-3127",
+    "website": "https://lazyjmeatsut.com/",
+    "lat": 40.0427341,
+    "lng": -111.7321341,
+    "googleMapsUri": "https://maps.google.com/?cid=16042122599587253938&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.7,
+    "userRatingCount": 104,
+    "hours": [
+      "Monday: 9:00 AM – 5:00 PM",
+      "Tuesday: 9:00 AM – 5:00 PM",
+      "Wednesday: 9:00 AM – 5:00 PM",
+      "Thursday: 9:00 AM – 5:00 PM",
+      "Friday: 9:00 AM – 5:00 PM",
+      "Saturday: 9:00 AM – 12:00 PM",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "food_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "manufacturer",
+      "service",
+      "establishment"
+    ],
+    "description": "Lazy J Meats is a meat processor in Payson, UT, rated 4.7 stars across 104 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and fair pricing. Common review themes include jerky."
   }
 ]
