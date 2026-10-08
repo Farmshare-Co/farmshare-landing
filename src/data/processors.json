@@ -35929,5 +35929,47 @@
       "establishment"
     ],
     "description": "Lazy J Meats is a meat processor in Payson, UT, rated 4.7 stars across 104 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and fair pricing. Common review themes include jerky."
+  },
+  {
+    "name": "Stehlin's Meat Market",
+    "location": "Cincinnati, OH",
+    "state": "OH",
+    "species": [
+      "Beef",
+      "Hog"
+    ],
+    "logo": null,
+    "slug": "stehlin-s-meat-market-cincinnati-oh",
+    "status": "prospect",
+    "address": "10134 Colerain Ave",
+    "zip": "45251",
+    "phone": "(513) 385-6164",
+    "website": "http://www.stehlinsmeatmarket.com/",
+    "lat": 39.258246899999996,
+    "lng": -84.600723,
+    "googleMapsUri": "https://maps.google.com/?cid=8810224277353940089&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.7,
+    "userRatingCount": 292,
+    "hours": [
+      "Monday: 7:30 AM – 6:00 PM",
+      "Tuesday: 7:30 AM – 6:00 PM",
+      "Wednesday: 7:30 AM – 6:00 PM",
+      "Thursday: 7:30 AM – 6:00 PM",
+      "Friday: 7:30 AM – 6:00 PM",
+      "Saturday: 7:30 AM – 4:00 PM",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "food_store",
+      "manufacturer",
+      "store",
+      "service",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ],
+    "description": "Stehlin's Meat Market is a meat processor in Cincinnati, OH, rated 4.7 stars across 292 Google reviews. Customers highlight their friendly staff and quick turnaround. Common review themes include custom sausage."
   }
 ]
