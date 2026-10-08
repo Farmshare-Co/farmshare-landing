@@ -4098,13 +4098,14 @@
     "logo": "/logos/flint-packers.webp",
     "slug": "flint-packers-ga",
     "status": "customer",
-    "address": "2998 Englishville Road",
+    "address": "834 Georgia Highway 26 W Oglethorpe GA",
     "website": "flintpackers.com",
     "description": "Start-up cattle and hog processor in Oglethorpe, GA. Received $1.2 million in USDA funding to build and equip a new 12,000 sq ft USDA-inspected facility. Expected to generate $5 million annually and create 23 jobs at full capacity.",
     "lat": 32.2453227,
     "lng": -84.1414001,
     "partnerSlug": "flint-packers-andersonville-ga",
-    "zip": "31711"
+    "zip": "31068",
+    "phone": "(478) 258-0027"
   },
   {
     "name": "Flying W Farms LLC",
