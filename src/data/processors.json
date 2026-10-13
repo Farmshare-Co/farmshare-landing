@@ -35971,5 +35971,44 @@
       "establishment"
     ],
     "description": "Stehlin's Meat Market is a meat processor in Cincinnati, OH, rated 4.7 stars across 292 Google reviews. Customers highlight their friendly staff and quick turnaround. Common review themes include custom sausage."
+  },
+  {
+    "name": "Nettles Beef Processing",
+    "location": "Lake City, FL",
+    "state": "FL",
+    "species": [
+      "Beef",
+      "Hog"
+    ],
+    "logo": null,
+    "slug": "nettles-beef-processing-lake-city-fl",
+    "status": "prospect",
+    "address": "147 SW County Rd 240",
+    "zip": "32025",
+    "phone": "(386) 752-2228",
+    "website": "http://facebook.com/NettlesBeefProcessingLakeCityFlorida/",
+    "lat": 30.066139099999997,
+    "lng": -82.6005897,
+    "googleMapsUri": "https://maps.google.com/?cid=1193001378561430262&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.1,
+    "userRatingCount": 25,
+    "hours": [
+      "Monday: 8:00 AM – 5:00 PM",
+      "Tuesday: 8:00 AM – 5:00 PM",
+      "Wednesday: 8:00 AM – 5:00 PM",
+      "Thursday: 8:00 AM – 5:00 PM",
+      "Friday: 8:00 AM – 5:00 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "food_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "description": "Nettles Beef Processing is a meat processor in Lake City, FL, rated 4.1 stars across 25 Google reviews. Customers highlight their clean facility."
   }
 ]
