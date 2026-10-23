@@ -8,7 +8,7 @@ export default function Terms() {
           <div className="text-center mb-8">
             <h1 className="text-4xl font-roca text-brand-green mb-4">Farmshare Service Agreement</h1>
             <h2 className="text-2xl font-roca text-brand-orange mb-2">Terms of Service</h2>
-            <p className="text-lg text-stone-600 italic">Last Updated: February 17, 2026</p>
+            <p className="text-lg text-stone-600 italic">Last Updated: October 23, 2026</p>
           </div>
           
           <div className="prose prose-lg text-stone-700">
@@ -199,7 +199,12 @@ export default function Terms() {
 
             <h3 className="text-xl font-bold text-brand-green mb-3">8.3 Effect of Termination</h3>
             <p className="mb-6">
-              Upon termination, Customer shall immediately cease all use of and access to the Services. If Farmshare terminates due to Customer's breach, or Customer terminates due to non-payment, all Fees through the remainder of the current Service Term become immediately due and payable.
+              Upon termination, Customer shall immediately cease all use of and access to the Services. If Farmshare terminates due to Customer's breach, or Customer terminates due to non-payment, all Fees through the remainder of the current Service Term become immediately due and payable. For a Monthly Plan, Fees due under this Section are limited to Fees through the end of the thirty (30) day notice period.
+            </p>
+
+            <h3 className="text-xl font-bold text-brand-green mb-3">8.4 Monthly Plan Cancellation</h3>
+            <p className="mb-6">
+              Notwithstanding Sections 8.1 and 8.2, Customer may cancel any Order Form billed on a monthly basis (a "Monthly Plan") for convenience by giving Farmshare thirty (30) days written notice. Fees remain due through the end of the notice period, and no further Fees accrue after it. Annual prepaid Order Forms are not cancellable for convenience and their fees are non-refundable.
             </p>
 
             <h2 className="text-2xl font-roca text-brand-orange mt-8 mb-4">9. Warranty, Disclaimer, and Limitation of Liability</h2>
