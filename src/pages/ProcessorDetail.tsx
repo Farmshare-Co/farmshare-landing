@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Globe, CheckCircle2, Send, Phone, Star, Clock, Map as MapIcon } from 'lucide-react';
-import { processors, stateNames, partnerSlugFor, partnerFacilitiesFor, type Processor } from '../data/processors';
+import { processors, stateNames, partnerFacilitiesFor, type Processor } from '../data/processors';
 import { processorAboutContent } from '../data/processorAboutContent';
 import RequestSchedulingModal from '../components/RequestSchedulingModal';
+import { applyPageMeta } from '../lib/pageMeta';
+import {
+  absoluteWebsite,
+  isExcludedSlug,
+  processorDescription,
+  processorH1,
+  processorJsonLd,
+  processorTitle,
+} from '../lib/directorySeo.mjs';
 
 function initialsFor(name: string): string {
   return name.split(' ').map(w => w[0]).filter(c => c && c.match(/[A-Z0-9]/i)).slice(0, 2).join('').toUpperCase();
@@ -101,62 +110,20 @@ export default function ProcessorDetail() {
   useEffect(() => {
     if (!processor) return;
 
-    // SEO title and meta
-    const rawCity = processor.location.split(',')[0].trim();
-    const city = /^\d/.test(rawCity) ? '' : rawCity;
-    const stateFull = stateNames[processor.state] || processor.state;
-    document.title = `${processor.name} — Custom Meat Processor in ${city ? `${city}, ` : ''}${stateFull} | Farmshare`;
+    const aboutText = processorAboutContent[processor.slug]?.about;
+    applyPageMeta({
+      title: processorTitle(processor),
+      description: processorDescription(processor, aboutText),
+      path: `/find-a-processor/${processor.slug}`,
+    });
 
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content',
-        `${processor.name} in ${processor.location} processes ${processor.species.join(', ')}. Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.`
-      );
-    }
-
-    // Inject LocalBusiness JSON-LD structured data
     const existingScript = document.querySelector('#processor-schema');
     if (existingScript) existingScript.remove();
-
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": processor.name,
-      "description": `${processor.name} is an independent custom meat processor in ${processor.location} offering online scheduling and digital cut sheets through Farmshare. Species processed: ${processor.species.join(', ')}.`,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": city || undefined,
-        "addressRegion": stateFull,
-        "addressCountry": "US"
-      },
-      "url": `https://farmshare.co/find-a-processor/${processor.slug}`,
-      "image": processor.logo || "https://farmshare.co/og-image.png",
-      "potentialAction": {
-        "@type": "ReserveAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `https://partners.farmshare.co/scheduling/${partnerSlugFor(processor)}`,
-          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
-        },
-        "result": {
-          "@type": "Reservation",
-          "name": "Harvest Appointment"
-        }
-      },
-      "makesOffer": processor.species.map(s => ({
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": `${s} Processing`,
-          "description": `Custom ${s.toLowerCase()} processing with online scheduling and digital cut sheets`
-        }
-      }))
-    };
 
     const script = document.createElement('script');
     script.id = 'processor-schema';
     script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(schema);
+    script.textContent = JSON.stringify(processorJsonLd(processor, aboutText));
     document.head.appendChild(script);
 
     return () => {
@@ -165,7 +132,7 @@ export default function ProcessorDetail() {
     };
   }, [processor]);
 
-  if (!processor) {
+  if (!processor || isExcludedSlug(processor.slug)) {
     return <Navigate to="/find-a-processor" replace />;
   }
 
@@ -183,7 +150,7 @@ export default function ProcessorDetail() {
           <div className="max-w-3xl mx-auto text-center">
             <HeroLogo processor={processor} />
             <h1 className="text-4xl md:text-5xl lg:text-6xl mb-4 leading-tight text-white font-roca tracking-tight">
-              {processor.name}
+              {processorH1(processor)}
             </h1>
             {content?.established && (
               <p className="text-brand-cream/60 text-sm font-medium mb-2">Est. {content.established}</p>
@@ -324,11 +291,11 @@ export default function ProcessorDetail() {
               )}
 
               {/* Visit Website / Contact Info */}
-              {(content?.website || processor.website || processor.phone || processor.googleMapsUri) && (
+              {(absoluteWebsite(content?.website || processor.website) || processor.phone || processor.googleMapsUri) && (
                 <div className="mb-6 flex flex-wrap gap-2">
-                  {(content?.website || processor.website) && (
+                  {absoluteWebsite(content?.website || processor.website) && (
                     <a
-                      href={content?.website || processor.website}
+                      href={absoluteWebsite(content?.website || processor.website) || undefined}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cream rounded-lg text-brand-green font-medium hover:text-brand-orange transition-colors"

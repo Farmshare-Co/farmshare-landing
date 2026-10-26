@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Calendar, CalendarClock, FileText, MessageSquare, Bell, Users, ClipboardList, Receipt, UserCircle, BarChart3, Smartphone, Boxes, ChefHat, ScanBarcode, Printer, Beef, Repeat, Plug } from 'lucide-react';
+import { applyPageMeta } from '../lib/pageMeta';
+import { FEATURES_DESCRIPTION, FEATURES_H1, FEATURES_TITLE } from '../lib/directorySeo.mjs';
 
 export default function Features() {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -7,12 +9,11 @@ export default function Features() {
   const [activeTab, setActiveTab] = useState('scheduling');
 
   useEffect(() => {
-    // Set page title and meta description for SEO
-    document.title = 'Meat Processing Software Features — Scheduling, Cut Sheets & More | Farmshare';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'See how Farmshare streamlines every step of your operation — from auto-scheduling and digital cut sheets to customer messaging, job tracking, and invoicing.');
-    }
+    applyPageMeta({
+      title: FEATURES_TITLE,
+      description: FEATURES_DESCRIPTION,
+      path: '/features',
+    });
 
     const observerOptions = {
       root: null,
@@ -229,10 +230,10 @@ export default function Features() {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center fade-up">
             <h1 className="text-4xl md:text-5xl lg:text-7xl mb-4 md:mb-6 lg:mb-8 leading-tight text-brand-green font-roca tracking-tight stagger-child">
-              Everything You Need to Run a Tighter Plant
+              {FEATURES_H1}
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl text-stone-600 mb-6 lg:mb-8 font-medium stagger-child">
-              From scheduling to invoicing, see how Farmshare streamlines every step of your operation.
+              Butcher shop software for scheduling, cut sheets, and invoicing.
             </p>
             <a
               href="https://meetings.hubspot.com/henry-arrowood/quad-p-demo"

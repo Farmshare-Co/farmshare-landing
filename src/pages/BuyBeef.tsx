@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Send, CheckCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { applyPageMeta } from '../lib/pageMeta';
 
 const SPECIES_OPTIONS = ['Beef', 'Pork', 'Lamb', 'Goat', 'Other'];
 const CUT_OPTIONS = ['Whole', 'Half', 'Quarter', 'Not sure'];
@@ -43,11 +44,11 @@ export default function BuyBeef() {
   const turnstileWidgetIdRef = useRef<string | null>(null);
 
   useEffect(() => {
-    document.title = 'Buy Local Beef: Quarters, Halves, Wholes | Farmshare';
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute('content', 'Buy local beef by the quarter, half, or whole, direct from the farm. Farmshare connects you with an independent processor near you. Pork, lamb, and goat too.');
-    }
+    applyPageMeta({
+      title: 'Buy Local Beef: Quarters, Halves, Wholes | Farmshare',
+      description: 'Buy local beef by the quarter, half, or whole, direct from the farm. Farmshare connects you with an independent processor near you. Pork, lamb, and goat too.',
+      path: '/buy-beef',
+    });
   }, []);
 
   // Render Cloudflare Turnstile widget once the script has loaded.

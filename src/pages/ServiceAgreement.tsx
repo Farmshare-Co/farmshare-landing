@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { applyPageMeta } from '../lib/pageMeta';
 
 interface AccordionSectionProps {
   title: string;
@@ -35,6 +36,14 @@ function AccordionSection({ title, children, isOpen, onToggle }: AccordionSectio
 
 export default function ServiceAgreement() {
   const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    applyPageMeta({
+      title: 'Service Agreement | Farmshare',
+      description: 'Farmshare service agreement for meat processors using scheduling, cut sheets, and invoicing.',
+      path: '/service-agreement',
+    });
+  }, []);
 
   const toggleSection = (sectionId: string) => {
     setOpenSections(prev => ({

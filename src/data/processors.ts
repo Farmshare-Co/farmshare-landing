@@ -38,6 +38,8 @@ export interface Processor {
   businessStatus?: 'OPERATIONAL' | 'CLOSED_TEMPORARILY' | 'CLOSED_PERMANENTLY';
   /** Raw Google Places type tags (e.g. 'butcher_shop', 'meat_store'). */
   placeTypes?: string[];
+  /** Other public names for this plant. Emitted as LocalBusiness.alternateName. */
+  alternateName?: string | string[];
 }
 
 export interface PartnerFacility {

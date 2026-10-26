@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { NETWORK_STATS, PRESS_EMAIL } from '../constants';
+import { applyPageMeta } from '../lib/pageMeta';
 
 /**
  * Quiet press page. Deliberately NOT linked from the header, footer, or
@@ -21,27 +22,12 @@ const announcements: Announcement[] = [];
 
 export default function Newsroom() {
   useEffect(() => {
-    document.title = 'Newsroom | Farmshare';
-
-    const description =
-      'Company information and press contact for Farmshare, the coordination layer for independent meat processing.';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    const previousDescription = metaDescription?.getAttribute('content') ?? null;
-    metaDescription?.setAttribute('content', description);
-
-    // Keep this page out of search results until Farmshare decides otherwise.
-    const robots = document.querySelector('meta[name="robots"]');
-    const previousRobots = robots?.getAttribute('content') ?? null;
-    robots?.setAttribute('content', 'noindex, follow');
-
-    return () => {
-      if (metaDescription && previousDescription !== null) {
-        metaDescription.setAttribute('content', previousDescription);
-      }
-      if (robots && previousRobots !== null) {
-        robots.setAttribute('content', previousRobots);
-      }
-    };
+    applyPageMeta({
+      title: 'Newsroom | Farmshare',
+      description: 'Company information and press contact for Farmshare, the coordination layer for independent meat processing.',
+      path: '/newsroom',
+      noindex: true,
+    });
   }, []);
 
   return (

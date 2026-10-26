@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Calendar, Mail, Users, Factory, Link2, Network, TrendingUp, Sparkles } from 'lucide-react';
 import AnimatedNumber from '../components/AnimatedNumber';
+import { applyPageMeta } from '../lib/pageMeta';
 
 const MISSION_TITLE = 'Our Mission - The Operating System for Independent Meat | Farmshare';
 // The hero paragraph and the runtime meta description are the same sentence, so
@@ -47,11 +48,7 @@ export default function Mission() {
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = MISSION_TITLE;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', MISSION_DESCRIPTION);
-    }
+    applyPageMeta({ title: MISSION_TITLE, description: MISSION_DESCRIPTION, path: '/mission' });
 
     const observer = new IntersectionObserver(
       (entries) => {

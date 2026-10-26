@@ -23776,43 +23776,6 @@
     "description": "Albemarle Meat Processing Plant is a meat processor in Albemarle, NC, rated 3.7 stars across 36 Google reviews. Customers highlight their professional service and clean facility."
   },
   {
-    "name": "Shelton's Heating and AC LLC",
-    "location": "Sapphire, NC",
-    "state": "NC",
-    "species": [
-      "Beef"
-    ],
-    "logo": "https://www.sheltonhvac.com/wp-content/uploads/business_logo.png",
-    "slug": "shelton-s-heating-and-ac-llc-sapphire-nc",
-    "status": "prospect",
-    "address": "111 Reid Cemetery Rd",
-    "zip": "28774",
-    "phone": "(828) 883-4658",
-    "website": "http://www.sheltonhvac.com/",
-    "lat": 35.1117321,
-    "lng": -82.95077049999999,
-    "googleMapsUri": "https://maps.google.com/?cid=16636676882180430026&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
-    "rating": 5,
-    "userRatingCount": 833,
-    "hours": [
-      "Monday: 8:00 AM – 5:00 PM",
-      "Tuesday: 8:00 AM – 5:00 PM",
-      "Wednesday: 8:00 AM – 5:00 PM",
-      "Thursday: 8:00 AM – 5:00 PM",
-      "Friday: 8:00 AM – 5:00 PM",
-      "Saturday: Closed",
-      "Sunday: Closed"
-    ],
-    "businessStatus": "OPERATIONAL",
-    "placeTypes": [
-      "general_contractor",
-      "service",
-      "point_of_interest",
-      "establishment"
-    ],
-    "description": "Shelton's Heating and AC LLC is a meat processor in Sapphire, NC, rated 5 stars across 833 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and professional service."
-  },
-  {
     "name": "Kenyon's Meat Market",
     "location": "Mebane, NC",
     "state": "NC",

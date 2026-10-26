@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { applyPageMeta } from '../lib/pageMeta';
 
 export default function Privacy() {
+  useEffect(() => {
+    applyPageMeta({
+      title: 'Privacy Policy | Farmshare',
+      description: 'How Farmshare collects, uses, and shares information from people who use the meat processing software and the processor directory.',
+      path: '/privacy',
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-brand-cream">
       <div className="container mx-auto px-4 py-20">

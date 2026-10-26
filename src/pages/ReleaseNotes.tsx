@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Calendar, ChevronRight, ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase, ReleaseNote } from '../lib/supabase';
+import { applyPageMeta } from '../lib/pageMeta';
 
 function getFeatureImage(version: string): string {
   const images = {
@@ -32,6 +33,14 @@ export default function ReleaseNotes() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
+
+  useEffect(() => {
+    applyPageMeta({
+      title: 'Release Notes | Farmshare',
+      description: 'Recent product updates from the Farmshare team: new features, improvements, and fixes for independent meat processors.',
+      path: '/release-notes',
+    });
+  }, []);
 
   useEffect(() => {
     async function fetchReleaseNotes() {

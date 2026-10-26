@@ -1,5 +1,746 @@
 {
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.farmshare.co"
+        }
+      ],
+      "destination": "https://farmshare.co/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.farmshare.co"
+        }
+      ],
+      "destination": "https://farmshare.co/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "ref",
+          "value": "farmshare-directory"
+        }
+      ],
+      "destination": "/?ref=",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "ref",
+          "value": "farmshare-directory"
+        }
+      ],
+      "destination": "/:path*?ref=",
+      "permanent": true
+    },
+    {
+      "source": "/seller",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/seller/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/seller/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/shelton-s-heating-and-ac-llc-sapphire-nc",
+      "destination": "/find-a-processor",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/ahcustommeatandprocessing.com",
+      "destination": "/find-a-processor/ah-custom-processing-spencer-tn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/apctn.org",
+      "destination": "/find-a-processor/appalachian-producers-cooperative-tn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/arapahoemeatco.com",
+      "destination": "/find-a-processor/arapahoe-meat-company-lafayette-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/beaverheadmeats.com",
+      "destination": "/find-a-processor/beaverhead-meats-dillon-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/chapelfordfarm.com",
+      "destination": "/find-a-processor/chapel-ford-farm-llc-gettysburg-pa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/circlepprocessing.com",
+      "destination": "/find-a-processor/circle-p-processing-llc-waterville-ks",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/circuitcreekmeat.com",
+      "destination": "/find-a-processor/circuit-creek-farm-meat-processing-hebron-nh",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/coastalplainsmeatcompany.com",
+      "destination": "/find-a-processor/coastal-plains-meat-company-eunice-la",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/countrymeatsid.com",
+      "destination": "/find-a-processor/country-meats-cataldo-id",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/countrysidemeatwv.com",
+      "destination": "/find-a-processor/renick-valley-meats-renick-wv",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/cowboymeats.com",
+      "destination": "/find-a-processor/cowboy-meats-forsyth-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/cutmeatcreek.com",
+      "destination": "/find-a-processor/cut-meat-creek-custom-ga",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/danieljacksonfarms.com",
+      "destination": "/find-a-processor/daniel-jackson-farms-ranburne-al",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/davescustomcutting.com",
+      "destination": "/find-a-processor/daves-custom-cutting-kiowa-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/daytonmeatproduct.com",
+      "destination": "/find-a-processor/dayton-meat-products-malcom-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/detroitprocessing.com",
+      "destination": "/find-a-processor/detroit-processing-plant-detroit-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/donscustommeats.com",
+      "destination": "/find-a-processor/dons-custom-meats-inc-waynesburg-oh",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/doublecprocessing.com",
+      "destination": "/find-a-processor/double-c-processing-webb-city-mo",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/eastmanlocker.com",
+      "destination": "/find-a-processor/eastman-locker-llc-eastman-wi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/elmwoodmeatplant.net",
+      "destination": "/find-a-processor/elmwood-meat-plant-elmwood-ne",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/etxbeef.com",
+      "destination": "/find-a-processor/east-texas-beef-processors-frankston-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/fairscustommeatprocessing.com",
+      "destination": "/find-a-processor/fairs-custom-meat-processing-williamstown-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/firstcapitolmeats.com",
+      "destination": "/find-a-processor/first-capitol-meats-corydon-in",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/flintpackers.com",
+      "destination": "/find-a-processor/flint-packers-ga",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/garfieldmeatshop.com",
+      "destination": "/find-a-processor/garfield-meats-garfield-wa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/gerberlocker.com",
+      "destination": "/find-a-processor/gerber-locker-craigville-in",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/glacierprocessing.com",
+      "destination": "/find-a-processor/glacier-processing-cooperative-columbia-falls-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/goresmeats.com",
+      "destination": "/find-a-processor/gores-meats-edinburg-location-edinburg-va",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hamptonpremiummeats.com",
+      "destination": "/find-a-processor/hampton-premium-meats-hopkinsville-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/harvesthousemeat.com",
+      "destination": "/find-a-processor/harvest-house-meat-me",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hatchscustommeatcutting.com",
+      "destination": "/find-a-processor/hatchs-custom-meat-cutting-llc-crystal-me",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hbarsranch.com",
+      "destination": "/find-a-processor/h-bar-s-ranch-elbert-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/heartquisthollowfarm.com",
+      "destination": "/find-a-processor/heartquist-hollow-family-farm-gilbert-az",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hemlockhillfarm.com",
+      "destination": "/find-a-processor/hemlock-hill-farm-new-york-ny",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hgmeats.com",
+      "destination": "/find-a-processor/hg-meats-va",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hilltopbutchershopsllc.com",
+      "destination": "/find-a-processor/hilltop-butcher-shop-llc-malta-oh",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hinesmeatco.com",
+      "destination": "/find-a-processor/hines-meat-co-la-grande-or",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/holtonmeat.com",
+      "destination": "/find-a-processor/holton-meat-processing-holton-ks",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/hwy10meatprocessing.com",
+      "destination": "/find-a-processor/hwy-10-processing-walsenburg-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/ifoodsco.com",
+      "destination": "/find-a-processor/innovative-foods-llc-evans-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/jacksonbrothersmeat.com",
+      "destination": "/find-a-processor/jackson-brothers-meat-post-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/jacobsmuhlensllc.com",
+      "destination": "/find-a-processor/jacobsmuhlens-cornelius-or",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/jemstarmeats.com",
+      "destination": "/find-a-processor/jemstar-meats-mount-sterling-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/johnsonssausage.com",
+      "destination": "/find-a-processor/johnsons-sausage-shoppe-rio-wi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/kellereats.com",
+      "destination": "/find-a-processor/keller-meats-llc-litchfield-oh",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/kicksmeats.com",
+      "destination": "/find-a-processor/kicks-meats-processing-nicholls-ga",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/legacybeefidaho.com",
+      "destination": "/find-a-processor/legacy-beef-clarkston-wa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/littlecoloradomeats.com",
+      "destination": "/find-a-processor/little-colorado-meats-eagar-az",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/localcuts.com",
+      "destination": "/find-a-processor/local-cuts-meat-company-zephyr-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/lonecrowranch.com",
+      "destination": "/find-a-processor/lone-crow-meat-processing-connell-wa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/lvmeats.com",
+      "destination": "/find-a-processor/lehigh-valley-meats-nazareth-pa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/marksburyfarm.com",
+      "destination": "/find-a-processor/marksbury-farm-market-lancaster-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/maysmeats.net",
+      "destination": "/find-a-processor/mays-meats-taylorsville-nc",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/mcleanbeef.com",
+      "destination": "/find-a-processor/mclean-beef-inc-york-ne",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/meatworkswestport.com",
+      "destination": "/find-a-processor/meatworks-ma",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/melvinhillmeats.com",
+      "destination": "/find-a-processor/melvin-hill-meats-nc",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/meridianmeatpackers.com",
+      "destination": "/find-a-processor/meridian-meat-packers-meridian-id",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/meriwetherfarms.com",
+      "destination": "/find-a-processor/meriwether-farms-wheatland-wy",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/midsouthpackers.com",
+      "destination": "/find-a-processor/midsouth-packers-mcdonough-ge",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/millironlmeat.com",
+      "destination": "/find-a-processor/mill-iron-l-meat-wheatland-wy",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/mitchellsmeatnc.com",
+      "destination": "/find-a-processor/mitchells-meat-processing-walnut-cove-nc",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/moonlightmeat.com",
+      "destination": "/find-a-processor/moonlight-meat-processing-inc-williamsburg-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/mtpremiumprocessing.com",
+      "destination": "/find-a-processor/montana-premium-processing-cooperative-havre-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/mvmeat.com",
+      "destination": "/find-a-processor/mat-valley-meats-palmer-ak",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/mybutcherboys.com",
+      "destination": "/find-a-processor/butcher-boys-vancouver-wa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/naturalstateprocessing.com",
+      "destination": "/find-a-processor/natural-state-processing-clinton-ar",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/nexusbeef.com",
+      "destination": "/find-a-processor/nexus-beef-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/noconameatcompany.com",
+      "destination": "/find-a-processor/nocona-meat-company-nocona-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/northforkcustommeats.com",
+      "destination": "/find-a-processor/north-fork-custom-meats-howard-lake-mn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/oldsaltco-op.com",
+      "destination": "/find-a-processor/old-salt-co-op-helena-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/ottemans.com",
+      "destination": "/find-a-processor/ottemans-meat-processing-flagler-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/oxbowmeats.com",
+      "destination": "/find-a-processor/oxbow-meats-lawrenceburg-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/ozarkcountrymeats.com",
+      "destination": "/find-a-processor/ozark-country-meats-saint-james-mo",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/panhandlemeatprocessing.com",
+      "destination": "/find-a-processor/panhandle-meat-processing-amarillo-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/parishmeatprocessing.com",
+      "destination": "/find-a-processor/parish-meat-processing-sibley-la",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/patriotmeatprocessing.com",
+      "destination": "/find-a-processor/patriot-meat-processing-ona-wv",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/pattersonsbutchershop.com",
+      "destination": "/find-a-processor/pattersons-butcher-shop-tompkinsville-ky",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/percivalpacking.com",
+      "destination": "/find-a-processor/percival-packing-scott-city-ks",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/powellmeatco.com",
+      "destination": "/find-a-processor/powell-meat-co-clinton-mo",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/premiummeatcompany.com",
+      "destination": "/find-a-processor/premium-meat-company-brigham-city-ut",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/raberpacking.com",
+      "destination": "/find-a-processor/raber-packing-company-west-peoria-il",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/realkansasmeats.com",
+      "destination": "/find-a-processor/real-kansas-meats-fredonia-ks",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/regenagalliance.org",
+      "destination": "/find-a-processor/stacyville-poultry-processing-stacyville-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/resacameats.com",
+      "destination": "/find-a-processor/resaca-meat-processing-resaca-ga",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/richlandlocker.com",
+      "destination": "/find-a-processor/richland-locker-company-inc-richland-center-wi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/roskommeats.com",
+      "destination": "/find-a-processor/roskom-meats-kaukauna-wi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/ryangroceryandprocessing.com",
+      "destination": "/find-a-processor/ryan-grocery-processing-plant-jordan-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/sanmeats.com",
+      "destination": "/find-a-processor/san-meats-afton-tn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/scarrowmeats.com",
+      "destination": "/find-a-processor/scarrow-meats-jerome-id",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/sevenhillsfood.com",
+      "destination": "/find-a-processor/seven-hills-food-lynchburg-va",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/shalespringmeats.com",
+      "destination": "/find-a-processor/shale-spring-meats-ex-caver-meats-clyde-ny",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/shipleyfarmsbeef.com",
+      "destination": "/find-a-processor/shipley-farms-beef-vilas-nc",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/shopmoorelocal.com",
+      "destination": "/find-a-processor/rockdale-locker-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/sommerssausageshop.com",
+      "destination": "/find-a-processor/sommers-sausage-shop-crystal-falls-mi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/stagecoachmeatcompany.com",
+      "destination": "/find-a-processor/stagecoach-meat-company-llc-wiggins-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/stanthonymeats.com",
+      "destination": "/find-a-processor/st-anthony-meats-st-anthony-north-dakota-15-20-min-from-bismarck-nd",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/stonemountainmeats.com",
+      "destination": "/find-a-processor/stone-mountain-meats-greeneville-tn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/strakameatsinc.com",
+      "destination": "/find-a-processor/straka-meats-plain-wi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/sunnysidemeatpackers.com",
+      "destination": "/find-a-processor/sunnyside-meat-packers-sunnyside-wa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/superiorjerkymt.com",
+      "destination": "/find-a-processor/superior-meats-inc-superior-mt",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/tandrmeat.com",
+      "destination": "/find-a-processor/grand-meadow-meats-clearwater-mn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/thebutchertx.com",
+      "destination": "/find-a-processor/the-butcher-tx-comfort-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/theyardsoh.com",
+      "destination": "/find-a-processor/the-stockyards-packing-company-oxford-oh",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/tiberiocustommeats.com",
+      "destination": "/find-a-processor/tiberio-custom-meats-walton-pa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/usabeefpacking.com",
+      "destination": "/find-a-processor/usa-beef-packing-roswell-nm",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/wenneman.com",
+      "destination": "/find-a-processor/wenneman-meat-co-saint-libory-il",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/westcliffemeats.com",
+      "destination": "/find-a-processor/westcliffe-meats-westcliffe-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/westernheritagemeatco.com",
+      "destination": "/find-a-processor/western-heritage-meat-company-sheridan-wy",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/westrivermeat.com",
+      "destination": "/find-a-processor/west-river-meats-llc-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/williejoesprocessing.com",
+      "destination": "/find-a-processor/willie-joes-processing-schulenburg-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/wishpooshmeatco.com",
+      "destination": "/find-a-processor/wish-poosh-meat-co-ellensburg-wa",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/woudstrasmeats.com",
+      "destination": "/find-a-processor/woudstra-meat-market-orange-city-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.bacavalley.com",
+      "destination": "/find-a-processor/high-country-meats-raton-nm",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.btmeats.com",
+      "destination": "/find-a-processor/b-t-meats-waubun-mn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.butchersblockva.com",
+      "destination": "/find-a-processor/the-butchers-block-va-llc-dry-fork-va",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.dmmeats.com",
+      "destination": "/find-a-processor/dm-meats-llc-fruita-co",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.doublelfarms.com",
+      "destination": "/find-a-processor/double-l-meat-processing-producer-va",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.facebook.com/fritzmeatandprocessing",
+      "destination": "/find-a-processor/fritz-meat-and-processing-de",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.greenfieldcustommeat.com",
+      "destination": "/find-a-processor/greenfield-custom-meats-meridian-id",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.grinnell-locker.com",
+      "destination": "/find-a-processor/grinnell-locker-grinnell-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.htc.net",
+      "destination": "/find-a-processor/millers-meat-market-red-bud-il",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.legacycustommeats.com",
+      "destination": "/find-a-processor/legacy-custom-meat-processing-la-grange-tx",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.milolockermeats.com",
+      "destination": "/find-a-processor/milo-locker-llc-milo-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.mountainviewcustommeats.com",
+      "destination": "/find-a-processor/mountain-view-custom-meats-id",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.msn.com",
+      "destination": "/find-a-processor/owasco-meat-co-moravia-ny",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.muscogeenation.com",
+      "destination": "/find-a-processor/looped-square-meat-co-okmulgee-ok",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.pelkinsmeatmarket.com",
+      "destination": "/find-a-processor/pelkins-smokey-meat-market-crivitz-wi",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.rallstech.com",
+      "destination": "/find-a-processor/center-locker-service-new-london-mo",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.skoglundmeats.com",
+      "destination": "/find-a-processor/skoglund-meats-locker-west-bend-ia",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.southcanadianmeats.com",
+      "destination": "/find-a-processor/south-canadian-meats-llc-thomas-ok",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.tds.net",
+      "destination": "/find-a-processor/west-gardiner-beef-west-gardiner-me",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.triplecmeats.com",
+      "destination": "/find-a-processor/triple-c-meats-il",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/www.zkranches.com",
+      "destination": "/find-a-processor/zk-ranches-springfield-tn",
+      "permanent": true
+    },
+    {
+      "source": "/find-a-processor/:slug(.*\\..*)",
+      "destination": "/find-a-processor",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/((?!api/).*)", "destination": "/" }
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/"
+    }
   ]
 }
