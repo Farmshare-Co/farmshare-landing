@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { Header, Footer } from './components/layout';
 import ScrollToTop from './components/ScrollToTop';
+import CanonicalTag from './components/CanonicalTag';
 import {
   Home,
   Mission,
@@ -39,6 +40,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-brand-cream text-stone-900 font-sans">
         <ScrollToTop />
+        <CanonicalTag />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -63,6 +65,8 @@ function App() {
           {/* Redirects for removed pages */}
           <Route path="/producers" element={<Navigate to="/" replace />} />
           <Route path="/buyers" element={<Navigate to="/" replace />} />
+          {/* Legacy marketplace. Production 301s these in vercel.json. */}
+          <Route path="/seller/*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
       </div>

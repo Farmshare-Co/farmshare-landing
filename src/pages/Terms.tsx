@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { applyPageMeta } from '../lib/pageMeta';
 
 export default function Terms() {
+  useEffect(() => {
+    applyPageMeta({
+      title: 'Terms of Service | Farmshare',
+      description: 'Terms of service for Farmshare meat processing software, the processor directory, and related services.',
+      path: '/terms',
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-brand-cream">
       <div className="container mx-auto px-4 py-20">

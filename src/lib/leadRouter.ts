@@ -122,7 +122,7 @@ export function nextAssignee(routedCount: number): 'Henry' | 'Wyatt' {
   return (['Wyatt', 'Henry'] as const)[routedCount % 2];
 }
 
-const dirUrl = (slug: string) => `https://www.farmshare.co/find-a-processor/${slug}`;
+const dirUrl = (slug: string) => `https://farmshare.co/find-a-processor/${slug}`;
 
 /** Drafts the "no strings, warm intro" routing message for a chosen processor. */
 export function buildRoutingDraft(lead: Lead, top: RankedProcessor | undefined, type: LeadType): string {

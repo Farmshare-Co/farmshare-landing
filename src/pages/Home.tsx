@@ -11,6 +11,8 @@ import ROICalculator from '../components/ROICalculator';
 import AnimatedNumber from '../components/AnimatedNumber';
 import { OwnershipDiagram, NetworkDiagram } from '../components/CoordinationDiagram';
 import { NETWORK_STATS, PRESS_EMAIL } from '../constants';
+import { applyPageMeta } from '../lib/pageMeta';
+import { HOME_TITLE, homeDescription } from '../lib/directorySeo.mjs';
 
 const testimonials = [
   {
@@ -65,14 +67,10 @@ const intelligence = [
   { icon: Tags, label: 'At what price', body: 'What the cut is worth in that channel, instead of the fee set a decade ago.' },
 ];
 
-const HOME_TITLE = 'Farmshare | The Coordination Layer for Independent Meat';
-// Built from NETWORK_STATS so the runtime description can never drift from the
-// numbers on the page. The matching literal in index.html is what crawlers and
-// link previews read; update both together.
-const HOME_DESCRIPTION =
-  `Many plants, one network. Farmshare is the coordination layer for independent meat processing: ` +
-  `${NETWORK_STATS.facilities} facilities, ${NETWORK_STATS.states} states, ` +
-  `${NETWORK_STATS.producers.toLocaleString()} producers.`;
+// Built from NETWORK_STATS so the runtime description cannot drift from the
+// numbers on the page. The matching literal in index.html is what crawlers
+// read before JavaScript. homeDescription owns the wording.
+const HOME_DESCRIPTION = homeDescription(NETWORK_STATS);
 
 export default function Home() {
   const [showStickyButton, setShowStickyButton] = useState(false);
@@ -96,11 +94,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    document.title = HOME_TITLE;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', HOME_DESCRIPTION);
-    }
+    applyPageMeta({ title: HOME_TITLE, description: HOME_DESCRIPTION, path: '/' });
 
     const observerOptions = {
       root: null,

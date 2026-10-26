@@ -5,12 +5,18 @@ import { processors, stateNames, stateSlugToAbbr } from '../data/processors';
 import { stateAdjacency } from '../data/stateAdjacency';
 import ProcessorMap from '../components/ProcessorMap';
 import { useUserLocation, distanceMiles } from '../hooks/useUserLocation';
+import { processorAboutContent } from '../data/processorAboutContent';
+import { applyPageMeta } from '../lib/pageMeta';
+import { isExcludedSlug, stateDescription, stateTitle } from '../lib/directorySeo.mjs';
 
 export default function StatePage() {
   const { stateSlug } = useParams<{ stateSlug: string }>();
   const stateAbbr = stateSlug ? stateSlugToAbbr[stateSlug] : undefined;
   const stateFull = stateAbbr ? stateNames[stateAbbr] : undefined;
-  const stateProcessorsRaw = stateAbbr ? processors.filter(p => p.state === stateAbbr) : [];
+  const stateProcessorsRaw = stateAbbr
+    ? processors.filter(p => p.state === stateAbbr && !isExcludedSlug(p.slug))
+    : [];
+  const customerCount = stateProcessorsRaw.filter(p => p.status === 'customer').length;
   const [view, setView] = useState<'list' | 'map'>('list');
   const userLoc = useUserLocation();
   const stateProcessors = userLoc.location
@@ -28,14 +34,11 @@ export default function StatePage() {
   useEffect(() => {
     if (!stateFull) return;
 
-    document.title = `Custom Meat Processors in ${stateFull} | Farmshare`;
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content',
-        `Find ${stateProcessors.length} custom meat processor${stateProcessors.length !== 1 ? 's' : ''} in ${stateFull} on Farmshare. Book harvest appointments online, submit digital cut sheets, and track your order.`
-      );
-    }
+    applyPageMeta({
+      title: stateTitle(stateFull),
+      description: stateDescription(stateFull, stateProcessorsRaw, processorAboutContent),
+      path: `/find-a-processor/${stateSlug}`,
+    });
 
     // Inject ItemList structured data
     const existingScript = document.querySelector('#state-schema');
@@ -44,8 +47,8 @@ export default function StatePage() {
     const schema = {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "name": `Custom Meat Processors in ${stateFull}`,
-      "description": `Directory of independent custom meat processors in ${stateFull} offering online scheduling through Farmshare.`,
+      "name": `Meat Processors in ${stateFull}`,
+      "description": stateDescription(stateFull, stateProcessorsRaw, processorAboutContent),
       "numberOfItems": stateProcessors.length,
       "itemListElement": stateProcessors.map((p, i) => ({
         "@type": "ListItem",
@@ -74,7 +77,7 @@ export default function StatePage() {
       const el = document.querySelector('#state-schema');
       if (el) el.remove();
     };
-  }, [stateFull, stateProcessors]);
+  }, [stateFull, stateSlug, stateProcessors, stateProcessorsRaw]);
 
   if (!stateFull || stateProcessors.length === 0) {
     return <Navigate to="/find-a-processor" replace />;
@@ -93,7 +96,8 @@ export default function StatePage() {
               Meat Processors in {stateFull}
             </h1>
             <p className="text-xl text-brand-cream/80 mb-4 font-medium">
-              {stateProcessors.length} independent processor{stateProcessors.length !== 1 ? 's' : ''} in {stateFull} offering online scheduling through Farmshare.
+              {stateProcessors.length} independent processor{stateProcessors.length !== 1 ? 's' : ''} in {stateFull}.
+              {customerCount > 0 ? ` ${customerCount} on the Farmshare network with online scheduling.` : ''}
             </p>
             <p className="text-brand-cream/60">
               Species available: {allSpecies.join(', ')}

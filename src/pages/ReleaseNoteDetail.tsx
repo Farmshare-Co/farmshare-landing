@@ -4,6 +4,7 @@ import { Calendar, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { supabase, ReleaseNote } from '../lib/supabase';
+import { applyPageMeta } from '../lib/pageMeta';
 import VideoEmbed from '../components/VideoEmbed';
 
 function getFeatureImage(version: string): string {
@@ -90,6 +91,13 @@ export default function ReleaseNoteDetail() {
 
         if (error) throw error;
         setReleaseNote(data);
+        if (data?.title && slug) {
+          applyPageMeta({
+            title: `${data.title} | Release Notes | Farmshare`,
+            description: `Farmshare release notes: ${data.title}.`,
+            path: `/release-notes/${slug}`,
+          });
+        }
       } catch (error) {
         console.error('Error fetching release note:', error);
       } finally {

@@ -4,9 +4,17 @@ import { MapPin, Search, Calendar, Filter, ChevronDown, ChevronRight, Map as Map
 import { processors, stateNames, type Processor } from '../data/processors';
 import ProcessorMap from '../components/ProcessorMap';
 import { useUserLocation, distanceMiles } from '../hooks/useUserLocation';
+import { applyPageMeta } from '../lib/pageMeta';
+import {
+  directoryDescription,
+  directoryTitle,
+  isExcludedSlug,
+  speciesDescription,
+  speciesTitle,
+} from '../lib/directorySeo.mjs';
 
 // Derive unique states sorted alphabetically
-const allStates = ["All States", ...Array.from(new Set(processors.map(p => p.state))).sort()];
+const allStates = ["All States", ...Array.from(new Set(processors.filter(p => !isExcludedSlug(p.slug)).map(p => p.state))).sort()];
 
 function initialsFor(name: string): string {
   return name.split(' ').map(w => w[0]).filter(c => c && c.match(/[A-Z0-9]/i)).slice(0, 2).join('').toUpperCase();
@@ -75,10 +83,21 @@ export default function FindProcessor() {
   const userLoc = useUserLocation();
 
   useEffect(() => {
-    document.title = 'Find a Custom Meat Processor Near You | Farmshare';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Find a trusted, independent custom meat processor near you. Browse Farmshare\'s nationwide directory of processors offering online scheduling, digital cut sheets, and more.');
+    const display = speciesParam ? SPECIES_URL_TO_DISPLAY[speciesParam.toLowerCase()] : undefined;
+    if (speciesParam && display) {
+      const count = processors.filter((p) => !isExcludedSlug(p.slug) && p.species?.includes(display)).length;
+      applyPageMeta({
+        title: speciesTitle(display),
+        description: speciesDescription(display, count),
+        path: `/find-a-processor/species/${speciesParam.toLowerCase()}`,
+      });
+    } else {
+      const count = processors.filter((p) => !isExcludedSlug(p.slug)).length;
+      applyPageMeta({
+        title: directoryTitle(),
+        description: directoryDescription(count),
+        path: '/find-a-processor',
+      });
     }
 
     // JSON-LD ItemList schema for the full directory
@@ -90,8 +109,8 @@ export default function FindProcessor() {
       "@type": "ItemList",
       "name": "Custom Meat Processor Directory",
       "description": "Nationwide directory of independent custom meat processors offering online scheduling through Farmshare.",
-      "numberOfItems": processors.length,
-      "itemListElement": processors.map((p, i) => ({
+      "numberOfItems": processors.filter((p) => !isExcludedSlug(p.slug)).length,
+      "itemListElement": processors.filter((p) => !isExcludedSlug(p.slug)).map((p, i) => ({
         "@type": "ListItem",
         "position": i + 1,
         "item": {
@@ -118,13 +137,13 @@ export default function FindProcessor() {
       const el = document.querySelector('#directory-schema');
       if (el) el.remove();
     };
-  }, []);
+  }, [speciesParam]);
 
   const allSpecies = ["All Species", ...Array.from(new Set(processors.flatMap(p => p.species))).sort()];
 
   const queryTokens = searchQuery.toLowerCase().split(/\s+/).filter(Boolean);
   const filteredRaw = processors.filter(p => {
-    if (p.businessStatus === 'CLOSED_PERMANENTLY') return false;
+    if (p.businessStatus === 'CLOSED_PERMANENTLY' || isExcludedSlug(p.slug)) return false;
     let matchesSearch = true;
     if (queryTokens.length > 0) {
       // Stick to identity fields: name, city + state, street, ZIP. Don't include
