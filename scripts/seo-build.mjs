@@ -29,6 +29,7 @@ import {
   speciesDescription,
   FEATURES_TITLE,
   FEATURES_DESCRIPTION,
+  HOME_TITLE,
 } from '../src/lib/directorySeo.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -325,6 +326,9 @@ function assertCopy() {
   }
   if (FEATURES_TITLE.startsWith('Meat Processing Software') === false || FEATURES_DESCRIPTION.includes('—')) {
     throw new Error('features copy drifted');
+  }
+  if (HOME_TITLE !== 'Farmshare | The Coordination Layer for Independent Meat' || /processors/i.test(HOME_TITLE)) {
+    throw new Error(`homepage title must stay free of "Processors": ${HOME_TITLE}`);
   }
 }
 

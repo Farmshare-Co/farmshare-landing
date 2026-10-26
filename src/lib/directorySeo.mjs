@@ -109,7 +109,10 @@ export function stateDescription(stateName, stateProcessors, aboutBySlug) {
   return `Find meat processors in ${stateName}. USDA and custom butchers, with hours, services${deerClause}, and online booking where plants offer them. ${plants}.`;
 }
 
-export const HOME_TITLE = 'Farmshare | Software for Meat Processors';
+// Henry, 2026-09-03, confirmed 2026-10-26: the homepage title stops at
+// "Independent Meat". Do not add "Processors". The audience is processors and
+// producers. Keywords live in the meta description (homeDescription).
+export const HOME_TITLE = 'Farmshare | The Coordination Layer for Independent Meat';
 
 export function homeDescription(stats) {
   const producers = Number(stats.producers).toLocaleString('en-US');
