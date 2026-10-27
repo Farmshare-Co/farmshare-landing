@@ -1,9 +1,8 @@
 # Refresh the homepage plant and state counts from the Farmshare dashboard.
 #
 # GET https://farmshare-dashboard.vercel.app/api/network-stats
-# The route must be public and return only { plants, states, updatedAt }.
-# No repository secret is required. Override the URL with the repository
-# variable DASHBOARD_NETWORK_STATS_URL if the route moves.
+# The route is public and returns only { plants, states, updatedAt }.
+# No repository secret is required. The job URL is set in this file.
 
 name: Sync homepage network stats
 
@@ -32,7 +31,7 @@ jobs:
 
       - name: Pull active-customer counts from the Farmshare dashboard
         env:
-          DASHBOARD_NETWORK_STATS_URL: ${{ vars.DASHBOARD_NETWORK_STATS_URL }}
+          DASHBOARD_NETWORK_STATS_URL: https://farmshare-dashboard.vercel.app/api/network-stats
         run: node scripts/sync-network-stats.mjs
 
       - name: Commit updated counts

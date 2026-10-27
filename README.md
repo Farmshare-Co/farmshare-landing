@@ -19,34 +19,17 @@ The published file is only `plants`, `states`, and `updatedAt`. The script does 
 
 Plants are the dashboard's **active customers**: one customer whose latest billing `arr_events` row has status Active. States are the distinct states of those customers. The dashboard already computes the customer count. This site does not recompute it and does not read HubSpot.
 
-The job sends a GET to **`https://farmshare-dashboard.vercel.app/api/network-stats`** (override with `DASHBOARD_NETWORK_STATS_URL`). No token is required. Do not put a Supabase service-role key or any dashboard credential in this repo, and do not prefix a dashboard secret with `VITE_`.
+The daily job GETs **`https://farmshare-dashboard.vercel.app/api/network-stats`**. That URL is set in the workflow. A local run uses the same default, or `DASHBOARD_NETWORK_STATS_URL` if you point it at another host. No token is required. Do not put a Supabase service-role key or any dashboard credential in this repo, and do not prefix a dashboard secret with `VITE_`.
 
 ```bash
 npm run sync-network-stats
 npm run sync-network-stats -- --dry-run
 ```
 
-`--dry-run` prints the counts and does not write the file. If the new plant count is below half the count already in the JSON, the script exits without replacing it. A redirect, a non-JSON body, or any field besides the three aggregates is also refused, and the response body is not logged.
-
-That public route does not exist yet. Unauthenticated requests are redirected to Google sign-in. Until it is added on [harrowood7/farmshare-dashboard](https://github.com/harrowood7/farmshare-dashboard), the JSON stays at the last count verified against that billing database.
+`--dry-run` prints the counts and does not write the file. If the new plant count is below half the count already in the JSON, the script exits without replacing it. A non-200 response (including 503), a redirect, or any field besides `plants`, `states`, and `updatedAt` is refused, and the response body is not logged.
 
 ### Counts currently in the file
 
-Verified **2026-09-02** against the dashboard billing DB (`arr_events`, status Active on the latest event): **44 plants, 28 states**. States were resolved per customer outside that row (directory, HubSpot, and the wiki). A live pull on 2026-10-27 could not be completed because the aggregate route is not public. Producers stays `10k+` (the previous exact producer count was 10,228).
+Synced **2026-10-27** from `GET https://farmshare-dashboard.vercel.app/api/network-stats`: **50 plants, 26 states** (`updatedAt` `2026-10-27T23:46:44.644Z`). Producers stays `10k+`.
 
 `processors.json` is the public directory, not the customer list, so this job does not read it.
-
-### Dashboard change still required
-
-On the dashboard repo, add a public read-only route:
-
-- Path: `GET /api/network-stats` on `https://farmshare-dashboard.vercel.app`
-- Auth: exclude this path from the Google sign-in middleware. `/api/cron/*` already skips that redirect and returns the app 404, so the new path needs the same exemption.
-- Query: the same active-customer definition the dashboard overview uses (latest `arr_events` row per customer, status Active). `plants` is that count. `states` is the distinct states of those customers, computed in the dashboard from whatever location the customer record already has. If `arr_events` has no state, join it server-side. Do not send the rows to this marketing site.
-- Body, exactly:
-
-```json
-{ "plants": 44, "states": 28, "updatedAt": "2026-09-02T15:39:26.000Z" }
-```
-
-No names, ids, or dollar amounts. The Supabase service role stays on the dashboard.
