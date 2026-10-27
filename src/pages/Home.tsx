@@ -10,7 +10,7 @@ import PartnerLogoBanner from '../components/PartnerLogoBanner';
 import ROICalculator from '../components/ROICalculator';
 import AnimatedNumber from '../components/AnimatedNumber';
 import { OwnershipDiagram, NetworkDiagram } from '../components/CoordinationDiagram';
-import { NETWORK_STATS, PRESS_EMAIL } from '../constants';
+import { NETWORK_META_DESCRIPTION, NETWORK_STATS, PRESS_EMAIL } from '../constants';
 
 const testimonials = [
   {
@@ -66,13 +66,8 @@ const intelligence = [
 ];
 
 const HOME_TITLE = 'Farmshare | The Coordination Layer for Independent Meat';
-// Built from NETWORK_STATS so the runtime description can never drift from the
-// numbers on the page. The matching literal in index.html is what crawlers and
-// link previews read; update both together.
-const HOME_DESCRIPTION =
-  `Many plants, one network. Farmshare is the coordination layer for independent meat processing: ` +
-  `${NETWORK_STATS.facilities} facilities, ${NETWORK_STATS.states} states, ` +
-  `${NETWORK_STATS.producers.toLocaleString()} producers.`;
+// Same sentence the Vite plugin writes into index.html for crawlers.
+const HOME_DESCRIPTION = NETWORK_META_DESCRIPTION;
 
 export default function Home() {
   const [showStickyButton, setShowStickyButton] = useState(false);
@@ -242,7 +237,7 @@ export default function Home() {
             <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl">
               <div className="fade-up">
                 <p className="text-3xl md:text-5xl font-roca text-brand-sage leading-none mb-2">
-                  <AnimatedNumber target={NETWORK_STATS.facilities} />
+                  <AnimatedNumber target={NETWORK_STATS.plants} />
                 </p>
                 <p className="text-xs md:text-sm text-brand-cream/70 font-medium">plants</p>
               </div>
@@ -254,7 +249,7 @@ export default function Home() {
               </div>
               <div className="fade-up">
                 <p className="text-3xl md:text-5xl font-roca text-brand-sage leading-none mb-2">
-                  <AnimatedNumber target={NETWORK_STATS.producers} />
+                  {NETWORK_STATS.producersLabel}
                 </p>
                 <p className="text-xs md:text-sm text-brand-cream/70 font-medium">producers</p>
               </div>

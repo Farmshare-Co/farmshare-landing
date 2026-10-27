@@ -1,0 +1,48 @@
+# Refresh the homepage plant and state counts from HubSpot.
+#
+# Requires a repository secret named HUBSPOT_PRIVATE_APP_TOKEN (a HubSpot
+# private app token). Same variable the Vercel lead routes already use.
+# Scopes: crm.objects.companies.read and crm.objects.deals.read.
+# The token stays in this job. The committed file is aggregate counts only.
+
+name: Sync homepage network stats
+
+on:
+  schedule:
+    # 13:15 UTC daily, off the hour.
+    - cron: '15 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-network-stats
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Pull signed plant counts from HubSpot
+        env:
+          HUBSPOT_PRIVATE_APP_TOKEN: ${{ secrets.HUBSPOT_PRIVATE_APP_TOKEN }}
+        run: node scripts/sync-network-stats.mjs
+
+      - name: Commit updated counts
+        run: |
+          if git diff --quiet -- src/data/network-stats.json; then
+            echo "Network stats unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/network-stats.json
+          git commit -m "Update homepage network stats from HubSpot"
+          git push
