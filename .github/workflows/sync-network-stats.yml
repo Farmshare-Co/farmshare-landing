@@ -1,9 +1,9 @@
-# Refresh the homepage plant and state counts from HubSpot.
+# Refresh the homepage plant and state counts from the Farmshare dashboard.
 #
-# Requires a repository secret named HUBSPOT_PRIVATE_APP_TOKEN (a HubSpot
-# private app token). Same variable the Vercel lead routes already use.
-# Scopes: crm.objects.companies.read and crm.objects.deals.read.
-# The token stays in this job. The committed file is aggregate counts only.
+# GET https://farmshare-dashboard.vercel.app/api/network-stats
+# The route must be public and return only { plants, states, updatedAt }.
+# No repository secret is required. Override the URL with the repository
+# variable DASHBOARD_NETWORK_STATS_URL if the route moves.
 
 name: Sync homepage network stats
 
@@ -30,9 +30,9 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Pull signed plant counts from HubSpot
+      - name: Pull active-customer counts from the Farmshare dashboard
         env:
-          HUBSPOT_PRIVATE_APP_TOKEN: ${{ secrets.HUBSPOT_PRIVATE_APP_TOKEN }}
+          DASHBOARD_NETWORK_STATS_URL: ${{ vars.DASHBOARD_NETWORK_STATS_URL }}
         run: node scripts/sync-network-stats.mjs
 
       - name: Commit updated counts
@@ -44,5 +44,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/data/network-stats.json
-          git commit -m "Update homepage network stats from HubSpot"
+          git commit -m "Update homepage network stats from the Farmshare dashboard"
           git push

@@ -2,9 +2,9 @@ export const DEMO_URL = "https://meetings.hubspot.com/henry-arrowood/quad-p-demo
 export const LOGIN_URL = "https://partners.farmshare.co/";
 
 /**
- * Homepage network figures. Plants and states are the signed-customer counts
- * in src/data/network-stats.json (refreshed by scripts/sync-network-stats.mjs).
- * Producers stays the static label "10k+".
+ * Homepage network figures. Plants and states are the dashboard's active
+ * customers in src/data/network-stats.json (refreshed by
+ * scripts/sync-network-stats.mjs). Producers stays the static label "10k+".
  *
  * processors.json is NOT a customer list. Do not derive these figures from it.
  */

@@ -4,8 +4,8 @@ import networkStats from '../data/network-stats.json';
  * Homepage network figures.
  *
  * plants and states come from src/data/network-stats.json, written by
- * scripts/sync-network-stats.mjs. That file is aggregate counts only.
- * producers is not sourced from HubSpot; Henry asked for a static "10k+".
+ * scripts/sync-network-stats.mjs from the Farmshare dashboard aggregate.
+ * That file is aggregate counts only. producers is the static label "10k+".
  *
  * These sentences are also filled into index.html by the Vite plugin in
  * vite.config.ts, which imports this module. Keep the wording here.
