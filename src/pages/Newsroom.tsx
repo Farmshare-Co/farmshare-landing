@@ -70,7 +70,7 @@ export default function Newsroom() {
             <h2 className="text-2xl font-roca text-brand-green mb-6">Company Facts</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
               <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-                <p className="text-4xl font-roca text-brand-green mb-1">{NETWORK_STATS.facilities}</p>
+                <p className="text-4xl font-roca text-brand-green mb-1">{NETWORK_STATS.plants}</p>
                 <p className="text-stone-600 text-sm">plants</p>
               </div>
               <div className="bg-white rounded-xl p-6 text-center shadow-sm">
@@ -79,7 +79,7 @@ export default function Newsroom() {
               </div>
               <div className="bg-white rounded-xl p-6 text-center shadow-sm">
                 <p className="text-4xl font-roca text-brand-green mb-1">
-                  {NETWORK_STATS.producers.toLocaleString()}
+                  {NETWORK_STATS.producersLabel}
                 </p>
                 <p className="text-stone-600 text-sm">producers</p>
               </div>
