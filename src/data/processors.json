@@ -980,9 +980,9 @@
       "Beef",
       "Hog"
     ],
-    "logo": "https://cdn.prod.website-files.com/65f472203eb1b6bef6fdeeb3/6622b939ae85a5e24531e8e0_Screenshot%202024-04-19%20123329.png",
+    "logo": "/logos/big-horn.png",
     "slug": "big-horn-meat-inc-buffalo-wy",
-    "status": "prospect",
+    "status": "customer",
     "address": "121 US-16",
     "zip": "82834",
     "phone": "(307) 684-5387",
@@ -1671,7 +1671,7 @@
       "Beef",
       "Hog"
     ],
-    "logo": "https://scontent-den2-1.xx.fbcdn.net/v/t39.30808-1/649078599_1488706726591449_7993675599304778428_n.jpg?stp=dst-jpg_tt6&cstp=mx960x960&ctp=s720x720&_nc_cat=103&ccb=1-7&_nc_sid=3ab345&_nc_ohc=KUuAUd8BaacQ7kNvwGXckTA&_nc_oc=Adp3VSSWDoP8jvkYZ9wkLI_yhi1delN36Ye4GHCfjzCmhUG9dL_wnajTziZBd3fGgso&_nc_zt=24&_nc_ht=scontent-den2-1.xx&_nc_gid=4q3s7JhjxS2dlXvq2W_6zA&oh=00_Af16YJYi-LC-x9VMeraN9qM2GeshYG_mTZTbastXaZ1XVg&oe=69F0CB42",
+    "logo": "/logos/cj-meats.jpg",
     "slug": "cj-meats-minerva-oh",
     "status": "customer",
     "address": "25670 Mountz Rd",
@@ -2209,7 +2209,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "https://lirp.cdn-website.com/b84d4af9/dms3rep/multi/opt/0B2F36C3-1102-4FBD-ACE4-AE991F981B55-1920w.jpeg",
+    "logo": "/logos/chug-springs.png",
     "slug": "chug-springs-butchery-chugwater-wy",
     "status": "customer",
     "address": "190 South Chugwater Highway",
@@ -2496,7 +2496,7 @@
       "Beef",
       "Hog"
     ],
-    "logo": "https://countrymeatid.com/wp-content/uploads/2024/08/Group-1.svg",
+    "logo": "/logos/country-meats.svg",
     "slug": "country-meats-cataldo-id",
     "status": "customer",
     "address": "18500 S Old Lane Rd  Cataldo",
@@ -4161,7 +4161,7 @@
       "Beef",
       "Hog"
     ],
-    "logo": null,
+    "logo": "/logos/folletts.png",
     "slug": "folletts-meat-company-hermiston-or",
     "status": "customer",
     "address": "31019 Follett Ln",
@@ -4914,7 +4914,7 @@
       "Beef",
       "Hog"
     ],
-    "logo": "https://hatchscustommeatcutting.com/wp-content/uploads/2023/06/333977360_1240326926907870_6627809847024638272_n@0.5x-300x300.png",
+    "logo": "/logos/hatchs.png",
     "slug": "hatchs-custom-meat-cutting-llc-crystal-me",
     "status": "customer",
     "address": "23 Prescott Road",
@@ -4990,7 +4990,7 @@
     ],
     "logo": "/logos/heartquist-hollow.png",
     "slug": "heartquist-hollow-family-farm-gilbert-az",
-    "status": "customer",
+    "status": "prospect",
     "address": "16625 East Elgin Street",
     "zip": "85295",
     "phone": "(520) 357-6515",
@@ -5624,7 +5624,7 @@
     "species": [
       "Beef"
     ],
-    "logo": "https://huntercattle.com/wp-content/uploads/2021/01/cropped-HunterCattleLogo-270x270.jpg",
+    "logo": "/logos/hunter-cattle.jpg",
     "slug": "hunter-cattle-brooklet-ga",
     "status": "customer",
     "address": "934 Driggers Rd",
@@ -6805,9 +6805,9 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "http://www.lonecrowranch.com/cdn/shop/files/Wagyu_Tomahawk_Steak.jpg?v=1760100967",
+    "logo": "/logos/lone-crow.png",
     "slug": "lone-crow-meat-processing-connell-wa",
-    "status": "prospect",
+    "status": "customer",
     "address": "133 N Columbia Avenue",
     "zip": "99326",
     "phone": "(509) 821-0442",
@@ -10112,7 +10112,7 @@
       "Goat",
       "Lamb"
     ],
-    "logo": "https://renickvalley.com/wp-content/uploads/2025/03/Logo-original-renick.png",
+    "logo": "/logos/renick-valley.png",
     "slug": "renick-valley-meats-renick-wv",
     "status": "customer",
     "address": "1340 Old Renick Valley Rd",
@@ -10825,7 +10825,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "https://shalespringmeats.com/wp-content/uploads/2025/04/ShaleSpringMeatsLogoFinal-e1744056915864.png",
+    "logo": "/logos/shale-spring.png",
     "slug": "shale-spring-meats-ex-caver-meats-clyde-ny",
     "status": "customer",
     "address": "10647 Kelsey Road West",
@@ -11168,7 +11168,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "https://sorgsmeats.com/wp-content/uploads/2024/06/cropped-favicon-180x180.png",
+    "logo": "/logos/sorgs.png",
     "slug": "sorgs-darien-wi",
     "status": "customer",
     "address": "N4290 US-14",
@@ -11255,7 +11255,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "https://du9m0k402rjmo.cloudfront.net/images/P_15236/032e84dc-a7e3-4ae0-b54b-5dc0cdf3f594.jpg",
+    "logo": "/logos/southside-meats.jpg",
     "slug": "southside-meats-avon-sd",
     "status": "customer",
     "address": "104 N Main St",
@@ -12148,7 +12148,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "https://cdn.prod.website-files.com/660da8925feb5252a6fa7b53/661fa34a0e6824ceb6341dc6_Icon%20256.png",
+    "logo": "/logos/stockyards.png",
     "slug": "the-stockyards-packing-company-oxford-oh",
     "status": "customer",
     "address": "6365 College Corner Pike",
@@ -12339,9 +12339,9 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "http://static1.squarespace.com/static/646b8ca38e9b3f016aa57d41/t/6480ec94e54dec2c74049904/1686170772259/Screen+Shot+2023-06-07+at+1.45.59+PM.png?format=1500w",
+    "logo": "/logos/triple-c.png",
     "slug": "triple-c-meats-il",
-    "status": "prospect",
+    "status": "customer",
     "address": "5565 Illinois 146",
     "phone": "+16188335986",
     "website": "www.triplecmeats.com",
@@ -13936,6 +13936,7 @@
       "Hog",
       "Lamb"
     ],
+    "logo": "/logos/br-meat.jpg",
     "slug": "b-and-r-meat-processing-winslow-ar",
     "status": "customer",
     "address": "633 N Devils Den Rd",
@@ -35098,7 +35099,7 @@
       "Goat",
       "Hog"
     ],
-    "logo": null,
+    "logo": "/logos/el-farms.png",
     "slug": "e-l-farms-meat-processing-butcher-shop-grabill-in",
     "status": "customer",
     "address": "15610 Grabill Rd",
@@ -35479,7 +35480,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": null,
+    "logo": "/logos/contentnea-farms.png",
     "slug": "contentnea-farms-walstonburg-nc",
     "status": "customer",
     "address": "737 Beaman Farm Rd",
@@ -35564,7 +35565,7 @@
       "Hog",
       "Lamb"
     ],
-    "logo": null,
+    "logo": "/logos/smokey-ridge.png",
     "slug": "smokey-ridge-meats-chewelah-wa",
     "status": "customer",
     "address": "2450 Heine Rd",
@@ -35600,7 +35601,7 @@
     "partnerSlug": "smokey-ridge-meats-chewelah-wa"
   },
   {
-    "name": "MD Meats",
+    "name": "Mad Dog Ranch",
     "location": "Bliss, ID",
     "state": "ID",
     "species": [
@@ -35642,9 +35643,9 @@
       "Hog",
       "Lamb"
     ],
-    "logo": "/logos/vermont-livestock-slaughter-ferrisburgh-vt.jpg",
+    "logo": "/logos/vermont-livestock.jpg",
     "slug": "vermont-livestock-slaughter-ferrisburgh-vt",
-    "status": "prospect",
+    "status": "customer",
     "address": "76 Depot Rd",
     "zip": "05456",
     "phone": "(802) 877-3421",
@@ -35764,7 +35765,7 @@
       "Lamb",
       "Hog"
     ],
-    "logo": null,
+    "logo": "/logos/northeast-kingdom.png",
     "slug": "northeast-kingdom-processing-st-johnsbury-vt",
     "status": "customer",
     "address": "796 Industrial Pkwy",

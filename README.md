@@ -33,3 +33,14 @@ npm run sync-network-stats -- --dry-run
 Synced **2026-10-27** from `GET https://farmshare-dashboard.vercel.app/api/network-stats`: **50 plants, 26 states** (`updatedAt` `2026-10-27T23:46:44.644Z`). Producers stays `10k+`.
 
 `processors.json` is the public directory, not the customer list, so this job does not read it.
+
+## Customer logo sync
+
+The homepage carousel reads `status: "customer"` logos from `src/data/processors.json`. [`.github/workflows/sync-customer-logos.yml`](.github/workflows/sync-customer-logos.yml) runs `scripts/sync-customer-logos.mjs` daily (and on manual dispatch). The script GETs **`https://farmshare-dashboard.vercel.app/api/network-customers`**, which returns `[{ hubspotId, name, state, domain, logoUrl }]`. It marks matched processors `customer` and current customers missing from that list `prospect`. Match is `hubspotId`, then normalized name. Missing logos are saved under `public/logos`. Files already there are not overwritten, and `logoLocked: true` keeps the current logo.
+
+The workflow opens a pull request when something changed. It does not push to the default branch. A 404, or the login redirect the dashboard returns until that route is public, exits without writing. An empty list, or a list that matches fewer than half of the current customers, is refused.
+
+```bash
+npm run sync-customer-logos
+npm run sync-customer-logos -- --dry-run
+```

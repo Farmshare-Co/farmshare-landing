@@ -1,5 +1,5 @@
 // Shared processor directory data — used across FindProcessor, ProcessorDetail, and StatePage
-// Source: src/data/processors.json (345 processors — 27 customers + 318 prospects)
+// Source: src/data/processors.json (900 processors — 50 customers + 850 prospects)
 
 import processorsData from './processors.json';
 
@@ -13,6 +13,10 @@ export interface Processor {
   logo: string | null;
   slug: string;
   status: ProcessorStatus;
+  /** HubSpot company id. The customer-logo sync matches this before the display name. */
+  hubspotId?: string;
+  /** When true, scripts/sync-customer-logos.mjs will not replace this logo. */
+  logoLocked?: boolean;
   address?: string;
   zip?: string;
   phone?: string;
