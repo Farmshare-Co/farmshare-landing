@@ -201,7 +201,8 @@
       "food",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "37389948483"
   },
   {
     "name": "A&H Custom Processing",
@@ -329,7 +330,8 @@
       "service",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "23214914962"
   },
   {
     "name": "Tri-Town Packing & Adirondack Smoked Meats",
@@ -822,7 +824,8 @@
       "manufacturer",
       "store",
       "establishment"
-    ]
+    ],
+    "hubspotId": "32696263849"
   },
   {
     "name": "Beck Ranch",
@@ -887,7 +890,8 @@
     "description": "Custom meat processing facility opened by Wesley and Meg Spurrier in McLean County, KY. Processes up to 25 head of cattle and 25 head of hogs per week. Handles cattle, hogs, sheep, goat, wild game, and deer. Kentucky Proud member.",
     "lat": 37.618307,
     "lng": -87.47289380000001,
-    "partnerSlug": "beef-bacon-calhoun-ky"
+    "partnerSlug": "beef-bacon-calhoun-ky",
+    "hubspotId": "59131230602"
   },
   {
     "name": "Bellingar Packing",
@@ -1012,7 +1016,8 @@
       "store",
       "service",
       "establishment"
-    ]
+    ],
+    "hubspotId": "20397058310"
   },
   {
     "name": "Big Sky Butcher",
@@ -1142,7 +1147,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "description": "Bingham’s Custom Meats is a meat processor in North Morgan, UT, rated 4.9 stars across 846 Google reviews. Customers highlight their friendly staff. Common review themes include smoked meats and bacon."
+    "description": "Bingham’s Custom Meats is a meat processor in North Morgan, UT, rated 4.9 stars across 846 Google reviews. Customers highlight their friendly staff. Common review themes include smoked meats and bacon.",
+    "hubspotId": "58661397763"
   },
   {
     "name": "Birkner's Meat Processing",
@@ -1614,7 +1620,8 @@
       "store",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "21402351289"
   },
   {
     "name": "Byron Center Meats",
@@ -1704,7 +1711,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "partnerSlug": "cj-meats-minerva-oh"
+    "partnerSlug": "cj-meats-minerva-oh",
+    "hubspotId": "46272025992"
   },
   {
     "name": "Southern Cuts Processing & Meat Market",
@@ -2157,7 +2165,8 @@
       "store",
       "service",
       "establishment"
-    ]
+    ],
+    "hubspotId": "22293225617"
   },
   {
     "name": "Christiaens Meats",
@@ -2242,7 +2251,8 @@
       "food",
       "establishment"
     ],
-    "partnerSlug": "chug-springs-butchery-chugwater-wy"
+    "partnerSlug": "chug-springs-butchery-chugwater-wy",
+    "hubspotId": "31833618725"
   },
   {
     "name": "Circle P Processing LLC",
@@ -2498,7 +2508,7 @@
     ],
     "logo": "/logos/country-meats.svg",
     "slug": "country-meats-cataldo-id",
-    "status": "customer",
+    "status": "prospect",
     "address": "18500 S Old Lane Rd  Cataldo",
     "zip": "83810",
     "website": "countrymeatsid.com",
@@ -2827,7 +2837,8 @@
       "point_of_interest",
       "store",
       "establishment"
-    ]
+    ],
+    "hubspotId": "56048197556"
   },
   {
     "name": "Cypress Valley Meat Company",
@@ -2911,7 +2922,8 @@
       "store",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "18999845731"
   },
   {
     "name": "D&M Meats LLC",
@@ -3161,7 +3173,8 @@
       "point_of_interest",
       "store",
       "establishment"
-    ]
+    ],
+    "hubspotId": "52980631157"
   },
   {
     "name": "Deary Butcher Shop",
@@ -3537,7 +3550,8 @@
       "service",
       "establishment"
     ],
-    "partnerSlug": "double-l-processing-ny"
+    "partnerSlug": "double-l-processing-ny",
+    "hubspotId": "58295574549"
   },
   {
     "name": "Dutch Valley Meats, Inc.",
@@ -3594,7 +3608,7 @@
     ],
     "logo": "/logos/boliantz.png",
     "slug": "e-r-boliantz-co-inc-ashland-oh",
-    "status": "customer",
+    "status": "prospect",
     "address": "1535 Cleveland Ave",
     "zip": "44805",
     "phone": "(419) 289-0736",
@@ -4105,7 +4119,8 @@
     "lng": -84.1414001,
     "partnerSlug": "flint-packers-andersonville-ga",
     "zip": "31068",
-    "phone": "(478) 258-0027"
+    "phone": "(478) 258-0027",
+    "hubspotId": "20396935478"
   },
   {
     "name": "Flying W Farms LLC",
@@ -4194,7 +4209,8 @@
       "store",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "56468725930"
   },
   {
     "name": "Fort Sumner Processing",
@@ -4916,7 +4932,7 @@
     ],
     "logo": "/logos/hatchs.png",
     "slug": "hatchs-custom-meat-cutting-llc-crystal-me",
-    "status": "customer",
+    "status": "prospect",
     "address": "23 Prescott Road",
     "zip": "04747",
     "phone": "2074632645",
@@ -5626,7 +5642,7 @@
     ],
     "logo": "/logos/hunter-cattle.jpg",
     "slug": "hunter-cattle-brooklet-ga",
-    "status": "customer",
+    "status": "prospect",
     "address": "934 Driggers Rd",
     "zip": "30415",
     "description": "Established in 2004, Hunter Cattle is a sustainable, award-winning family farm operated by three generations of the Ferguson Family just outside Savannah, GA. They raise 100% grass-fed beef, pasture-raised pork, and all-natural poultry, with a USDA-inspected on-farm processing facility.",
@@ -6829,7 +6845,8 @@
       "point_of_interest",
       "store",
       "establishment"
-    ]
+    ],
+    "hubspotId": "23213896471"
   },
   {
     "name": "Looped Square Meat Co.",
@@ -6914,7 +6931,8 @@
       "point_of_interest",
       "service",
       "establishment"
-    ]
+    ],
+    "hubspotId": "49318457452"
   },
   {
     "name": "Manley Meats",
@@ -8138,7 +8156,8 @@
       "point_of_interest",
       "service",
       "establishment"
-    ]
+    ],
+    "hubspotId": "20397197748"
   },
   {
     "name": "Myers Brothers Custom Btchrng",
@@ -9407,7 +9426,8 @@
       "point_of_interest",
       "store",
       "establishment"
-    ]
+    ],
+    "hubspotId": "48949570384"
   },
   {
     "name": "Percival Packing",
@@ -9696,7 +9716,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "website": "https://www.pottsmeats.com/"
+    "website": "https://www.pottsmeats.com/",
+    "hubspotId": "53948656037"
   },
   {
     "name": "Powell Meat Co",
@@ -10076,7 +10097,8 @@
       "food",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "57248583046"
   },
   {
     "name": "Real Kansas Meats",
@@ -10145,7 +10167,8 @@
       "service",
       "establishment"
     ],
-    "partnerSlug": "renick-valley-meats-renick-wv"
+    "partnerSlug": "renick-valley-meats-renick-wv",
+    "hubspotId": "58428968119"
   },
   {
     "name": "Resaca Meat Processing",
@@ -10363,7 +10386,8 @@
     "description": "USDA-inspected beef processing facility located south of Cortez, Colorado. Book your custom processing date online with ease.\n\nUSDA Certified\nUSDA Certified beef means high standards and easier access to local grocery stores.\n\nLocal\nProcessing beef locally means savings on fuel, adding to the local economy, and caring for our neighbors.\n\nCutting Edge\nA modern facility means safer, quieter, and less environmental impact.",
     "lat": 37.2633188,
     "lng": -108.0468774,
-    "partnerSlug": "rocky-mountain-meats-cortez-co"
+    "partnerSlug": "rocky-mountain-meats-cortez-co",
+    "hubspotId": "23224146732"
   },
   {
     "name": "Rooney's Meat Shop, LLC.",
@@ -10566,7 +10590,8 @@
       "point_of_interest",
       "service",
       "establishment"
-    ]
+    ],
+    "hubspotId": "52571540053"
   },
   {
     "name": "S&S Meats",
@@ -10827,7 +10852,7 @@
     ],
     "logo": "/logos/shale-spring.png",
     "slug": "shale-spring-meats-ex-caver-meats-clyde-ny",
-    "status": "customer",
+    "status": "prospect",
     "address": "10647 Kelsey Road West",
     "zip": "14433",
     "phone": "(315) 923-2040",
@@ -10957,7 +10982,7 @@
     ],
     "logo": "/logos/simla.jpg",
     "slug": "simla-frozen-food-locker-simla-co",
-    "status": "customer",
+    "status": "prospect",
     "address": "101 Pueblo Avenue",
     "zip": "80835",
     "phone": "719-541-2360",
@@ -11170,7 +11195,7 @@
     ],
     "logo": "/logos/sorgs.png",
     "slug": "sorgs-darien-wi",
-    "status": "customer",
+    "status": "prospect",
     "address": "N4290 US-14",
     "zip": "53114",
     "phone": "(262) 724-5554",
@@ -11290,7 +11315,8 @@
       "service",
       "establishment"
     ],
-    "partnerSlug": "southside-meats-avon-sd"
+    "partnerSlug": "southside-meats-avon-sd",
+    "hubspotId": "52624227650"
   },
   {
     "name": "Spruce Hill Meats LLC",
@@ -11768,7 +11794,7 @@
     ],
     "logo": "/logos/sunnyside.svg",
     "slug": "sunnyside-meats-inc-durango-co",
-    "status": "customer",
+    "status": "prospect",
     "address": "253 CR 216",
     "zip": "81303",
     "phone": "970-385-0230",
@@ -12178,7 +12204,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "partnerSlug": "the-stockyards-packing-company-oxford-oh"
+    "partnerSlug": "the-stockyards-packing-company-oxford-oh",
+    "hubspotId": "38837720400"
   },
   {
     "name": "Thomas Cattle Company",
@@ -12372,7 +12399,8 @@
       "store",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "20397150006"
   },
   {
     "name": "UP Products LLC",
@@ -12654,7 +12682,8 @@
       "store",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "23216618665"
   },
   {
     "name": "Wells Jenkins & Wells",
@@ -12862,7 +12891,8 @@
       "store",
       "establishment"
     ],
-    "description": "Westcliffe Meats is a meat processor in Westcliffe, CO, rated 4.6 stars across 22 Google reviews. Customers highlight their friendly staff and clean facility. Common review themes include bacon."
+    "description": "Westcliffe Meats is a meat processor in Westcliffe, CO, rated 4.6 stars across 22 Google reviews. Customers highlight their friendly staff and clean facility. Common review themes include bacon.",
+    "hubspotId": "23213896335"
   },
   {
     "name": "Western Heritage Meat Company",
@@ -13968,7 +13998,8 @@
       "establishment"
     ],
     "description": "B & R Meat Processing is a meat processor in Winslow, AR, rated 4.2 stars across 58 Google reviews. Customers highlight their quick turnaround. Common review themes include custom sausage and taxidermy.",
-    "partnerSlug": "b-and-r-meat-processing-winslow-ar"
+    "partnerSlug": "b-and-r-meat-processing-winslow-ar",
+    "hubspotId": "23218137865"
   },
   {
     "name": "Calhoun meat processing",
@@ -27359,7 +27390,8 @@
       "establishment"
     ],
     "description": "One Sixty Processing | 160 Processing is a meat processor in Shawnee, OK, rated 4.8 stars across 69 Google reviews. Customers highlight their friendly staff.",
-    "partnerSlug": "one-sixty-processing-160-processing-shawnee-ok"
+    "partnerSlug": "one-sixty-processing-160-processing-shawnee-ok",
+    "hubspotId": "59044834737"
   },
   {
     "name": "Fifth Avenue Processing & Retail",
@@ -35101,7 +35133,7 @@
     ],
     "logo": "/logos/el-farms.png",
     "slug": "e-l-farms-meat-processing-butcher-shop-grabill-in",
-    "status": "customer",
+    "status": "prospect",
     "address": "15610 Grabill Rd",
     "zip": "46741",
     "phone": "(260) 409-9868",
@@ -35468,7 +35500,8 @@
       "establishment"
     ],
     "description": "Farm Country Butchery is a meat processor in Conrath, WI, rated 4.7 stars across 19 Google reviews. Customers highlight their friendly staff.",
-    "partnerSlug": "farm-country-butchery-conrath-wi"
+    "partnerSlug": "farm-country-butchery-conrath-wi",
+    "hubspotId": "57102543687"
   },
   {
     "name": "Contentnea Farms",
@@ -35510,7 +35543,8 @@
       "establishment"
     ],
     "description": "Contentnea Farms is a meat processor in Walstonburg, NC, rated 5 stars across 49 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and clean facility. Common review themes include smoked meats, bacon, and custom cuts.",
-    "partnerSlug": "contentnea-farms-walstonburg-nc"
+    "partnerSlug": "contentnea-farms-walstonburg-nc",
+    "hubspotId": "54489433479"
   },
   {
     "name": "Pete's Custom Meats LLC",
@@ -35598,7 +35632,8 @@
       "establishment"
     ],
     "description": "Smokey Ridge Meats is a meat processor in Chewelah, WA, rated 4.2 stars across 39 Google reviews. Common review themes include bacon.",
-    "partnerSlug": "smokey-ridge-meats-chewelah-wa"
+    "partnerSlug": "smokey-ridge-meats-chewelah-wa",
+    "hubspotId": "23211361665"
   },
   {
     "name": "Mad Dog Ranch",
@@ -35631,7 +35666,8 @@
       "establishment"
     ],
     "description": "MD Meats is a meat processor in Bliss, ID, rated 5 stars across 17 Google reviews. Customers highlight their quick turnaround and family-owned operation. Common review themes include wild game processing.",
-    "partnerSlug": "md-meats-bliss-id"
+    "partnerSlug": "md-meats-bliss-id",
+    "hubspotId": "53176779438"
   },
   {
     "name": "Vermont Livestock Slaughter",
@@ -35645,7 +35681,7 @@
     ],
     "logo": "/logos/vermont-livestock.jpg",
     "slug": "vermont-livestock-slaughter-ferrisburgh-vt",
-    "status": "customer",
+    "status": "prospect",
     "address": "76 Depot Rd",
     "zip": "05456",
     "phone": "(802) 877-3421",
@@ -35767,7 +35803,7 @@
     ],
     "logo": "/logos/northeast-kingdom.png",
     "slug": "northeast-kingdom-processing-st-johnsbury-vt",
-    "status": "customer",
+    "status": "prospect",
     "address": "796 Industrial Pkwy",
     "zip": "05819",
     "phone": "(802) 748-2233",
@@ -35811,7 +35847,7 @@
     ],
     "logo": null,
     "slug": "q-bar-s-custom-meats-laketown-ut",
-    "status": "customer",
+    "status": "prospect",
     "address": "1243 Falula Rd",
     "zip": "84038",
     "phone": "(435) 999-3595",
@@ -35887,7 +35923,8 @@
       "establishment"
     ],
     "description": "Feddes Family Meats is a meat processor in Manhattan, MT, rated 4.5 stars across 58 Google reviews. Customers highlight their friendly staff, clean facility, and fair pricing.",
-    "partnerSlug": "feddes-family-meats-manhattan-mt"
+    "partnerSlug": "feddes-family-meats-manhattan-mt",
+    "hubspotId": "43402841951"
   },
   {
     "name": "Lazy J Meats",
