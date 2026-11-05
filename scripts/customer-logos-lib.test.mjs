@@ -225,6 +225,109 @@ test('a second plan against an updated directory does not churn', () => {
   assert.equal(second.hubspotIdsAdded, 0);
 });
 
+test('aliases stay in state and do not take another plant hubspot id', () => {
+  const processors = [
+    processor({
+      name: 'Country Meats',
+      slug: 'country-meats-cataldo-id',
+      state: 'ID',
+      address: '18500 S Old Lane Rd  Cataldo',
+      status: 'prospect',
+    }),
+    processor({
+      name: 'Sunnyside Meats',
+      slug: 'sunnyside-meats-inc-durango-co',
+      state: 'CO',
+      address: '253 CR 216',
+      status: 'prospect',
+    }),
+    processor({
+      name: 'Sunnyside Meat Packers',
+      slug: 'sunnyside-meat-packers-sunnyside-wa',
+      state: 'WA',
+      status: 'prospect',
+    }),
+    processor({
+      name: 'Shale Spring Meats',
+      slug: 'shale-spring-meats-ex-caver-meats-clyde-ny',
+      state: 'NY',
+      address: '10647 Kelsey Road West',
+      status: 'prospect',
+    }),
+    processor({
+      name: 'Caver Meats',
+      slug: 'caver-meats-clyde-ny',
+      state: 'NY',
+      address: '10647 Kelsey Road West',
+      website: 'https://shalespringmeats.com',
+      status: 'prospect',
+    }),
+    processor({
+      name: 'Hunter Cattle',
+      slug: 'hunter-cattle-brooklet-ga',
+      state: 'GA',
+      partnerSlug: 'stilson-abattoir-brooklet-ga',
+      status: 'prospect',
+    }),
+    processor({
+      name: "The Butcher's Block",
+      slug: 'the-butchers-block-va-llc-dry-fork-va',
+      state: 'VA',
+      status: 'customer',
+      address: '4655 Dry Fork Rd',
+    }),
+    processor({
+      name: 'Q Bar S Custom Meats',
+      slug: 'q-bar-s-custom-meats-laketown-ut',
+      state: 'UT',
+      status: 'prospect',
+    }),
+    processor({
+      name: 'Flint Packers',
+      slug: 'flint-packers-ga',
+      state: 'GA',
+      status: 'customer',
+      hubspotId: '20396935478',
+    }),
+    processor({
+      name: 'Westcliffe Meats',
+      slug: 'westcliffe-meats-westcliffe-co',
+      state: 'CO',
+      status: 'customer',
+      hubspotId: '23213896335',
+    }),
+  ];
+  const plan = planCustomerSync(processors, [
+    customer({ hubspotId: '23221205291', name: 'Country Meats, LLC', state: 'FL', domain: '', logoUrl: '' }),
+    customer({ hubspotId: '31490445725', name: 'Sunnyside Meats, Inc.', state: 'CO', domain: 'sunnysidemeats.com', logoUrl: '' }),
+    customer({ hubspotId: '20396379018', name: 'Shale Spring Meats (ex Caver Meats)', state: 'NY', domain: 'shalespringmeats.com', logoUrl: '' }),
+    customer({ hubspotId: '58442664625', name: 'Stilson Abattoir / Hunter Cattle', state: 'GA', domain: 'huntercattle.com', logoUrl: '' }),
+    customer({ hubspotId: '20396935478', name: 'Flint Packers', state: 'GA', logoUrl: '' }),
+    customer({ hubspotId: '23213896335', name: 'Westcliffe Meats', state: 'CO', logoUrl: '' }),
+  ], []);
+
+  const bySlug = Object.fromEntries(plan.processors.map((row) => [row.slug, row]));
+  assert.equal(bySlug['country-meats-cataldo-id'].status, 'prospect');
+  assert.equal(bySlug['country-meats-cataldo-id'].hubspotId, undefined);
+  assert.equal(bySlug['country-meats-cataldo-id'].address, '18500 S Old Lane Rd  Cataldo');
+  assert.equal(bySlug['country-meats-llc-fl'].status, 'customer');
+  assert.equal(bySlug['country-meats-llc-fl'].hubspotId, '23221205291');
+  assert.equal(bySlug['country-meats-llc-fl'].address, undefined);
+  assert.equal(bySlug['sunnyside-meats-inc-durango-co'].status, 'customer');
+  assert.equal(bySlug['sunnyside-meats-inc-durango-co'].address, '253 CR 216');
+  assert.equal(bySlug['sunnyside-meat-packers-sunnyside-wa'].status, 'prospect');
+  assert.equal(bySlug['shale-spring-meats-ex-caver-meats-clyde-ny'].hubspotId, '20396379018');
+  assert.equal(bySlug['caver-meats-clyde-ny'].status, 'prospect');
+  assert.equal(bySlug['caver-meats-clyde-ny'].hubspotId, undefined);
+  assert.equal(bySlug['hunter-cattle-brooklet-ga'].status, 'customer');
+  assert.equal(bySlug['hunter-cattle-brooklet-ga'].partnerSlug, 'stilson-abattoir-brooklet-ga');
+  assert.equal(bySlug['the-butchers-block-va-llc-dry-fork-va'].status, 'prospect');
+  assert.equal(bySlug['the-butchers-block-va-llc-dry-fork-va'].address, '4655 Dry Fork Rd');
+  assert.equal(bySlug['q-bar-s-custom-meats-laketown-ut'].status, 'prospect');
+  assert.deepEqual(plan.created, ['country-meats-llc-fl']);
+  assert.equal(plan.demoted, 1);
+});
+
 test('svg script payloads are rejected and a real png is accepted', () => {
   assert.equal(sniffImage(TINY_PNG), 'png');
   const svg = Buffer.from('<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>');

@@ -113,7 +113,7 @@ export default function ProcessorDetail() {
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content',
-        `${processor.name} in ${placeLabel} processes ${processor.species.join(', ')}. Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.`
+        `${processor.name} in ${placeLabel}${processor.species.length > 0 ? ` processes ${processor.species.join(', ')}` : ''}. Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.`
       );
     }
 
@@ -125,7 +125,7 @@ export default function ProcessorDetail() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": processor.name,
-      "description": `${processor.name} is an independent custom meat processor in ${placeLabel} offering online scheduling and digital cut sheets through Farmshare. Species processed: ${processor.species.join(', ')}.`,
+      "description": `${processor.name} is an independent custom meat processor in ${placeLabel} offering online scheduling and digital cut sheets through Farmshare.${processor.species.length > 0 ? ` Species processed: ${processor.species.join(', ')}.` : ''}`,
       "address": {
         "@type": "PostalAddress",
         "addressLocality": city || undefined,
@@ -298,7 +298,7 @@ export default function ProcessorDetail() {
                 <p className="text-stone-700 mb-6">{prose}</p>
               ) : (
                 <p className="text-stone-700 mb-6">
-                  {processor.name} is an independent custom meat processor located in {city ? `${city}, ` : ''}{stateFull}. They process {processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1')}{isCustomer ? ' and offer online scheduling and digital cut sheets through Farmshare' : ''}.
+                  {processor.name} is an independent custom meat processor located in {city ? `${city}, ` : ''}{stateFull}.{processor.species.length > 0 ? ` They process ${processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1')}` : ''}{isCustomer ? ' They offer online scheduling and digital cut sheets through Farmshare' : ''}.
                 </p>
               )}
 
@@ -474,7 +474,7 @@ export default function ProcessorDetail() {
                 Custom Meat Processing in {city ? `${city}, ` : ''}{stateFull}
               </h2>
               <p className="text-stone-700 mb-4">
-                Looking for a meat processor {city ? `near ${city}, ${stateFull}` : `in ${stateFull}`}? {processor.name} offers custom {processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase()} processing{isCustomer ? ' with modern tools that make the experience easier for farmers and ranchers' : ' for farmers and ranchers in the region'}.
+                Looking for a meat processor {city ? `near ${city}, ${stateFull}` : `in ${stateFull}`}? {processor.name} offers custom {processor.species.length > 0 ? `${processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase()} ` : ''}processing{isCustomer ? ' with modern tools that make the experience easier for farmers and ranchers' : ' for farmers and ranchers in the region'}.
               </p>
               {isCustomer ? (
                 <p className="text-stone-700 mb-4">

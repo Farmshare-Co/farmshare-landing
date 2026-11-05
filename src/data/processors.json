@@ -3608,7 +3608,7 @@
     ],
     "logo": "/logos/boliantz.png",
     "slug": "e-r-boliantz-co-inc-ashland-oh",
-    "status": "prospect",
+    "status": "customer",
     "address": "1535 Cleveland Ave",
     "zip": "44805",
     "phone": "(419) 289-0736",
@@ -3634,7 +3634,8 @@
       "food",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "56468725385"
   },
   {
     "name": "East Texas Beef Processors",
@@ -4932,7 +4933,7 @@
     ],
     "logo": "/logos/hatchs.png",
     "slug": "hatchs-custom-meat-cutting-llc-crystal-me",
-    "status": "prospect",
+    "status": "customer",
     "address": "23 Prescott Road",
     "zip": "04747",
     "phone": "2074632645",
@@ -4960,7 +4961,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "partnerSlug": "hatchs-custom-meat-cutting-llc-crystal-me"
+    "partnerSlug": "hatchs-custom-meat-cutting-llc-crystal-me",
+    "hubspotId": "59248814597"
   },
   {
     "name": "Haun's Meat and Sausage LLC",
@@ -5642,7 +5644,7 @@
     ],
     "logo": "/logos/hunter-cattle.jpg",
     "slug": "hunter-cattle-brooklet-ga",
-    "status": "prospect",
+    "status": "customer",
     "address": "934 Driggers Rd",
     "zip": "30415",
     "description": "Established in 2004, Hunter Cattle is a sustainable, award-winning family farm operated by three generations of the Ferguson Family just outside Savannah, GA. They raise 100% grass-fed beef, pasture-raised pork, and all-natural poultry, with a USDA-inspected on-farm processing facility.",
@@ -5674,7 +5676,8 @@
       "service",
       "establishment"
     ],
-    "partnerSlug": "stilson-abattoir-brooklet-ga"
+    "partnerSlug": "stilson-abattoir-brooklet-ga",
+    "hubspotId": "58442664625"
   },
   {
     "name": "Hwy 10 Processing",
@@ -10852,7 +10855,7 @@
     ],
     "logo": "/logos/shale-spring.png",
     "slug": "shale-spring-meats-ex-caver-meats-clyde-ny",
-    "status": "prospect",
+    "status": "customer",
     "address": "10647 Kelsey Road West",
     "zip": "14433",
     "phone": "(315) 923-2040",
@@ -10880,7 +10883,8 @@
       "store",
       "establishment"
     ],
-    "partnerSlug": "shale-spring-meats-ex-caver-meats-clyde-ny"
+    "partnerSlug": "shale-spring-meats-ex-caver-meats-clyde-ny",
+    "hubspotId": "20396379018"
   },
   {
     "name": "Sharp Custom Cutting Inc",
@@ -10982,7 +10986,7 @@
     ],
     "logo": "/logos/simla.jpg",
     "slug": "simla-frozen-food-locker-simla-co",
-    "status": "prospect",
+    "status": "customer",
     "address": "101 Pueblo Avenue",
     "zip": "80835",
     "phone": "719-541-2360",
@@ -11011,7 +11015,8 @@
       "food",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "31833617770"
   },
   {
     "name": "Skoglund Meats & Locker",
@@ -11195,7 +11200,7 @@
     ],
     "logo": "/logos/sorgs.png",
     "slug": "sorgs-darien-wi",
-    "status": "prospect",
+    "status": "customer",
     "address": "N4290 US-14",
     "zip": "53114",
     "phone": "(262) 724-5554",
@@ -11229,7 +11234,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "partnerSlug": "sorgs-darien-wi"
+    "partnerSlug": "sorgs-darien-wi",
+    "hubspotId": "56245958227"
   },
   {
     "name": "South Canadian Meats, LLC",
@@ -11794,7 +11800,7 @@
     ],
     "logo": "/logos/sunnyside.svg",
     "slug": "sunnyside-meats-inc-durango-co",
-    "status": "prospect",
+    "status": "customer",
     "address": "253 CR 216",
     "zip": "81303",
     "phone": "970-385-0230",
@@ -11821,7 +11827,8 @@
       "food",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "31490445725"
   },
   {
     "name": "Superior Meats Inc.",
@@ -12044,7 +12051,7 @@
     ],
     "logo": "/logos/butchers-block.jpg",
     "slug": "the-butchers-block-va-llc-dry-fork-va",
-    "status": "customer",
+    "status": "prospect",
     "address": "4655 Dry Fork Rd",
     "zip": "24549",
     "phone": "(434) 432-2345",
@@ -35133,7 +35140,7 @@
     ],
     "logo": "/logos/el-farms.png",
     "slug": "e-l-farms-meat-processing-butcher-shop-grabill-in",
-    "status": "prospect",
+    "status": "customer",
     "address": "15610 Grabill Rd",
     "zip": "46741",
     "phone": "(260) 409-9868",
@@ -35168,7 +35175,8 @@
       "establishment"
     ],
     "description": "E & L Farms Meat Processing Butcher Shop is a meat processor in Grabill, IN, rated 4.7 stars across 157 Google reviews. Customers highlight their friendly staff. Common review themes include custom sausage and bacon.",
-    "partnerSlug": "e-l-farms-meat-processing-butcher-shop-grabill-in"
+    "partnerSlug": "e-l-farms-meat-processing-butcher-shop-grabill-in",
+    "hubspotId": "55518877058"
   },
   {
     "name": "Mineola Packing Company, Inc.",
@@ -35681,7 +35689,7 @@
     ],
     "logo": "/logos/vermont-livestock.jpg",
     "slug": "vermont-livestock-slaughter-ferrisburgh-vt",
-    "status": "prospect",
+    "status": "customer",
     "address": "76 Depot Rd",
     "zip": "05456",
     "phone": "(802) 877-3421",
@@ -35699,7 +35707,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "description": "Vermont Livestock Slaughter & Processing is a family-owned business whose goal is to provide our customers with the best quality and service possible. Our USDA-inspected facility is equipped to butcher and process beef, lamb and pork according to your specifications.\n\nWhether you are a private individual with a few head each year or a commercial producer who requires multiple animals processed on a regular basis, our professional and experienced staff are dedicated to giving each of you the personal attention you deserve. And we are conveniently located just off of Route 7 in Ferrisburgh.\n\nPrivate labeling is now available as part of Vermont Livestock S & P services, so let us help you bring your federally inspected meat directly to market with your own custom label for resale."
+    "description": "Vermont Livestock Slaughter & Processing is a family-owned business whose goal is to provide our customers with the best quality and service possible. Our USDA-inspected facility is equipped to butcher and process beef, lamb and pork according to your specifications.\n\nWhether you are a private individual with a few head each year or a commercial producer who requires multiple animals processed on a regular basis, our professional and experienced staff are dedicated to giving each of you the personal attention you deserve. And we are conveniently located just off of Route 7 in Ferrisburgh.\n\nPrivate labeling is now available as part of Vermont Livestock S & P services, so let us help you bring your federally inspected meat directly to market with your own custom label for resale.",
+    "hubspotId": "23217829229"
   },
   {
     "name": "Lone Crow Ranch",
@@ -35803,7 +35812,7 @@
     ],
     "logo": "/logos/northeast-kingdom.png",
     "slug": "northeast-kingdom-processing-st-johnsbury-vt",
-    "status": "prospect",
+    "status": "customer",
     "address": "796 Industrial Pkwy",
     "zip": "05819",
     "phone": "(802) 748-2233",
@@ -35833,7 +35842,8 @@
       "establishment"
     ],
     "description": "Northeast Kingdom Processing is a meat processor in St Johnsbury, VT, rated 4.7 stars across 23 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and professional service. Common review themes include custom sausage.",
-    "partnerSlug": "northeast-kingdom-processing-st-johnsbury-vt"
+    "partnerSlug": "northeast-kingdom-processing-st-johnsbury-vt",
+    "hubspotId": "23212380254"
   },
   {
     "name": "Q Bar S Custom Meats",
@@ -36048,5 +36058,36 @@
       "establishment"
     ],
     "description": "Nettles Beef Processing is a meat processor in Lake City, FL, rated 4.1 stars across 25 Google reviews. Customers highlight their clean facility."
+  },
+  {
+    "name": "Country Meats, LLC",
+    "location": "FL",
+    "state": "FL",
+    "species": [],
+    "logo": null,
+    "slug": "country-meats-llc-fl",
+    "status": "customer",
+    "hubspotId": "23221205291"
+  },
+  {
+    "name": "Stillwater Packing Co.",
+    "location": "MT",
+    "state": "MT",
+    "species": [],
+    "logo": null,
+    "slug": "stillwater-packing-co-mt",
+    "status": "customer",
+    "hubspotId": "57564541204"
+  },
+  {
+    "name": "Vera Earl Ranch",
+    "location": "AZ",
+    "state": "AZ",
+    "species": [],
+    "logo": "/logos/vera-earl-ranch-az.png",
+    "slug": "vera-earl-ranch-az",
+    "status": "customer",
+    "hubspotId": "54223093374",
+    "website": "https://veraearlranch.com"
   }
 ]

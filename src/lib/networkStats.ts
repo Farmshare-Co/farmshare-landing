@@ -1,11 +1,14 @@
 import networkStats from '../data/network-stats.json';
+import processors from '../data/processors.json';
 
 /**
  * Homepage network figures.
  *
- * plants and states come from src/data/network-stats.json, written by
- * scripts/sync-network-stats.mjs from the Farmshare dashboard aggregate.
- * That file is aggregate counts only. producers is the static label "10k+".
+ * plants and states are the directory records marked customer. That is the
+ * same set as the "Online scheduling only" filter: every Farmshare customer
+ * in the current snapshot, with no separate scheduling-link check.
+ * src/data/network-stats.json publishes that snapshot and must match it.
+ * producers is the static label "10k+".
  *
  * These sentences are also filled into index.html by the Vite plugin in
  * vite.config.ts, which imports this module. Keep the wording here.
@@ -29,11 +32,21 @@ function assertAggregates(value: unknown): { plants: number; states: number } {
   return { plants: plants as number, states: states as number };
 }
 
-const counts = assertAggregates(networkStats);
+const published = assertAggregates(networkStats);
+const customers = (processors as { status?: string; state?: string }[]).filter((processor) => processor.status === 'customer');
+const directoryStates = new Set(
+  customers.map((processor) => (processor.state || '').trim()).filter((state) => /^[A-Z]{2}$/.test(state)),
+);
+if (published.plants !== customers.length || published.states !== directoryStates.size) {
+  throw new Error(
+    `network-stats.json is ${published.plants} plants / ${published.states} states, ` +
+    `but the directory has ${customers.length} customers in ${directoryStates.size} states`,
+  );
+}
 
 export const NETWORK_STATS = {
-  plants: counts.plants,
-  states: counts.states,
+  plants: published.plants,
+  states: published.states,
   producersLabel: PRODUCERS_LABEL,
 } as const;
 

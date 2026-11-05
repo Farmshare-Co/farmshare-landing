@@ -2,9 +2,9 @@
 #
 # GET https://farmshare-dashboard.vercel.app/api/network-customers
 # returns [{ hubspotId, name, state, domain, logoUrl }].
-# The route is not public yet. A 404, or the current 307 login redirect,
-# leaves the repo untouched. When the list is available, changes open a pull
-# request. This job does not push to the default branch.
+# A 404 or a login redirect leaves the repo untouched. When the list is
+# available, customer flags and the homepage count are updated together and
+# this job opens a pull request. It does not push to the default branch.
 # No repository secret is required. The job URL is set in this file.
 
 name: Sync customer logos
@@ -44,13 +44,16 @@ jobs:
           commit-message: Sync customer logos from the Farmshare dashboard
           title: Sync customer logos from the Farmshare dashboard
           body: |
-            Daily sync of processor customer status and locally hosted logos from
+            Daily sync of processor customer status, the homepage plant count, and
+            locally hosted logos from
             `GET https://farmshare-dashboard.vercel.app/api/network-customers`.
 
             Existing logo files and entries with `logoLocked: true` are left in place.
-            A 404, or a redirect while the route is not public, makes this job a no-op.
+            Listing address, about text, and slug are not rewritten.
+            A 404, or a login redirect, makes this job a no-op.
           branch: sync/customer-logos
           delete-branch: true
           add-paths: |
             src/data/processors.json
+            src/data/network-stats.json
             public/logos
