@@ -3,6 +3,8 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Globe, CheckCircle2, Send, Phone, Star, Clock, Map as MapIcon } from 'lucide-react';
 import { processors, stateNames, partnerSlugFor, partnerFacilitiesFor, type Processor } from '../data/processors';
 import { processorAboutContent } from '../data/processorAboutContent';
+import { displayLocation } from '../lib/listingPlace.mjs';
+import { displayedProse } from '../lib/listingProse.mjs';
 import RequestSchedulingModal from '../components/RequestSchedulingModal';
 
 function initialsFor(name: string): string {
@@ -102,7 +104,8 @@ export default function ProcessorDetail() {
     if (!processor) return;
 
     // SEO title and meta
-    const rawCity = processor.location.split(',')[0].trim();
+    const placeLabel = displayLocation(processor);
+    const rawCity = placeLabel.split(',')[0].trim();
     const city = /^\d/.test(rawCity) ? '' : rawCity;
     const stateFull = stateNames[processor.state] || processor.state;
     document.title = `${processor.name} — Custom Meat Processor in ${city ? `${city}, ` : ''}${stateFull} | Farmshare`;
@@ -110,7 +113,7 @@ export default function ProcessorDetail() {
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content',
-        `${processor.name} in ${processor.location} processes ${processor.species.join(', ')}. Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.`
+        `${processor.name} in ${placeLabel} processes ${processor.species.join(', ')}. Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.`
       );
     }
 
@@ -122,7 +125,7 @@ export default function ProcessorDetail() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": processor.name,
-      "description": `${processor.name} is an independent custom meat processor in ${processor.location} offering online scheduling and digital cut sheets through Farmshare. Species processed: ${processor.species.join(', ')}.`,
+      "description": `${processor.name} is an independent custom meat processor in ${placeLabel} offering online scheduling and digital cut sheets through Farmshare. Species processed: ${processor.species.join(', ')}.`,
       "address": {
         "@type": "PostalAddress",
         "addressLocality": city || undefined,
@@ -169,11 +172,16 @@ export default function ProcessorDetail() {
     return <Navigate to="/find-a-processor" replace />;
   }
 
-  const rawCity = processor.location.split(',')[0].trim();
+  const placeLabel = displayLocation(processor);
+  const rawCity = placeLabel.split(',')[0].trim();
   const city = /^\d/.test(rawCity) ? '' : rawCity;
   const stateFull = stateNames[processor.state] || processor.state;
   const content = processorAboutContent[processor.slug];
-  const hasRichContent = content && content.about.length >= 100;
+  const prose = displayedProse({
+    description: processor.description,
+    about: content?.about,
+    editorialSummary: processor.editorialSummary,
+  });
 
   return (
     <div className="min-h-screen bg-brand-cream">
@@ -191,7 +199,7 @@ export default function ProcessorDetail() {
             <div className="flex flex-col items-center text-brand-cream/80 mb-6">
               <div className="flex items-center text-xl">
                 <MapPin className="h-5 w-5 mr-2" />
-                {processor.location}
+                {placeLabel}
               </div>
               {processor.address && (
                 <div className="text-sm text-brand-cream/60 mt-1">
@@ -286,12 +294,8 @@ export default function ProcessorDetail() {
                 About {processor.name}
               </h2>
 
-              {hasRichContent ? (
-                <p className="text-stone-700 mb-6">{content.about}</p>
-              ) : processor.editorialSummary ? (
-                <p className="text-stone-700 mb-6">{processor.editorialSummary}</p>
-              ) : processor.description ? (
-                <p className="text-stone-700 mb-6">{processor.description}</p>
+              {prose ? (
+                <p className="text-stone-700 mb-6">{prose}</p>
               ) : (
                 <p className="text-stone-700 mb-6">
                   {processor.name} is an independent custom meat processor located in {city ? `${city}, ` : ''}{stateFull}. They process {processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1')}{isCustomer ? ' and offer online scheduling and digital cut sheets through Farmshare' : ''}.
@@ -378,7 +382,7 @@ export default function ProcessorDetail() {
               )}
 
               {/* Google reviews (live, edge-cached) */}
-              <GoogleReviews name={processor.name} location={processor.location} rating={processor.rating} count={processor.userRatingCount} />
+              <GoogleReviews name={processor.name} location={placeLabel} rating={processor.rating} count={processor.userRatingCount} />
 
               {isCustomer ? (
                 <>

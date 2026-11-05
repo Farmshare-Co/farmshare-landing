@@ -7,6 +7,8 @@ export type ProcessorStatus = 'customer' | 'prospect';
 
 export interface Processor {
   name: string;
+  /** "City, ST" stored for the directory. Public pages prefer a city named in
+   *  `address` when the two disagree (see displayLocation). Not reverse-geocoded. */
   location: string;
   state: string;
   species: string[];

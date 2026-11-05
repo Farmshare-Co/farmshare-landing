@@ -5,6 +5,7 @@ import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import type { Marker } from '@googlemaps/markerclusterer';
 import { MapPin, Calendar, ChevronRight, CheckCircle2, Send, X } from 'lucide-react';
 import type { Processor } from '../data/processors';
+import { displayLocation } from '../lib/listingPlace.mjs';
 
 interface Props {
   processors: Processor[];
@@ -220,7 +221,7 @@ function ClusteredMarkers({ points, userLocation, maxZoomOnFit }: ClusteredProps
                 <h3 className="font-bold text-brand-green text-sm leading-tight">{selected.name}</h3>
                 <div className="flex items-center text-stone-500 text-xs mt-0.5">
                   <MapPin className="h-3 w-3 mr-1 flex-shrink-0" />
-                  {selected.location}
+                  {displayLocation(selected)}
                 </div>
                 {selected.status === 'customer' && (
                   <div className="flex items-center gap-1 text-[11px] font-semibold text-brand-green mt-1">

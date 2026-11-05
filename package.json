@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "sync-network-stats": "node scripts/sync-network-stats.mjs",
     "sync-customer-logos": "node scripts/sync-customer-logos.mjs",
-    "test": "node --test scripts/network-stats-lib.test.mjs scripts/customer-logos-lib.test.mjs",
+    "test": "node --test scripts/network-stats-lib.test.mjs scripts/customer-logos-lib.test.mjs scripts/listing-profile.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

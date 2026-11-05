@@ -27,6 +27,8 @@
 //   GOOGLE_GEOCODING_API_KEY    Google API key (also used for Places API — enable Places on same key)
 
 import { createClient } from '@supabase/supabase-js';
+import { locationAfterAddressEdit } from '../../src/lib/listingPlace.mjs';
+import { mergeAboutEntry } from '../../src/lib/listingProse.mjs';
 
 interface PartnerFacility {
   slug: string;
@@ -853,6 +855,17 @@ async function handleEdit(
   setOrClear('phone', body.phone);
   setOrClear('website', body.website);
   setOrClear('description', body.description);
+  // Postal city lives in `location`, separate from the street address. An
+  // address edit that names a city (Oglethorpe) has to update it; reverse
+  // geocoding the pin would keep the nearest place name (Andersonville).
+  // Slug and partnerSlug stay put so public URLs and scheduling links don't move.
+  if (body.address !== undefined) {
+    const nextLocation = locationAfterAddressEdit(
+      { location: target.location as string | undefined, state: target.state as string | undefined },
+      typeof target.address === 'string' ? target.address : '',
+    );
+    if (nextLocation) target.location = nextLocation;
+  }
   if (body.placeId && body.placeId.trim()) target.placeId = body.placeId.trim();
 
   if (body.hours !== undefined) {
@@ -869,26 +882,26 @@ async function handleEdit(
     },
   ];
 
-  // Keep the About content in sync so the inspection/description prose (which
-  // lives in both files) can never drift. Only when a non-empty description is
-  // supplied.
-  if (body.description && body.description.trim()) {
-    try {
-      const aboutRaw = await readRepoTextFile({ ...gh, path: 'src/data/processorAboutContent.json' });
-      const about = JSON.parse(aboutRaw) as Record<string, { about?: string; website?: string }>;
-      const existing = about[body.slug] || {};
-      about[body.slug] = { ...existing, about: body.description.trim() };
-      if (!about[body.slug].website && typeof target.website === 'string') {
-        about[body.slug].website = target.website as string;
-      }
-      files.push({
-        path: 'src/data/processorAboutContent.json',
-        encoding: 'base64',
-        contentBase64: Buffer.from(JSON.stringify(about, null, 2) + '\n', 'utf-8').toString('base64'),
-      });
-    } catch {
-      // non-fatal: about content is supplementary
+  // The public About section prefers processorAboutContent when it is long.
+  // A description save that only updates processors.json looks like a revert
+  // on the public page, and clearing the textarea used to leave the old about
+  // in place. Sync is required: if the about file can't be updated, fail the
+  // edit instead of publishing a description visitors will not see.
+  if (body.description !== undefined) {
+    const aboutRaw = await readRepoTextFile({ ...gh, path: 'src/data/processorAboutContent.json' });
+    const about = JSON.parse(aboutRaw) as Record<string, Record<string, unknown>>;
+    const merged = mergeAboutEntry(about[body.slug], body.description);
+    if (merged) {
+      if (!merged.website && typeof target.website === 'string') merged.website = target.website;
+      about[body.slug] = merged;
+    } else {
+      delete about[body.slug];
     }
+    files.push({
+      path: 'src/data/processorAboutContent.json',
+      encoding: 'base64',
+      contentBase64: Buffer.from(JSON.stringify(about, null, 2) + '\n', 'utf-8').toString('base64'),
+    });
   }
 
   const commit = await commitMultiFile({
