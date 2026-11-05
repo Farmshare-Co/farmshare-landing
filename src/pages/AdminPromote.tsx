@@ -2,8 +2,33 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, CheckCircle2, ChevronDown, ChevronRight, MapPin, Plus, Search, Star, Trash2, Upload } from 'lucide-react';
 import { processors, stateNames, type Processor, type PartnerFacility } from '../data/processors';
+import { processorAboutContent } from '../data/processorAboutContent';
 import { AdminUserBadge } from '../components/AdminGate';
 import { adminAuthHeaders, signOutAdmin } from '../lib/adminAuth';
+import { displayLocation } from '../lib/listingPlace.mjs';
+import { displayedProse, editorProse } from '../lib/listingProse.mjs';
+
+const PENDING_EDIT_KEY = 'farmshare.directoryEdit.v1';
+
+function readPendingEdit(slug: string): { prose: string; replaced: string } | null {
+  try {
+    const raw = sessionStorage.getItem(PENDING_EDIT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { slug?: string; prose?: string; replaced?: string };
+    if (parsed.slug !== slug || typeof parsed.prose !== 'string' || typeof parsed.replaced !== 'string') return null;
+    return { prose: parsed.prose, replaced: parsed.replaced };
+  } catch {
+    return null;
+  }
+}
+
+function writePendingEdit(slug: string, pending: { prose: string; replaced: string }) {
+  try {
+    sessionStorage.setItem(PENDING_EDIT_KEY, JSON.stringify({ slug, ...pending }));
+  } catch {
+    /* private mode / blocked storage — the save itself still went to git */
+  }
+}
 const ALL_SPECIES = ['Beef', 'Bison', 'Goat', 'Hog', 'Lamb', 'Veal'] as const;
 type SpeciesT = (typeof ALL_SPECIES)[number];
 
@@ -997,6 +1022,8 @@ function EditForm({
   const [website, setWebsite] = useState('');
   const [description, setDescription] = useState('');
   const [hours, setHours] = useState('');
+  const hydratedSlug = useRef<string | null>(null);
+  const bundleProseRef = useRef('');
 
   const all = useMemo(() => [...processors].sort((a, b) => a.name.localeCompare(b.name)), []);
   const filtered = useMemo(() => {
@@ -1015,14 +1042,24 @@ function EditForm({
   );
 
   useEffect(() => {
-    if (!selected) return;
+    if (!selected || hydratedSlug.current === selected.slug) return;
+    hydratedSlug.current = selected.slug;
     setName(selected.name);
     setSpecies(selected.species as SpeciesT[]);
     setPhone(selected.phone ?? '');
     setAddress(selected.address ?? '');
     setZip(selected.zip ?? '');
     setWebsite(selected.website ?? '');
-    setDescription(selected.description ?? '');
+    const bundleProse = displayedProse({
+      description: selected.description,
+      about: processorAboutContent[selected.slug]?.about,
+      editorialSummary: selected.editorialSummary,
+    });
+    bundleProseRef.current = bundleProse;
+    // The textarea must start from the paragraph visitors see (often the about
+    // file, not description). A save against the previous build would otherwise
+    // post that older description and put it back on the public page.
+    setDescription(editorProse(bundleProse, readPendingEdit(selected.slug)));
     setHours((selected.hours ?? []).join('\n'));
     setResult(null);
     setError(null);
@@ -1062,6 +1099,10 @@ function EditForm({
         }
         return;
       }
+      writePendingEdit(selected.slug, {
+        prose: description.trim(),
+        replaced: bundleProseRef.current,
+      });
       setResult({ ...data, slug: data.slug ?? selected.slug });
     } catch (e) {
       setError((e as Error).message);
@@ -1090,7 +1131,7 @@ function EditForm({
               className={`w-full text-left px-3 py-2 text-sm hover:bg-brand-cream transition-colors ${p.slug === selectedSlug ? 'bg-brand-cream font-bold' : ''}`}
             >
               <div className="text-brand-green">{p.name}</div>
-              <div className="text-stone-500 text-xs">{p.location} · {p.slug} · {p.status}</div>
+              <div className="text-stone-500 text-xs">{displayLocation(p)} · {p.slug} · {p.status}</div>
             </button>
           ))}
           {filtered.length > 100 && (
@@ -1113,7 +1154,12 @@ function EditForm({
 
             <Field label="Species"><SpeciesPicker value={species} onChange={setSpecies} /></Field>
 
-            <Field label="Address"><input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="w-full px-3 py-2 rounded border border-stone-300" /></Field>
+            <Field
+              label="Address"
+              hint={`Public card city: ${displayLocation({ location: selected.location, address, state: selected.state })}. A city named in the address is what the directory shows.`}
+            >
+              <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="w-full px-3 py-2 rounded border border-stone-300" />
+            </Field>
 
             <div className="grid grid-cols-2 gap-3">
               <Field label="ZIP"><input type="text" value={zip} onChange={(e) => setZip(e.target.value)} className="w-full px-3 py-2 rounded border border-stone-300" /></Field>
@@ -1126,7 +1172,7 @@ function EditForm({
               <textarea value={hours} onChange={(e) => setHours(e.target.value)} rows={7} className="w-full px-3 py-2 rounded border border-stone-300 text-sm font-mono" />
             </Field>
 
-            <Field label="About / description" hint="Also used for the inspection line (USDA vs state). Kept in sync with the About content.">
+            <Field label="About / description" hint="This is the paragraph on the public page. Saving updates the listing and the About content together, including when you clear it.">
               <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={4} className="w-full px-3 py-2 rounded border border-stone-300 text-sm" />
             </Field>
 

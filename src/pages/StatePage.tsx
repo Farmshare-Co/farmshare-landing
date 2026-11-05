@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Map as MapIcon, List, Navigation, X, CheckCircle2, Send, ChevronRight } from 'lucide-react';
 import { processors, stateNames, stateSlugToAbbr } from '../data/processors';
+import { displayLocation } from '../lib/listingPlace.mjs';
 import { stateAdjacency } from '../data/stateAdjacency';
 import ProcessorMap from '../components/ProcessorMap';
 import { useUserLocation, distanceMiles } from '../hooks/useUserLocation';
@@ -55,7 +56,7 @@ export default function StatePage() {
           "name": p.name,
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": p.location.split(',')[0].trim(),
+            "addressLocality": displayLocation(p).split(',')[0].trim(),
             "addressRegion": stateFull,
             "addressCountry": "US"
           },
@@ -192,7 +193,7 @@ export default function StatePage() {
                         <h2 className="text-lg font-bold text-brand-green leading-tight group-hover:text-brand-orange transition-colors">{processor.name}</h2>
                         <div className="flex items-center text-stone-500 mt-1">
                           <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
-                          <span className="text-sm">{processor.location}</span>
+                          <span className="text-sm">{displayLocation(processor)}</span>
                           {userLoc.location && processor.lat != null && processor.lng != null && (
                             <span className="text-xs text-brand-green font-semibold ml-2">
                               {Math.round(distanceMiles(userLoc.location, { lat: processor.lat, lng: processor.lng }))} mi

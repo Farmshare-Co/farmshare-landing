@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { MapPin, Search, Calendar, Filter, ChevronDown, ChevronRight, Map as MapIcon, List, Navigation, X, CheckCircle2, Send } from 'lucide-react';
 import { processors, stateNames, type Processor } from '../data/processors';
+import { displayLocation } from '../lib/listingPlace.mjs';
 import ProcessorMap from '../components/ProcessorMap';
 import { useUserLocation, distanceMiles } from '../hooks/useUserLocation';
 
@@ -99,7 +100,7 @@ export default function FindProcessor() {
           "name": p.name,
           "address": {
             "@type": "PostalAddress",
-            "addressLocality": p.location.split(',')[0].trim(),
+            "addressLocality": displayLocation(p).split(',')[0].trim(),
             "addressRegion": stateNames[p.state] || p.state,
             "addressCountry": "US"
           },
@@ -132,7 +133,7 @@ export default function FindProcessor() {
       // place types (would make "butcher" match every butcher_shop).
       const haystack = [
         p.name,
-        p.location,
+        displayLocation(p),
         p.state,
         p.address ?? '',
         p.zip ?? '',
@@ -341,7 +342,7 @@ export default function FindProcessor() {
                         <h3 className="text-lg font-bold text-brand-green leading-tight group-hover:text-brand-orange transition-colors">{processor.name}</h3>
                         <div className="flex items-center text-stone-500 mt-1">
                           <MapPin className="h-4 w-4 mr-1 flex-shrink-0" />
-                          <span className="text-sm">{processor.location}</span>
+                          <span className="text-sm">{displayLocation(processor)}</span>
                           {userLoc.location && processor.lat != null && processor.lng != null && (
                             <span className="text-xs text-brand-green font-semibold ml-2">
                               {Math.round(distanceMiles(userLoc.location, { lat: processor.lat, lng: processor.lng }))} mi

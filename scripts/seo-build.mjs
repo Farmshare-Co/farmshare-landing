@@ -11,6 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { displayLocation } from '../src/lib/listingPlace.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -143,7 +144,7 @@ function buildRoutes() {
             name: p.name,
             address: {
               '@type': 'PostalAddress',
-              addressLocality: p.location.split(',')[0].trim(),
+              addressLocality: displayLocation(p).split(',')[0].trim(),
               addressRegion: stateName,
               addressCountry: 'US',
             },
@@ -176,7 +177,7 @@ function buildRoutes() {
     const ctaWord = isCustomer ? 'Book online' : 'Send a scheduling request';
     const speciesText = p.species && p.species.length ? ` Services include ${p.species.join(', ').toLowerCase()} processing.` : '';
     const baseDescription = p.description
-      || `${p.name} is a custom meat processor in ${p.location}, ${stateName}.${speciesText} ${ctaWord} through Farmshare.`;
+      || `${p.name} is a custom meat processor in ${displayLocation(p)}, ${stateName}.${speciesText} ${ctaWord} through Farmshare.`;
 
     const localBusiness = {
       '@context': 'https://schema.org',
@@ -189,7 +190,7 @@ function buildRoutes() {
       address: {
         '@type': 'PostalAddress',
         ...(p.address ? { streetAddress: p.address } : {}),
-        addressLocality: p.location.split(',')[0].trim(),
+        addressLocality: displayLocation(p).split(',')[0].trim(),
         addressRegion: stateName,
         ...(p.zip ? { postalCode: p.zip } : {}),
         addressCountry: 'US',
@@ -210,7 +211,7 @@ function buildRoutes() {
 
     routes.push({
       path: `/find-a-processor/${p.slug}`,
-      title: `${p.name} — ${p.location} | Custom Meat Processor | Farmshare`,
+      title: `${p.name} — ${displayLocation(p)} | Custom Meat Processor | Farmshare`,
       description: clip(baseDescription, 300),
       image: p.logo && p.logo.startsWith('http') ? p.logo : null,
       priority: isCustomer ? 0.8 : 0.6,
