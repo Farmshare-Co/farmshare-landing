@@ -2,9 +2,10 @@
  * Pure helpers for the homepage customer-logo sync.
  *
  * scripts/sync-customer-logos.mjs is the only caller. The site does not import
- * this module. Matching is by hubspotId, then by normalized display name.
- * Logo files already in public/logos are never replaced, and a record with
- * logoLocked: true keeps whatever logo it has.
+ * this module. Matching is by hubspotId, then by name in the same state, then
+ * by website domain in the same state. A feed name never takes a listing in
+ * another state. Logo files already in public/logos are never replaced, and a
+ * record with logoLocked: true keeps whatever logo it has.
  */
 
 export const DEFAULT_DASHBOARD_CUSTOMERS_URL =
@@ -60,6 +61,94 @@ function hubspotIdOf(value) {
   }
   if (typeof value !== 'string') return '';
   return value.trim();
+}
+
+function stateOf(value) {
+  return String(value ?? '').trim().toUpperCase();
+}
+
+/** States are compared only when both sides have one, so a FL customer cannot take an ID listing. */
+function sameState(processor, customer) {
+  const processorState = stateOf(processor.state);
+  const customerState = stateOf(customer.state);
+  if (!processorState || !customerState) return true;
+  return processorState === customerState;
+}
+
+export function registrableDomain(value) {
+  if (typeof value !== 'string') return '';
+  let host = value.trim().toLowerCase();
+  if (!host) return '';
+  host = host.replace(/^[a-z][a-z0-9+.-]*:\/\//, '').replace(/^www\./, '');
+  host = host.split('/')[0].split('?')[0].split('#')[0];
+  if (!/^[a-z0-9.-]+\.[a-z]{2,}$/.test(host)) return '';
+  return host;
+}
+
+/**
+ * Names the feed uses for one plant. Parenthetical history ("ex Caver Meats")
+ * is not a second plant. Slash-separated names are aliases of the same plant.
+ */
+export function nameAliases(name) {
+  const primary = String(name ?? '').split('(')[0];
+  const parts = primary.split(/[/|]/).map((part) => part.trim()).filter(Boolean);
+  const aliases = [];
+  for (const part of parts.length ? parts : [primary]) {
+    const normalized = normalizeName(part);
+    if (normalized && !aliases.includes(normalized)) aliases.push(normalized);
+  }
+  return aliases;
+}
+
+function isTokenPrefix(shorter, longer) {
+  const left = shorter.split(' ').filter(Boolean);
+  const right = longer.split(' ').filter(Boolean);
+  if (left.length === 0 || left.length > right.length) return false;
+  if (left.length === 1 && left[0].length < 5) return false;
+  return left.every((token, index) => token === right[index]);
+}
+
+function namesCompatible(alias, processorName) {
+  const other = normalizeName(processorName);
+  if (!alias || !other) return false;
+  if (alias === other) return true;
+  return isTokenPrefix(alias, other) || isTokenPrefix(other, alias);
+}
+
+function slugify(name, state) {
+  return `${name} ${state}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * A feed row with no directory row becomes a customer listing using only
+ * fields the feed actually provided. No address, about text, phone, or coordinates.
+ */
+function minimalCustomerRecord(customer, slugs) {
+  const state = stateOf(customer.state);
+  const base = slugify(customer.name, state);
+  if (!base || !/^[a-z0-9-]+$/.test(base)) {
+    throw new Error('refusing to add a customer without a safe slug');
+  }
+  let slug = base;
+  let n = 2;
+  while (slugs.has(slug)) slug = `${base}-${n++}`;
+  slugs.add(slug);
+  const record = {
+    name: customer.name,
+    location: state,
+    state,
+    species: [],
+    logo: null,
+    slug,
+    status: 'customer',
+    hubspotId: customer.hubspotId,
+  };
+  const domain = registrableDomain(customer.domain);
+  if (domain) record.website = `https://${domain}`;
+  return record;
 }
 
 export function parseNetworkCustomers(payload) {
@@ -189,17 +278,12 @@ export function planCustomerSync(processors, customers, existingLogoFiles = []) 
   const files = fileSet(existingLogoFiles);
   const next = processors.map((processor) => ({ ...processor }));
   const byHubspot = new Map();
-  const byName = new Map();
 
   for (const processor of next) {
     const id = hubspotIdOf(processor.hubspotId);
     if (id) {
       byHubspot.set(id, byHubspot.has(id) ? null : processor);
     }
-    const key = normalizeName(processor.name);
-    if (!key) continue;
-    if (!byName.has(key)) byName.set(key, []);
-    byName.get(key).push(processor);
   }
 
   const matched = new Set();
@@ -207,6 +291,22 @@ export function planCustomerSync(processors, customers, existingLogoFiles = []) 
   const customerByProcessor = new Map();
   const unmatched = [];
   const ambiguous = [];
+  const slugs = new Set(next.map((processor) => processor.slug).filter(Boolean));
+
+  function eligible(processor, customer) {
+    if (matched.has(processor) || !sameState(processor, customer)) return false;
+    const id = hubspotIdOf(processor.hubspotId);
+    return !id || id === customer.hubspotId;
+  }
+
+  function choose(customer, candidates) {
+    if (candidates.length === 1) return candidates[0];
+    if (candidates.length > 1) {
+      ambiguous.push(customer.name);
+      for (const processor of candidates) protectedFromDemotion.add(processor);
+    }
+    return null;
+  }
 
   for (const customer of customers) {
     let match = null;
@@ -224,18 +324,22 @@ export function planCustomerSync(processors, customers, existingLogoFiles = []) 
       }
     }
     if (!match && !byHubspot.has(customer.hubspotId)) {
-      const candidates = (byName.get(normalizeName(customer.name)) || []).filter((processor) => {
-        if (matched.has(processor)) return false;
-        const id = hubspotIdOf(processor.hubspotId);
-        return !id || id === customer.hubspotId;
+      const aliases = nameAliases(customer.name);
+      const byAlias = next.filter((processor) => {
+        if (!eligible(processor, customer)) return false;
+        return aliases.some((alias) => namesCompatible(alias, processor.name));
       });
-      if (candidates.length === 1) {
-        match = candidates[0];
-      } else if (candidates.length > 1) {
-        ambiguous.push(customer.name);
-        for (const processor of candidates) protectedFromDemotion.add(processor);
-      } else {
-        unmatched.push(customer.name);
+      match = choose(customer, byAlias);
+      if (!match && byAlias.length === 0) {
+        const domain = registrableDomain(customer.domain);
+        const byDomain = domain
+          ? next.filter((processor) => {
+            if (!eligible(processor, customer)) return false;
+            return registrableDomain(processor.website) === domain;
+          })
+          : [];
+        match = choose(customer, byDomain);
+        if (!match && byDomain.length === 0) unmatched.push(customer);
       }
     }
     if (!match || matched.has(match)) continue;
@@ -243,11 +347,26 @@ export function planCustomerSync(processors, customers, existingLogoFiles = []) 
     customerByProcessor.set(match, customer);
   }
 
-  const currentCustomers = next.filter((processor) => processor.status === 'customer');
-  const matchedCurrent = currentCustomers.filter((processor) => matched.has(processor)).length;
-  if (currentCustomers.length > 0 && matchedCurrent < currentCustomers.length * 0.5) {
+  const created = [];
+  const createdCustomers = new Set();
+  for (const customer of unmatched) {
+    if (!/^[A-Z]{2}$/.test(stateOf(customer.state))) continue;
+    const record = minimalCustomerRecord(customer, slugs);
+    next.push(record);
+    matched.add(record);
+    customerByProcessor.set(record, customer);
+    created.push(record.slug);
+    createdCustomers.add(customer);
+  }
+
+  const createdSlugs = new Set(created);
+  const originalCustomers = next.filter(
+    (processor) => processor.status === 'customer' && !createdSlugs.has(processor.slug),
+  );
+  const matchedCurrent = originalCustomers.filter((processor) => matched.has(processor)).length;
+  if (originalCustomers.length > 0 && matchedCurrent < originalCustomers.length * 0.5) {
     throw new Error(
-      `refusing to update statuses; matched ${matchedCurrent} of ${currentCustomers.length} current customers`,
+      `refusing to update statuses; matched ${matchedCurrent} of ${originalCustomers.length} current customers`,
     );
   }
 
@@ -284,8 +403,9 @@ export function planCustomerSync(processors, customers, existingLogoFiles = []) 
     promoted,
     demoted,
     hubspotIdsAdded,
-    unmatched,
+    unmatched: unmatched.filter((customer) => !createdCustomers.has(customer)).map((customer) => customer.name),
     ambiguous,
+    created,
   };
 }
 
@@ -379,6 +499,7 @@ export async function runCustomerLogoSync({
   const summary = {
     promoted: plan.promoted,
     demoted: plan.demoted,
+    created: plan.created.length,
     downloaded,
     plannedDownloads: plan.downloads.length,
     unmatched: plan.unmatched.length,
@@ -388,7 +509,7 @@ export async function runCustomerLogoSync({
   if (dryRun) {
     log(
       `Dry run: ${summary.promoted} to promote, ${summary.demoted} to mark prospect, ` +
-      `${summary.plannedDownloads} logos to download. File not written.`,
+      `${summary.created} to add, ${summary.plannedDownloads} logos to download. File not written.`,
     );
     return { changed: false, wouldChange, reason: 'dry-run', ...summary };
   }
@@ -400,7 +521,7 @@ export async function runCustomerLogoSync({
   writeProcessors(plan.processors);
   log(
     `Updated processors: ${summary.promoted} promoted, ${summary.demoted} marked prospect, ` +
-    `${summary.downloaded} logos saved, ${summary.unmatched} dashboard names unmatched.`,
+    `${summary.created} added, ${summary.downloaded} logos saved, ${summary.unmatched} dashboard names unmatched.`,
   );
   return { changed: true, ...summary };
 }

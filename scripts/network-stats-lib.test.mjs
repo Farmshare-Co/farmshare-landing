@@ -6,6 +6,7 @@ import {
   orgDescription,
   parseDashboardAggregate,
   serializeStats,
+  statsFromDirectory,
 } from './network-stats-lib.mjs';
 
 const dashboard = { plants: 44, states: 28, updatedAt: '2026-09-02T15:39:26.000Z' };
@@ -39,6 +40,14 @@ test('a sharp drop is not publishable, and the file shape stays aggregate-only',
   const serialized = serializeStats(dashboard);
   assert.deepEqual(JSON.parse(serialized), dashboard);
   assert.equal(Object.keys(JSON.parse(serialized)).join(','), 'plants,states,updatedAt');
+  const fromDirectory = statsFromDirectory([
+    { status: 'customer', state: 'GA' },
+    { status: 'customer', state: 'GA' },
+    { status: 'prospect', state: 'UT' },
+    { status: 'customer', state: 'MT' },
+  ], '2026-11-05T19:20:08.370Z');
+  assert.deepEqual(fromDirectory, { plants: 3, states: 2, updatedAt: '2026-11-05T19:20:08.370Z' });
+
   assert.match(metaDescription(44, 28), /44 facilities, 28 states, 10k\+ producers\./);
   assert.match(orgDescription(44, 28), /44 independent processing facilities across 28 states, serving 10k\+ producers\./);
 });

@@ -1,8 +1,8 @@
-# Refresh the homepage plant and state counts from the Farmshare dashboard.
+# Refresh the homepage plant and state counts from directory customer flags.
 #
-# GET https://farmshare-dashboard.vercel.app/api/network-stats
-# The route is public and returns only { plants, states, updatedAt }.
-# No repository secret is required. The job URL is set in this file.
+# The online-scheduling filter uses those same flags. Customer identity comes
+# from the network-customers sync. This job only republishes the count.
+# No repository secret is required.
 
 name: Sync homepage network stats
 
@@ -29,9 +29,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Pull active-customer counts from the Farmshare dashboard
-        env:
-          DASHBOARD_NETWORK_STATS_URL: https://farmshare-dashboard.vercel.app/api/network-stats
+      - name: Republish directory customer counts
         run: node scripts/sync-network-stats.mjs
 
       - name: Commit updated counts
@@ -43,5 +41,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add src/data/network-stats.json
-          git commit -m "Update homepage network stats from the Farmshare dashboard"
+          git commit -m "Update homepage network stats from directory customers"
           git push

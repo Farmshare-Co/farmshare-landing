@@ -86,6 +86,28 @@ export function assertPublishable(next, previous) {
   }
 }
 
+/**
+ * Homepage plant and state counts are the directory's customer flags.
+ * The online-scheduling filter reads the same flags, so the two numbers are
+ * one snapshot. `updatedAt` is when that snapshot was published.
+ */
+export function statsFromDirectory(processors, updatedAt) {
+  if (!Array.isArray(processors)) throw new Error('processors must be an array');
+  const customers = processors.filter((processor) => processor && processor.status === 'customer');
+  const states = new Set(
+    customers
+      .map((processor) => String(processor.state ?? '').trim())
+      .filter((state) => /^[A-Z]{2}$/.test(state)),
+  );
+  const stats = {
+    plants: customers.length,
+    states: states.size,
+    updatedAt,
+  };
+  assertAggregate(stats);
+  return stats;
+}
+
 export function serializeStats(stats) {
   assertAggregate(stats);
   return `${JSON.stringify({ plants: stats.plants, states: stats.states, updatedAt: stats.updatedAt }, null, 2)}\n`;
