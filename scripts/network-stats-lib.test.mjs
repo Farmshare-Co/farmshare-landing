@@ -5,6 +5,7 @@ import {
   metaDescription,
   orgDescription,
   parseDashboardAggregate,
+  directoryStatsUpdate,
   serializeStats,
   statsFromDirectory,
 } from './network-stats-lib.mjs';
@@ -50,4 +51,31 @@ test('a sharp drop is not publishable, and the file shape stays aggregate-only',
 
   assert.match(metaDescription(44, 28), /44 facilities, 28 states, 10k\+ producers\./);
   assert.match(orgDescription(44, 28), /44 independent processing facilities across 28 states, serving 10k\+ producers\./);
+});
+
+test('a customer promotion publishes a new plant count and leaves an unchanged count alone', () => {
+  const previous = { plants: 2, states: 1, updatedAt: '2026-11-05T22:13:46.829Z' };
+  const processors = [
+    { status: 'customer', state: 'ID' },
+    { status: 'customer', state: 'ID' },
+    { status: 'prospect', state: 'ID' },
+  ];
+  const stamp = '2026-11-06T19:15:48.000Z';
+  assert.equal(directoryStatsUpdate(processors, previous, stamp), null);
+
+  const promoted = processors.map((row, index) => (
+    index === 2 ? { ...row, status: 'customer' } : row
+  ));
+  assert.deepEqual(directoryStatsUpdate(promoted, previous, stamp), {
+    plants: 3,
+    states: 1,
+    updatedAt: stamp,
+  });
+
+  const addedState = [...promoted, { status: 'customer', state: 'CT' }];
+  assert.deepEqual(directoryStatsUpdate(addedState, { plants: 3, states: 1, updatedAt: stamp }, stamp), {
+    plants: 4,
+    states: 2,
+    updatedAt: stamp,
+  });
 });
