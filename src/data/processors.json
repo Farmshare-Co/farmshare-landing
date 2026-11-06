@@ -2504,7 +2504,9 @@
     "state": "ID",
     "species": [
       "Beef",
-      "Hog"
+      "Hog",
+      "Lamb",
+      "Goat"
     ],
     "logo": "/logos/country-meats.svg",
     "slug": "country-meats-cataldo-id",
