@@ -29,6 +29,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { locationAfterAddressEdit } from '../../src/lib/listingPlace.mjs';
 import { mergeAboutEntry } from '../../src/lib/listingProse.mjs';
+import { directoryStatsUpdate, serializeStats } from '../../scripts/network-stats-lib.mjs';
 
 interface PartnerFacility {
   slug: string;
@@ -294,6 +295,28 @@ async function readRepoTextFile(opts: {
     throw new Error(`GitHub read ${opts.path} → ${res.status}: ${text.slice(0, 200)}`);
   }
   return res.text();
+}
+
+/** Publish homepage plant/state counts in the same commit as a customer-count change. */
+async function appendDirectoryStats(
+  files: GhFileChange[],
+  records: Record<string, unknown>[],
+  gh: { token: string; owner: string; repo: string; branch: string },
+) {
+  const previous = JSON.parse(
+    await readRepoTextFile({ ...gh, path: 'src/data/network-stats.json' }),
+  ) as { plants: number; states: number; updatedAt: string };
+  const next = directoryStatsUpdate(records, previous, new Date().toISOString()) as {
+    plants: number;
+    states: number;
+    updatedAt: string;
+  } | null;
+  if (!next) return;
+  files.push({
+    path: 'src/data/network-stats.json',
+    encoding: 'base64',
+    contentBase64: Buffer.from(serializeStats(next), 'utf-8').toString('base64'),
+  });
 }
 
 async function geocode(address: string, apiKey: string): Promise<{ lat: number; lng: number } | null> {
@@ -771,6 +794,7 @@ async function handlePromote(
     encoding: 'base64',
     contentBase64: Buffer.from(JSON.stringify(records, null, 2) + '\n', 'utf-8').toString('base64'),
   });
+  await appendDirectoryStats(files, records, gh);
 
   return commitMultiFile({
     ...gh,
@@ -820,6 +844,7 @@ async function handleRemove(
   // processors.json by scripts/seo-build.mjs on every build, so removing the
   // record here is enough — Vercel's rebuild self-heals sitemap.xml and the
   // detail route redirects to /find-a-processor once the record is gone.
+  await appendDirectoryStats(files, records, gh);
 
   const commit = await commitMultiFile({
     ...gh,
@@ -990,6 +1015,7 @@ async function handleCreate(
     encoding: 'base64',
     contentBase64: Buffer.from(JSON.stringify(records, null, 2) + '\n', 'utf-8').toString('base64'),
   });
+  await appendDirectoryStats(files, records, gh);
 
   const commit = await commitMultiFile({
     ...gh,

@@ -112,3 +112,16 @@ export function serializeStats(stats) {
   assertAggregate(stats);
   return `${JSON.stringify({ plants: stats.plants, states: stats.states, updatedAt: stats.updatedAt }, null, 2)}\n`;
 }
+
+/**
+ * Homepage counts are the directory's customer flags. A promote, create, or
+ * remove has to publish the new count in the same commit: the production
+ * build refuses a directory and a homepage snapshot that disagree.
+ * Returns null when plants and states are already current so updatedAt stays put.
+ */
+export function directoryStatsUpdate(processors, previous, updatedAt) {
+  assertAggregate(previous);
+  const next = statsFromDirectory(processors, updatedAt);
+  if (previous.plants === next.plants && previous.states === next.states) return null;
+  return next;
+}
