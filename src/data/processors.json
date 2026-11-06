@@ -2505,12 +2505,12 @@
     "species": [
       "Beef",
       "Hog",
-      "Lamb",
-      "Goat"
+      "Goat",
+      "Lamb"
     ],
     "logo": "/logos/country-meats.svg",
     "slug": "country-meats-cataldo-id",
-    "status": "prospect",
+    "status": "customer",
     "address": "18500 S Old Lane Rd  Cataldo",
     "zip": "83810",
     "website": "countrymeatsid.com",
