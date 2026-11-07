@@ -2510,7 +2510,7 @@
     ],
     "logo": "/logos/country-meats.svg",
     "slug": "country-meats-cataldo-id",
-    "status": "customer",
+    "status": "prospect",
     "address": "18500 S Old Lane Rd  Cataldo",
     "zip": "83810",
     "website": "countrymeatsid.com",
@@ -36091,5 +36091,26 @@
     "status": "customer",
     "hubspotId": "54223093374",
     "website": "https://veraearlranch.com"
+  },
+  {
+    "name": "Busy Bones Butcher",
+    "location": "NE",
+    "state": "NE",
+    "species": [],
+    "logo": null,
+    "slug": "busy-bones-butcher-ne",
+    "status": "customer",
+    "hubspotId": "57145090581"
+  },
+  {
+    "name": "New England Meat Company",
+    "location": "CT",
+    "state": "CT",
+    "species": [],
+    "logo": "/logos/new-england-meat-company-ct.png",
+    "slug": "new-england-meat-company-ct",
+    "status": "customer",
+    "hubspotId": "58429132094",
+    "website": "https://newenglandmeatco.com"
   }
 ]
