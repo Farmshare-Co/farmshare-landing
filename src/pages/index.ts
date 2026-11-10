@@ -12,3 +12,4 @@ export { default as ServiceAgreement } from './ServiceAgreement';
 export { default as ProcessorDetail } from './ProcessorDetail';
 export { default as StatePage } from './StatePage';
 export { default as BuyBeef } from './BuyBeef';
+export { default as WeimerMeats } from './WeimerMeats';
