@@ -16,7 +16,8 @@ import {
   ReleaseNotes,
   ReleaseNoteDetail,
   Admin,
-  BuyBeef
+  BuyBeef,
+  WeimerMeats
 } from './pages';
 import AdminHome from './pages/AdminHome';
 import AdminPromote from './pages/AdminPromote';
@@ -48,6 +49,8 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/processors" element={<Navigate to="/features" replace />} />
           <Route path="/buy-beef" element={<BuyBeef />} />
+          {/* Single customer story. No index and no nav item: one story cannot support a tab. */}
+          <Route path="/customers/weimer-meats" element={<WeimerMeats />} />
           <Route path="/find-a-processor" element={<FindProcessor />} />
           <Route path="/find-a-processor/species/:species" element={<FindProcessor />} />
           <Route path="/find-a-processor/:stateSlug" element={<ProcessorOrStatePage />} />
