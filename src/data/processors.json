@@ -2510,7 +2510,7 @@
     ],
     "logo": "/logos/country-meats.svg",
     "slug": "country-meats-cataldo-id",
-    "status": "customer",
+    "status": "prospect",
     "address": "18500 S Old Lane Rd  Cataldo",
     "zip": "83810",
     "website": "countrymeatsid.com",
@@ -6785,7 +6785,7 @@
     ],
     "logo": "https://static.wixstatic.com/media/496db4_9662fc14c10949de8924ec4f7b3a6475~mv2.jpg",
     "slug": "local-cuts-meat-company-zephyr-tx",
-    "status": "prospect",
+    "status": "customer",
     "address": "3024 FM 1467 SOUTH",
     "zip": "76890",
     "phone": "(325) 510-5064",
@@ -6815,7 +6815,8 @@
       "wholesaler",
       "point_of_interest",
       "establishment"
-    ]
+    ],
+    "hubspotId": "23216153006"
   },
   {
     "name": "Lone Crow Meat Processing",
@@ -10569,7 +10570,7 @@
     ],
     "logo": "/logos/sb-processing.png",
     "slug": "sb-processing-wray-co",
-    "status": "customer",
+    "status": "prospect",
     "phone": "+19704258987",
     "description": "S&B Processing is a custom meat processor in Wray, CO, offering beef, bison (custom and usda) processing services.",
     "lat": 40.0758231,
@@ -30901,7 +30902,7 @@
       "Hog"
     ],
     "slug": "p3-custom-meats-dunlap-tn",
-    "status": "prospect",
+    "status": "customer",
     "address": "27015 US-127",
     "zip": "37327",
     "phone": "(423) 554-4288",
@@ -30930,7 +30931,8 @@
       "manufacturer",
       "establishment"
     ],
-    "description": "P3 Custom Meats is a meat processor in Dunlap, TN, rated 4.8 stars across 66 Google reviews. Customers highlight their quick turnaround, professional service, and family-owned operation. Common review themes include wild game processing and hunting season slots."
+    "description": "P3 Custom Meats is a meat processor in Dunlap, TN, rated 4.8 stars across 66 Google reviews. Customers highlight their quick turnaround, professional service, and family-owned operation. Common review themes include wild game processing and hunting season slots.",
+    "hubspotId": "59180366345"
   },
   {
     "name": "Whitleyville Station",
@@ -36091,5 +36093,36 @@
     "status": "customer",
     "hubspotId": "54223093374",
     "website": "https://veraearlranch.com"
+  },
+  {
+    "name": "Busy Bones Butcher",
+    "location": "NE",
+    "state": "NE",
+    "species": [],
+    "logo": null,
+    "slug": "busy-bones-butcher-ne",
+    "status": "customer",
+    "hubspotId": "57145090581"
+  },
+  {
+    "name": "New England Meat Company",
+    "location": "CT",
+    "state": "CT",
+    "species": [],
+    "logo": "/logos/new-england-meat-company-ct.png",
+    "slug": "new-england-meat-company-ct",
+    "status": "customer",
+    "hubspotId": "58429132094",
+    "website": "https://newenglandmeatco.com"
+  },
+  {
+    "name": "S&B Processing",
+    "location": "CO",
+    "state": "CO",
+    "species": [],
+    "logo": null,
+    "slug": "s-b-processing-co",
+    "status": "customer",
+    "hubspotId": "61041205360"
   }
 ]
