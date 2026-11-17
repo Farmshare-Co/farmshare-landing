@@ -36093,5 +36093,49 @@
     "status": "customer",
     "hubspotId": "54223093374",
     "website": "https://veraearlranch.com"
+  },
+  {
+    "name": "Busy Bones Butcher, LLC",
+    "location": "Cozad, NE",
+    "state": "NE",
+    "species": [
+      "Beef",
+      "Bison",
+      "Goat",
+      "Hog",
+      "Lamb"
+    ],
+    "logo": "/logos/busy-bones-butcher-llc-cozad-ne.jpeg",
+    "slug": "busy-bones-butcher-llc-cozad-ne",
+    "status": "prospect",
+    "address": "75829 County Rd 426",
+    "zip": "69130",
+    "phone": "(308) 784-3663",
+    "lat": 40.8201519,
+    "lng": -99.8827463,
+    "googleMapsUri": "https://maps.google.com/?cid=15997272985666306619&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 4.9,
+    "userRatingCount": 50,
+    "hours": [
+      "Monday: Closed",
+      "Tuesday: 7:00 AM – 5:00 PM",
+      "Wednesday: 7:00 AM – 5:00 PM",
+      "Thursday: 7:00 AM – 5:00 PM",
+      "Friday: 7:00 AM – 5:00 PM",
+      "Saturday: 8:00 AM – 12:00 PM",
+      "Sunday: Closed"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "manufacturer",
+      "food_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "service",
+      "establishment"
+    ],
+    "description": "Busy Bones Butcher, LLC is a meat processor in Cozad, NE, rated 4.9 stars across 50 Google reviews. Customers highlight their friendly staff and clean facility. Common review themes include custom sausage and smoked meats."
   }
 ]
