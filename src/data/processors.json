@@ -11334,11 +11334,12 @@
       "Beef",
       "Goat",
       "Hog",
-      "Lamb"
+      "Lamb",
+      "Bison"
     ],
     "logo": "https://www.sprucehillmeats.com/image/cache/Spuce-Hill-meats.jpg",
     "slug": "spruce-hill-meats-llc-bowman-nd",
-    "status": "prospect",
+    "status": "customer",
     "address": "8556 147th Ave SW",
     "zip": "58623",
     "phone": "(701) 523-4799",
@@ -11368,7 +11369,8 @@
       "point_of_interest",
       "food",
       "establishment"
-    ]
+    ],
+    "partnerSlug": "spruce-hill-meats-llc-bowman-nd"
   },
   {
     "name": "St. Anthony Meats",
