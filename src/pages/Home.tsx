@@ -7,6 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 import LogoBanner from '../components/LogoBanner';
 import PartnerLogoBanner from '../components/PartnerLogoBanner';
+import FeaturedCustomerStory from '../components/sections/FeaturedCustomerStory';
 import ROICalculator from '../components/ROICalculator';
 import AnimatedNumber from '../components/AnimatedNumber';
 import { OwnershipDiagram, NetworkDiagram } from '../components/CoordinationDiagram';
@@ -696,6 +697,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ============================================
+          SECTION 7C: FEATURED CUSTOMER STORY
+          One story, linked from here only. Not a stories hub, and not a
+          replacement for the quote carousel below.
+          ============================================ */}
+      <FeaturedCustomerStory />
 
       {/* ============================================
           SECTION 8: TESTIMONIALS

@@ -104,6 +104,16 @@ function buildRoutes() {
     priority: 0.7,
   });
 
+  // Weimer Meats customer story. Title and description must stay identical to
+  // WEIMER_STORY_TITLE / WEIMER_STORY_DESCRIPTION in src/pages/WeimerMeats.tsx.
+  routes.push({
+    path: '/customers/weimer-meats',
+    title: 'Weimer Meats | Farmshare customer story',
+    description:
+      'A dual-location beef and pork processor in Pennsylvania moved scheduling and cutsheets onto Farmshare, and started booking customers from across the state.',
+    priority: 0.6,
+  });
+
   routes.push({
     path: '/release-notes',
     title: 'Release Notes | Farmshare',
