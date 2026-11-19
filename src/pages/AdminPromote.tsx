@@ -339,7 +339,7 @@ function PromoteForm({
             {multi ? (
               <FacilitiesEditor facilities={facilities} setFacilities={setFacilities} />
             ) : (
-              <Field label="Partner scheduling slug" required hint={<>What goes after <code>partners.farmshare.co/scheduling/</code>. Defaults to the landing slug.</>}>
+              <Field label="Partner scheduling slug" required hint={<>What goes after <code>partners.farmshare.co/processors/</code>. Defaults to the landing slug.</>}>
                 <input type="text" value={partnerSlug} onChange={(e) => setPartnerSlug(e.target.value)} className="w-full px-3 py-2 rounded border border-stone-300" />
               </Field>
             )}
@@ -531,7 +531,7 @@ function CreateForm({
         {multi ? (
           <FacilitiesEditor facilities={facilities} setFacilities={setFacilities} />
         ) : (
-          <Field label="Partner scheduling slug" required hint={<>What goes after <code>partners.farmshare.co/scheduling/</code>.</>}>
+          <Field label="Partner scheduling slug" required hint={<>What goes after <code>partners.farmshare.co/processors/</code>.</>}>
             <input type="text" value={partnerSlug} onChange={(e) => setPartnerSlug(e.target.value)} className="w-full px-3 py-2 rounded border border-stone-300" />
           </Field>
         )}

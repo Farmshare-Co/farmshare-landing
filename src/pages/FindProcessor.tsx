@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { MapPin, Search, Calendar, Filter, ChevronDown, ChevronRight, Map as MapIcon, List, Navigation, X, CheckCircle2, Send } from 'lucide-react';
-import { processors, stateNames, type Processor } from '../data/processors';
+import { processors, stateNames, showsPartnerBooking, type Processor } from '../data/processors';
 import { displayLocation } from '../lib/listingPlace.mjs';
 import ProcessorMap from '../components/ProcessorMap';
 import { useUserLocation, distanceMiles } from '../hooks/useUserLocation';
@@ -142,7 +142,7 @@ export default function FindProcessor() {
     }
     const matchesState = selectedState === 'All States' || p.state === selectedState;
     const matchesSpecies = selectedSpecies === 'All Species' || p.species.includes(selectedSpecies);
-    const matchesOnline = !onlineOnly || p.status === 'customer';
+    const matchesOnline = !onlineOnly || showsPartnerBooking(p);
     return matchesSearch && matchesState && matchesSpecies && matchesOnline;
   });
 
@@ -349,7 +349,7 @@ export default function FindProcessor() {
                             </span>
                           )}
                         </div>
-                        {processor.status === 'customer' && (
+                        {showsPartnerBooking(processor) && (
                           <div className="flex items-center gap-1 text-xs font-semibold text-brand-green mt-1.5">
                             <CheckCircle2 className="h-3.5 w-3.5" />
                             <span>Online scheduling</span>
@@ -370,13 +370,21 @@ export default function FindProcessor() {
                     )}
 
                     {/* CTA */}
-                    {processor.status === 'customer' ? (
+                    {showsPartnerBooking(processor) ? (
                       <div className="mt-auto flex items-center justify-between text-sm bg-brand-green rounded-lg px-3 py-2 shadow-sm group-hover:bg-brand-green/90 transition-colors">
                         <div className="flex items-center font-semibold text-white">
                           <Calendar className="h-4 w-4 mr-2" />
                           <span>Book now — real-time availability</span>
                         </div>
                         <ChevronRight className="h-4 w-4 text-white" />
+                      </div>
+                    ) : processor.hasPartnerPage === false ? (
+                      <div className="mt-auto flex items-center justify-between text-sm bg-stone-100 rounded-lg px-3 py-2">
+                        <div className="flex items-center text-stone-600">
+                          <Send className="h-4 w-4 mr-2" />
+                          <span>Request info</span>
+                        </div>
+                        <ChevronRight className="h-4 w-4 text-stone-400 group-hover:text-brand-orange transition-colors" />
                       </div>
                     ) : (
                       <div className="mt-auto flex items-center justify-between text-sm bg-stone-100 rounded-lg px-3 py-2">
