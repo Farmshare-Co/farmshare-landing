@@ -4,7 +4,7 @@ import { APIProvider, Map, AdvancedMarker, InfoWindow, Pin, useMap } from '@vis.
 import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import type { Marker } from '@googlemaps/markerclusterer';
 import { MapPin, Calendar, ChevronRight, CheckCircle2, Send, X } from 'lucide-react';
-import type { Processor } from '../data/processors';
+import { showsPartnerBooking, type Processor } from '../data/processors';
 import { displayLocation } from '../lib/listingPlace.mjs';
 
 interface Props {
@@ -223,7 +223,7 @@ function ClusteredMarkers({ points, userLocation, maxZoomOnFit }: ClusteredProps
                   <MapPin className="h-3 w-3 mr-1 flex-shrink-0" />
                   {displayLocation(selected)}
                 </div>
-                {selected.status === 'customer' && (
+                {showsPartnerBooking(selected) && (
                   <div className="flex items-center gap-1 text-[11px] font-semibold text-brand-green mt-1">
                     <CheckCircle2 className="h-3 w-3" />
                     Online scheduling
@@ -245,16 +245,21 @@ function ClusteredMarkers({ points, userLocation, maxZoomOnFit }: ClusteredProps
             <Link
               to={`/find-a-processor/${selected.slug}`}
               className={`flex items-center justify-between text-xs font-semibold rounded-md px-2 py-1.5 transition-colors ${
-                selected.status === 'customer'
+                showsPartnerBooking(selected)
                   ? 'bg-brand-green text-white hover:bg-brand-green/90'
                   : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
               }`}
             >
               <span className="inline-flex items-center">
-                {selected.status === 'customer' ? (
+                {showsPartnerBooking(selected) ? (
                   <>
                     <Calendar className="h-3 w-3 mr-1.5" />
                     Book now
+                  </>
+                ) : selected.hasPartnerPage === false ? (
+                  <>
+                    <Send className="h-3 w-3 mr-1.5" />
+                    Request info
                   </>
                 ) : (
                   <>

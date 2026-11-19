@@ -29,9 +29,12 @@ export interface Processor {
   /** Slug used by partners.farmshare.co. Differs from `slug` when the landing
    *  directory and partner admin disagree on casing, punctuation, or city. */
   partnerSlug?: string;
-  /** Multi-facility customers have more than one scheduling page
+  /** Live booking page on partners.farmshare.co. Absent means true.
+   *  `false` plants stay in the directory but offer an info request instead of a booking link. */
+  hasPartnerPage?: boolean;
+  /** Multi-facility customers have more than one booking page
    *  (e.g. separate USDA + Custom plants). If set, takes precedence over
-   *  `partnerSlug` when rendering scheduling CTAs. */
+   *  `partnerSlug` when rendering booking CTAs. */
   partnerFacilities?: PartnerFacility[];
   // Fields pulled from Places API (New) — populated for ~880 of 895 records.
   googleMapsUri?: string;
@@ -61,12 +64,18 @@ export function partnerSlugFor(p: Processor): string {
   return p.partnerSlug ?? p.slug;
 }
 
-/** Returns every facility this processor offers scheduling at. One entry for
+/** Returns every facility this processor offers booking at. One entry for
  *  single-facility customers; two or more for multi-facility (e.g. Weimer). */
 export function partnerFacilitiesFor(p: Processor): PartnerFacility[] {
   if (p.partnerFacilities && p.partnerFacilities.length > 0) return p.partnerFacilities;
   const slug = p.partnerSlug ?? p.slug;
   return [{ slug, label: '' }];
+}
+
+/** Customer with a live partners.farmshare.co booking page.
+ *  `hasPartnerPage: false` is an explicit opt-out; a missing field stays bookable. */
+export function showsPartnerBooking(p: Processor): boolean {
+  return p.status === 'customer' && p.hasPartnerPage !== false;
 }
 
 // State abbreviation to full name lookup — all 50 states + DC

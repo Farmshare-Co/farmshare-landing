@@ -6,6 +6,9 @@ interface Props {
   onClose: () => void;
   processorSlug: string;
   processorName: string;
+  /** `info` is a request about a plant that has no live booking page. */
+  intent?: 'schedule' | 'info';
+  processorPhone?: string;
 }
 
 const SPECIES_OPTIONS = ['Beef', 'Bison', 'Pork', 'Lamb', 'Goat', 'Other'];
@@ -44,7 +47,8 @@ const TIMING_OPTIONS: string[] = (() => {
   return months;
 })();
 
-export default function RequestSchedulingModal({ open, onClose, processorSlug, processorName }: Props) {
+export default function RequestSchedulingModal({ open, onClose, processorSlug, processorName, intent = 'schedule', processorPhone }: Props) {
+  const isInfo = intent === 'info';
   const [species, setSpecies] = useState('');
   const [headCount, setHeadCount] = useState('');
   const [timing, setTiming] = useState('');
@@ -128,11 +132,14 @@ export default function RequestSchedulingModal({ open, onClose, processorSlug, p
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           access_key: '58b18cea-2b1d-443b-80d9-1de172fde179',
-          subject: `📆 ${processorName}: ${species} × ${headCount}, ${timing}`,
+          subject: isInfo
+            ? `Request info: ${processorName} — ${species} × ${headCount}, ${timing}`
+            : `📆 ${processorName}: ${species} × ${headCount}, ${timing}`,
           from_name: 'Farmshare Directory',
           to: 'henry@farmshare.co, wyatt@farmshare.co',
           processor_slug: processorSlug,
           processor_name: processorName,
+          ...(isInfo ? { request_type: 'info' } : {}),
           species,
           head_count: headCount,
           timing,
@@ -193,8 +200,8 @@ export default function RequestSchedulingModal({ open, onClose, processorSlug, p
       >
         <div className="flex items-start justify-between p-6 border-b border-stone-100">
           <div>
-            <h2 className="text-xl font-roca text-brand-green">Request scheduling</h2>
-            <p className="text-sm text-stone-500 mt-1">{processorName}</p>
+            <h2 className="text-xl font-roca text-brand-green">{isInfo ? 'Request info' : 'Request scheduling'}</h2>
+            <p className="text-sm text-stone-500 mt-1">{isInfo ? `Contact this processor · ${processorName}` : processorName}</p>
           </div>
           <button
             onClick={handleClose}
@@ -210,7 +217,9 @@ export default function RequestSchedulingModal({ open, onClose, processorSlug, p
             <CheckCircle2 className="h-12 w-12 text-brand-orange mx-auto mb-4" />
             <h3 className="text-lg font-bold text-brand-green mb-2">Request received</h3>
             <p className="text-stone-600 mb-6">
-              Thanks — we'll reach out to {processorName} on your behalf and follow up with you at {email}.
+              {isInfo
+                ? `Thanks — we received your info request for ${processorName} and will follow up at ${email}.`
+                : `Thanks — we'll reach out to ${processorName} on your behalf and follow up with you at ${email}.`}
             </p>
             <button
               onClick={handleClose}
@@ -222,8 +231,19 @@ export default function RequestSchedulingModal({ open, onClose, processorSlug, p
         ) : (
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
             <p className="text-sm text-stone-600">
-              Share what you need and we'll get back to you within 1–2 business days.
+              {isInfo
+                ? `Share what you need from ${processorName}. Farmshare will follow up within 1–2 business days.`
+                : `Share what you need and we'll get back to you within 1–2 business days.`}
             </p>
+            {isInfo && processorPhone && (
+              <p className="text-sm text-stone-700">
+                Contact this processor directly at{' '}
+                <a href={`tel:${processorPhone.replace(/[^0-9+]/g, '')}`} className="text-brand-green font-semibold hover:underline">
+                  {processorPhone}
+                </a>
+                .
+              </p>
+            )}
 
             <div className="space-y-1.5">
               <label className="block text-sm font-medium text-stone-700">
@@ -337,7 +357,7 @@ export default function RequestSchedulingModal({ open, onClose, processorSlug, p
               className="w-full bg-brand-orange text-white py-3 rounded-lg font-bold hover:bg-brand-yellow transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <Send className="h-4 w-4" />
-              {submitting ? 'Submitting…' : 'Send scheduling request'}
+              {submitting ? 'Submitting…' : isInfo ? 'Send info request' : 'Send scheduling request'}
             </button>
 
             <p className="text-xs text-stone-500 text-center">

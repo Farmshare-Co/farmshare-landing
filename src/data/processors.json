@@ -1017,7 +1017,8 @@
       "service",
       "establishment"
     ],
-    "hubspotId": "20397058310"
+    "hubspotId": "20397058310",
+    "hasPartnerPage": false
   },
   {
     "name": "Big Sky Butcher",
@@ -1711,7 +1712,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "partnerSlug": "cj-meats-minerva-oh",
+    "partnerSlug": "c-j-meats-minerva-oh",
     "hubspotId": "46272025992"
   },
   {
@@ -2251,7 +2252,7 @@
       "food",
       "establishment"
     ],
-    "partnerSlug": "chug-springs-butchery-chugwater-wy",
+    "partnerSlug": "chug-springs-butchery",
     "hubspotId": "31833618725"
   },
   {
@@ -3553,7 +3554,8 @@
       "establishment"
     ],
     "partnerSlug": "double-l-processing-ny",
-    "hubspotId": "58295574549"
+    "hubspotId": "58295574549",
+    "hasPartnerPage": false
   },
   {
     "name": "Dutch Valley Meats, Inc.",
@@ -4964,7 +4966,8 @@
       "establishment"
     ],
     "partnerSlug": "hatchs-custom-meat-cutting-llc-crystal-me",
-    "hubspotId": "59248814597"
+    "hubspotId": "59248814597",
+    "hasPartnerPage": false
   },
   {
     "name": "Haun's Meat and Sausage LLC",
@@ -10885,7 +10888,7 @@
       "store",
       "establishment"
     ],
-    "partnerSlug": "shale-spring-meats-ex-caver-meats-clyde-ny",
+    "partnerSlug": "shale-spring-meats-clyde-ny",
     "hubspotId": "20396379018"
   },
   {
@@ -11370,7 +11373,8 @@
       "food",
       "establishment"
     ],
-    "partnerSlug": "spruce-hill-meats-llc-bowman-nd"
+    "partnerSlug": "spruce-hill-meats-llc-bowman-nd",
+    "hasPartnerPage": false
   },
   {
     "name": "St. Anthony Meats",
@@ -12411,7 +12415,8 @@
       "point_of_interest",
       "establishment"
     ],
-    "hubspotId": "20397150006"
+    "hubspotId": "20397150006",
+    "hasPartnerPage": false
   },
   {
     "name": "UP Products LLC",
@@ -14010,7 +14015,8 @@
     ],
     "description": "B & R Meat Processing is a meat processor in Winslow, AR, rated 4.2 stars across 58 Google reviews. Customers highlight their quick turnaround. Common review themes include custom sausage and taxidermy.",
     "partnerSlug": "b-and-r-meat-processing-winslow-ar",
-    "hubspotId": "23218137865"
+    "hubspotId": "23218137865",
+    "hasPartnerPage": false
   },
   {
     "name": "Calhoun meat processing",
@@ -27401,7 +27407,7 @@
       "establishment"
     ],
     "description": "One Sixty Processing | 160 Processing is a meat processor in Shawnee, OK, rated 4.8 stars across 69 Google reviews. Customers highlight their friendly staff.",
-    "partnerSlug": "one-sixty-processing-160-processing-shawnee-ok",
+    "partnerSlug": "one-sixty-processing-shawnee-ok",
     "hubspotId": "59044834737"
   },
   {
@@ -35180,7 +35186,8 @@
     ],
     "description": "E & L Farms Meat Processing Butcher Shop is a meat processor in Grabill, IN, rated 4.7 stars across 157 Google reviews. Customers highlight their friendly staff. Common review themes include custom sausage and bacon.",
     "partnerSlug": "e-l-farms-meat-processing-butcher-shop-grabill-in",
-    "hubspotId": "55518877058"
+    "hubspotId": "55518877058",
+    "hasPartnerPage": false
   },
   {
     "name": "Mineola Packing Company, Inc.",
@@ -35678,7 +35685,7 @@
       "establishment"
     ],
     "description": "MD Meats is a meat processor in Bliss, ID, rated 5 stars across 17 Google reviews. Customers highlight their quick turnaround and family-owned operation. Common review themes include wild game processing.",
-    "partnerSlug": "md-meats-bliss-id",
+    "partnerSlug": "mad-dog-ranch-bliss-id",
     "hubspotId": "53176779438"
   },
   {
@@ -35712,7 +35719,8 @@
       "establishment"
     ],
     "description": "Vermont Livestock Slaughter & Processing is a family-owned business whose goal is to provide our customers with the best quality and service possible. Our USDA-inspected facility is equipped to butcher and process beef, lamb and pork according to your specifications.\n\nWhether you are a private individual with a few head each year or a commercial producer who requires multiple animals processed on a regular basis, our professional and experienced staff are dedicated to giving each of you the personal attention you deserve. And we are conveniently located just off of Route 7 in Ferrisburgh.\n\nPrivate labeling is now available as part of Vermont Livestock S & P services, so let us help you bring your federally inspected meat directly to market with your own custom label for resale.",
-    "hubspotId": "23217829229"
+    "hubspotId": "23217829229",
+    "partnerSlug": "vermont-livestock-ferrisburgh-vt"
   },
   {
     "name": "Lone Crow Ranch",
@@ -35846,7 +35854,7 @@
       "establishment"
     ],
     "description": "Northeast Kingdom Processing is a meat processor in St Johnsbury, VT, rated 4.7 stars across 23 Google reviews. Customers highlight their friendly staff, knowledgeable staff, and professional service. Common review themes include custom sausage.",
-    "partnerSlug": "northeast-kingdom-processing-st-johnsbury-vt",
+    "partnerSlug": "north-east-kingdom-processing",
     "hubspotId": "23212380254"
   },
   {
@@ -35937,7 +35945,7 @@
       "establishment"
     ],
     "description": "Feddes Family Meats is a meat processor in Manhattan, MT, rated 4.5 stars across 58 Google reviews. Customers highlight their friendly staff, clean facility, and fair pricing.",
-    "partnerSlug": "feddes-family-meats-manhattan-mt",
+    "partnerSlug": "feddes-family-meats",
     "hubspotId": "43402841951"
   },
   {
@@ -36071,7 +36079,8 @@
     "logo": null,
     "slug": "country-meats-llc-fl",
     "status": "customer",
-    "hubspotId": "23221205291"
+    "hubspotId": "23221205291",
+    "hasPartnerPage": false
   },
   {
     "name": "Stillwater Packing Co.",
@@ -36081,7 +36090,8 @@
     "logo": null,
     "slug": "stillwater-packing-co-mt",
     "status": "customer",
-    "hubspotId": "57564541204"
+    "hubspotId": "57564541204",
+    "hasPartnerPage": false
   },
   {
     "name": "Vera Earl Ranch",
@@ -36092,7 +36102,8 @@
     "slug": "vera-earl-ranch-az",
     "status": "customer",
     "hubspotId": "54223093374",
-    "website": "https://veraearlranch.com"
+    "website": "https://veraearlranch.com",
+    "hasPartnerPage": false
   },
   {
     "name": "Busy Bones Butcher, LLC",

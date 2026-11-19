@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { MapPin, Calendar, ArrowLeft, ExternalLink, Globe, CheckCircle2, Send, Phone, Star, Clock, Map as MapIcon } from 'lucide-react';
-import { processors, stateNames, partnerSlugFor, partnerFacilitiesFor, type Processor } from '../data/processors';
+import { processors, stateNames, partnerSlugFor, partnerFacilitiesFor, showsPartnerBooking, type Processor } from '../data/processors';
 import { processorAboutContent } from '../data/processorAboutContent';
 import { displayLocation } from '../lib/listingPlace.mjs';
 import { displayedProse } from '../lib/listingProse.mjs';
@@ -94,6 +94,80 @@ function GoogleReviews({ name, location, rating, count }: { name: string; locati
   );
 }
 
+const bookingCtaClass = 'bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold';
+
+function partnerBookingHref(slug: string): string {
+  return `https://partners.farmshare.co/processors/${slug}?ref=farmshare-directory`;
+}
+
+function BookingCtas({ processor, variant }: { processor: Processor; variant: 'hero' | 'footer' }) {
+  const facilities = partnerFacilitiesFor(processor);
+  if (facilities.length > 1) {
+    return (
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        {facilities.map((f) => (
+          <a
+            key={f.slug}
+            href={partnerBookingHref(f.slug)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={bookingCtaClass}
+          >
+            <Calendar className="mr-2 h-5 w-5" />
+            {variant === 'hero' ? `Schedule — ${f.label}` : `${f.label} dates`}
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </a>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <a
+      href={partnerBookingHref(facilities[0].slug)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={bookingCtaClass}
+    >
+      <Calendar className="mr-2 h-5 w-5" />
+      {variant === 'hero' ? 'Schedule Online' : 'View Available Dates'}
+      <ExternalLink className="ml-2 h-4 w-4" />
+    </a>
+  );
+}
+
+function InfoRequestCtas({ processor, onRequest, tone }: { processor: Processor; onRequest: () => void; tone: 'onGreen' | 'onWhite' }) {
+  const tel = processor.phone?.replace(/[^0-9+]/g, '');
+  const phoneClass = tone === 'onGreen'
+    ? 'border-2 border-white/70 text-white text-lg px-8 py-4 rounded-lg hover:bg-white/10 transition-colors inline-flex items-center font-bold'
+    : 'border-2 border-brand-green text-brand-green text-lg px-8 py-4 rounded-lg hover:bg-brand-cream transition-colors inline-flex items-center font-bold';
+  return (
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <button type="button" onClick={onRequest} className={bookingCtaClass}>
+        <Send className="mr-2 h-5 w-5" />
+        Request info
+      </button>
+      {tel && (
+        <a href={`tel:${tel}`} className={phoneClass}>
+          <Phone className="mr-2 h-5 w-5 flex-shrink-0" />
+          <span className="text-left leading-tight">
+            <span className="block text-xs font-semibold uppercase tracking-wide opacity-80">Contact this processor</span>
+            <span className="whitespace-nowrap">{processor.phone}</span>
+          </span>
+        </a>
+      )}
+    </div>
+  );
+}
+
+function ScheduleRequestButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick} className={bookingCtaClass}>
+      <Send className="mr-2 h-5 w-5" />
+      Send scheduling request
+    </button>
+  );
+}
+
 export default function ProcessorDetail() {
   const { stateSlug: slug } = useParams<{ stateSlug: string }>();
   const processor = processors.find(p => p.slug === slug);
@@ -110,10 +184,14 @@ export default function ProcessorDetail() {
     const stateFull = stateNames[processor.state] || processor.state;
     document.title = `${processor.name} — Custom Meat Processor in ${city ? `${city}, ` : ''}${stateFull} | Farmshare`;
 
+    const bookable = showsPartnerBooking(processor);
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
+      const action = bookable
+        ? 'Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.'
+        : 'Request info through Farmshare, or contact the plant directly.';
       metaDescription.setAttribute('content',
-        `${processor.name} in ${placeLabel}${processor.species.length > 0 ? ` processes ${processor.species.join(', ')}` : ''}. Book your harvest slot online with Farmshare — digital cut sheets, online scheduling, and order tracking.`
+        `${processor.name} in ${placeLabel}${processor.species.length > 0 ? ` processes ${processor.species.join(', ')}` : ''}. ${action}`
       );
     }
 
@@ -125,7 +203,9 @@ export default function ProcessorDetail() {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": processor.name,
-      "description": `${processor.name} is an independent custom meat processor in ${placeLabel} offering online scheduling and digital cut sheets through Farmshare.${processor.species.length > 0 ? ` Species processed: ${processor.species.join(', ')}.` : ''}`,
+      "description": bookable
+        ? `${processor.name} is an independent custom meat processor in ${placeLabel} offering online scheduling and digital cut sheets through Farmshare.${processor.species.length > 0 ? ` Species processed: ${processor.species.join(', ')}.` : ''}`
+        : `${processor.name} is an independent custom meat processor in ${placeLabel}.${processor.species.length > 0 ? ` Species processed: ${processor.species.join(', ')}.` : ''}`,
       "address": {
         "@type": "PostalAddress",
         "addressLocality": city || undefined,
@@ -134,24 +214,28 @@ export default function ProcessorDetail() {
       },
       "url": `https://farmshare.co/find-a-processor/${processor.slug}`,
       "image": processor.logo || "https://farmshare.co/og-image.png",
-      "potentialAction": {
-        "@type": "ReserveAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `https://partners.farmshare.co/scheduling/${partnerSlugFor(processor)}`,
-          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
-        },
-        "result": {
-          "@type": "Reservation",
-          "name": "Harvest Appointment"
+      ...(bookable ? {
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `https://partners.farmshare.co/processors/${partnerSlugFor(processor)}`,
+            "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Harvest Appointment"
+          }
         }
-      },
+      } : {}),
       "makesOffer": processor.species.map(s => ({
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
           "name": `${s} Processing`,
-          "description": `Custom ${s.toLowerCase()} processing with online scheduling and digital cut sheets`
+          "description": bookable
+            ? `Custom ${s.toLowerCase()} processing with online scheduling and digital cut sheets`
+            : `Custom ${s.toLowerCase()} processing`
         }
       }))
     };
@@ -176,6 +260,8 @@ export default function ProcessorDetail() {
   const rawCity = placeLabel.split(',')[0].trim();
   const city = /^\d/.test(rawCity) ? '' : rawCity;
   const stateFull = stateNames[processor.state] || processor.state;
+  const bookable = showsPartnerBooking(processor);
+  const infoRequest = isCustomer && processor.hasPartnerPage === false;
   const content = processorAboutContent[processor.slug];
   const prose = displayedProse({
     description: processor.description,
@@ -229,49 +315,12 @@ export default function ProcessorDetail() {
                 )}
               </div>
             )}
-            {isCustomer ? (
-              (() => {
-                const facilities = partnerFacilitiesFor(processor);
-                if (facilities.length > 1) {
-                  return (
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                      {facilities.map(f => (
-                        <a
-                          key={f.slug}
-                          href={`https://partners.farmshare.co/scheduling/${f.slug}?ref=farmshare-directory`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
-                        >
-                          <Calendar className="mr-2 h-5 w-5" />
-                          Schedule — {f.label}
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </a>
-                      ))}
-                    </div>
-                  );
-                }
-                return (
-                  <a
-                    href={`https://partners.farmshare.co/scheduling/${facilities[0].slug}?ref=farmshare-directory`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
-                  >
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Schedule Online
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                );
-              })()
+            {bookable ? (
+              <BookingCtas processor={processor} variant="hero" />
+            ) : infoRequest ? (
+              <InfoRequestCtas processor={processor} onRequest={() => setRequestOpen(true)} tone="onGreen" />
             ) : (
-              <button
-                onClick={() => setRequestOpen(true)}
-                className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
-              >
-                <Send className="mr-2 h-5 w-5" />
-                Send scheduling request
-              </button>
+              <ScheduleRequestButton onClick={() => setRequestOpen(true)} />
             )}
           </div>
         </div>
@@ -298,7 +347,7 @@ export default function ProcessorDetail() {
                 <p className="text-stone-700 mb-6">{prose}</p>
               ) : (
                 <p className="text-stone-700 mb-6">
-                  {processor.name} is an independent custom meat processor located in {city ? `${city}, ` : ''}{stateFull}.{processor.species.length > 0 ? ` They process ${processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1')}` : ''}{isCustomer ? ' They offer online scheduling and digital cut sheets through Farmshare' : ''}.
+                  {processor.name} is an independent custom meat processor located in {city ? `${city}, ` : ''}{stateFull}.{processor.species.length > 0 ? ` They process ${processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1')}` : ''}{bookable ? ' They offer online scheduling and digital cut sheets through Farmshare' : ''}.
                 </p>
               )}
 
@@ -342,7 +391,7 @@ export default function ProcessorDetail() {
                       <ExternalLink className="h-3 w-3" />
                     </a>
                   )}
-                  {!isCustomer && processor.phone && (
+                  {!bookable && processor.phone && (
                     <a
                       href={`tel:${processor.phone.replace(/[^0-9+]/g, '')}`}
                       className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cream rounded-lg text-brand-green font-medium hover:text-brand-orange transition-colors"
@@ -384,7 +433,7 @@ export default function ProcessorDetail() {
               {/* Google reviews (live, edge-cached) */}
               <GoogleReviews name={processor.name} location={placeLabel} rating={processor.rating} count={processor.userRatingCount} />
 
-              {isCustomer ? (
+              {bookable ? (
                 <>
                   <h3 className="text-lg font-bold text-brand-green mb-3">What You Get with Farmshare</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -405,6 +454,28 @@ export default function ProcessorDetail() {
                     </div>
                   </div>
                 </>
+              ) : infoRequest ? (
+                <div className="bg-brand-cream rounded-lg p-5 mb-6">
+                  <h3 className="text-lg font-bold text-brand-green mb-2">Request info about {processor.name}</h3>
+                  <p className="text-stone-700 text-sm mb-2">
+                    Send an info request and Farmshare will follow up within 1–2 business days.
+                  </p>
+                  {processor.phone && (
+                    <p className="text-stone-700 text-sm mb-2">
+                      Contact this processor at{' '}
+                      <a href={`tel:${processor.phone.replace(/[^0-9+]/g, '')}`} className="text-brand-green font-semibold hover:underline">
+                        {processor.phone}
+                      </a>
+                      .
+                    </p>
+                  )}
+                  <p className="text-stone-600 text-sm mb-0">
+                    Need to book right now?{' '}
+                    <Link to="/find-a-processor?online=true" className="text-brand-green font-semibold hover:underline">
+                      See processors with online scheduling →
+                    </Link>
+                  </p>
+                </div>
               ) : (
                 <div className="bg-brand-cream rounded-lg p-5 mb-6">
                   <h3 className="text-lg font-bold text-brand-green mb-2">Want to book with {processor.name}?</h3>
@@ -421,49 +492,12 @@ export default function ProcessorDetail() {
               )}
 
               <div className="text-center">
-                {isCustomer ? (
-                  (() => {
-                    const facilities = partnerFacilitiesFor(processor);
-                    if (facilities.length > 1) {
-                      return (
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-                          {facilities.map(f => (
-                            <a
-                              key={f.slug}
-                              href={`https://partners.farmshare.co/scheduling/${f.slug}?ref=farmshare-directory`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
-                            >
-                              <Calendar className="mr-2 h-5 w-5" />
-                              {f.label} dates
-                              <ExternalLink className="ml-2 h-4 w-4" />
-                            </a>
-                          ))}
-                        </div>
-                      );
-                    }
-                    return (
-                      <a
-                        href={`https://partners.farmshare.co/scheduling/${facilities[0].slug}?ref=farmshare-directory`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
-                      >
-                        <Calendar className="mr-2 h-5 w-5" />
-                        View Available Dates
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    );
-                  })()
+                {bookable ? (
+                  <BookingCtas processor={processor} variant="footer" />
+                ) : infoRequest ? (
+                  <InfoRequestCtas processor={processor} onRequest={() => setRequestOpen(true)} tone="onWhite" />
                 ) : (
-                  <button
-                    onClick={() => setRequestOpen(true)}
-                    className="bg-brand-orange text-white text-lg px-8 py-4 rounded-lg hover:bg-brand-yellow transition-colors inline-flex items-center font-bold"
-                  >
-                    <Send className="mr-2 h-5 w-5" />
-                    Send scheduling request
-                  </button>
+                  <ScheduleRequestButton onClick={() => setRequestOpen(true)} />
                 )}
               </div>
             </div>
@@ -474,11 +508,15 @@ export default function ProcessorDetail() {
                 Custom Meat Processing in {city ? `${city}, ` : ''}{stateFull}
               </h2>
               <p className="text-stone-700 mb-4">
-                Looking for a meat processor {city ? `near ${city}, ${stateFull}` : `in ${stateFull}`}? {processor.name} offers custom {processor.species.length > 0 ? `${processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase()} ` : ''}processing{isCustomer ? ' with modern tools that make the experience easier for farmers and ranchers' : ' for farmers and ranchers in the region'}.
+                Looking for a meat processor {city ? `near ${city}, ${stateFull}` : `in ${stateFull}`}? {processor.name} offers custom {processor.species.length > 0 ? `${processor.species.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase()} ` : ''}processing{bookable ? ' with modern tools that make the experience easier for farmers and ranchers' : ' for farmers and ranchers in the region'}.
               </p>
-              {isCustomer ? (
+              {bookable ? (
                 <p className="text-stone-700 mb-4">
                   Instead of playing phone tag to book a harvest slot, you can schedule online through Farmshare. Submit your cut sheet digitally from your phone—no more handwriting instructions on paper. And you'll get automatic text and email updates on your order status from drop-off to pickup.
+                </p>
+              ) : infoRequest ? (
+                <p className="text-stone-700 mb-4">
+                  Request info about {processor.name} and Farmshare will follow up.{processor.phone ? ` You can also contact this processor at ${processor.phone}.` : ''}
                 </p>
               ) : (
                 <p className="text-stone-700 mb-4">
@@ -498,6 +536,8 @@ export default function ProcessorDetail() {
         onClose={() => setRequestOpen(false)}
         processorSlug={processor.slug}
         processorName={processor.name}
+        intent={infoRequest ? 'info' : 'schedule'}
+        processorPhone={infoRequest ? processor.phone : undefined}
       />
     </div>
   );
