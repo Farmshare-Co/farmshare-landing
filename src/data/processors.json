@@ -36148,5 +36148,49 @@
       "establishment"
     ],
     "description": "Busy Bones Butcher, LLC is a meat processor in Cozad, NE, rated 4.9 stars across 50 Google reviews. Customers highlight their friendly staff and clean facility. Common review themes include custom sausage and smoked meats."
+  },
+  {
+    "name": "Red River Meats",
+    "location": "Spirit Lake, ID",
+    "state": "ID",
+    "species": [
+      "Beef",
+      "Goat",
+      "Hog",
+      "Lamb"
+    ],
+    "logo": "/logos/red-river-meats-spirit-lake-id.jpg",
+    "slug": "red-river-meats-spirit-lake-id",
+    "status": "prospect",
+    "address": "26761 ID-41",
+    "zip": "83869",
+    "phone": "(208) 818-6253",
+    "website": "https://www.facebook.com/share/16YfA8wayz/?mibextid=wwXIfr",
+    "lat": 47.9065909,
+    "lng": -116.8446141,
+    "googleMapsUri": "https://maps.google.com/?cid=8340906852698481731&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA",
+    "rating": 5,
+    "userRatingCount": 10,
+    "hours": [
+      "Monday: 6:00 AM – 11:00 PM",
+      "Tuesday: 6:00 AM – 11:00 PM",
+      "Wednesday: 6:00 AM – 11:00 PM",
+      "Thursday: 6:00 AM – 11:00 PM",
+      "Friday: 6:00 AM – 11:00 PM",
+      "Saturday: 6:00 AM – 11:00 PM",
+      "Sunday: 6:00 AM – 11:00 PM"
+    ],
+    "businessStatus": "OPERATIONAL",
+    "placeTypes": [
+      "butcher_shop",
+      "food_store",
+      "manufacturer",
+      "food",
+      "point_of_interest",
+      "service",
+      "store",
+      "establishment"
+    ],
+    "description": "Red River Meats is a meat processor in Spirit Lake, ID, rated 5 stars across 10 Google reviews. Customers highlight their friendly staff, quick turnaround, and professional service. Common review themes include vacuum packing, custom sausage, and wild game processing."
   }
 ]
